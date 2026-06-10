@@ -1,31 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mehdi Eslami | Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
+<header class="navbar">
+    <div class="nav-container">
+        <div class="logo">Mehdi Eslami</div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </div>
+</header>
 
-<h1>Hi, I'm Ali</h1>
-<p>Backend Developer</p>
+<main class="container">
+    <section class="hero">
+        <div class="hero-text">
+            <p class="intro">Hello, I'm</p>
+            <h1>Mehdi Eslami</h1>
+            <h2>Backend, Frontend & Mobile Developer</h2>
+            <p class="description">
+                I build backend services, modern web interfaces, and Android applications.
+                My main stack includes Java, Spring Boot, JWT-based authentication,
+                Android development with Java and Kotlin, and frontend development with Next.js, HTML, and CSS.
+                I also have experience deploying and running projects on Linux and Windows.
+            </p>
 
-<h2>Skills</h2>
-<ul>
-    <li>Java</li>
-    <li>Spring Boot</li>
-    <li>Docker</li>
-    <li>PostgreSQL</li>
-</ul>
+            <div class="hero-buttons">
+                <a class="btn primary" href="https://github.com/MehdiEslami1221" target="_blank">GitHub</a>
+                <a class="btn secondary" href="https://www.linkedin.com/in/mehdi-eslami" target="_blank">LinkedIn</a>
+                <a class="btn secondary" href="#contact">Contact Me</a>
+                <a class="btn secondary" href="resume.pdf" target="_blank">Download Resume</a>
+            </div>
+        </div>
 
-<h2>Projects</h2>
-<ul>
-    <li>Task Manager API</li>
-    <li>E-commerce Backend</li>
-</ul>
+        <div class="hero-image">
+            <img src="images/profile.jpg" alt="Mehdi Eslami profile photo" />
+        </div>
+    </section>
 
-<h2>GitHub</h2>
-<a href="https://github.com/username">My GitHub</a>
+    <section id="about" class="section">
+        <h3>About Me</h3>
+        <div class="card">
+            <p>
+                I am a software developer with interest in backend, frontend, and mobile development.
+                I enjoy building complete applications, from backend APIs to user interfaces and Android apps.
+                My focus is on writing clean code, building maintainable systems, and learning modern technologies.
+            </p>
+            <p>
+                I work with Java and Spring Boot for backend systems, use JWT for authentication,
+                build Android applications using Java and Kotlin, and create web interfaces with Next.js, HTML, and CSS.
+                I also have basic experience with Flutter and project deployment on Linux and Windows.
+            </p>
+        </div>
+    </section>
 
+    <section id="skills" class="section">
+        <h3>Skills</h3>
+        <div class="skills-grid">
+            <span>Java</span>
+            <span>Spring Boot</span>
+            <span>JWT Authentication</span>
+            <span>REST API</span>
+            <span>Android</span>
+            <span>Kotlin</span>
+            <span>Java Android</span>
+            <span>Flutter</span>
+            <span>Next.js</span>
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>Git</span>
+            <span>GitHub</span>
+            <span>Linux Deployment</span>
+            <span>Windows Deployment</span>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <h3>Projects</h3>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h4>Spring Boot Backend Project</h4>
+                <p>
+                    Backend application built with Java and Spring Boot, including REST APIs,
+                    authentication, and clean architecture for scalable development.
+                </p>
+                <a href="https://github.com/MehdiEslami1221" target="_blank">View on GitHub</a>
+            </div>
+
+            <div class="project-card">
+                <h4>Android Mobile App</h4>
+                <p>
+                    Android application developed using Java and Kotlin with focus on usability,
+                    app structure, and real-world functionality.
+                </p>
+                <a href="https://github.com/MehdiEslami1221" target="_blank">View on GitHub</a>
+            </div>
+
+            <div class="project-card">
+                <h4>Next.js Frontend Project</h4>
+                <p>
+                    Responsive frontend project using Next.js, HTML, and CSS,
+                    designed with a clean UI and component-based structure.
+                </p>
+                <a href="https://github.com/MehdiEslami1221" target="_blank">View on GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h3>What I Can Do</h3>
+        <div class="card">
+            <ul class="services-list">
+                <li>Develop backend applications with Java and Spring Boot</li>
+                <li>Build secure authentication and authorization using JWT</li>
+                <li>Create Android apps using Java and Kotlin</li>
+                <li>Build frontend interfaces with Next.js, HTML, and CSS</li>
+                <li>Work on basic Flutter applications</li>
+                <li>Deploy and run projects on Linux and Windows environments</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h3>Contact</h3>
+        <div class="card contact-card">
+            <p><strong>Email:</strong> <a href="mailto:p3olod@gmail.com">p3olod@gmail.com</a></p>
+            <p><strong>GitHub:</strong> <a href="https://github.com/MehdiEslami1221" target="_blank">github.com/MehdiEslami1221</a></p>
+            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/mehdi-eslami" target="_blank">linkedin.com/in/mehdi-eslami</a></p>
+            <p><strong>Instagram:</strong> <a href="https://instagram.com/mage.code" target="_blank">@mage.code</a></p>
+        </div>
+    </section>
+</main>
 </body>
 </html>
