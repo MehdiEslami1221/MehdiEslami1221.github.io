@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mehdi Eslami | Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
+<canvas id="matrixCanvas"></canvas>
+
 <header class="navbar">
     <div class="nav-container">
         <div class="logo">Mehdi Eslami</div>
+
         <nav>
             <a href="#about">About</a>
             <a href="#skills">Skills</a>
@@ -20,123 +25,246 @@
 </header>
 
 <main class="container">
+
     <section class="hero">
+
         <div class="hero-text">
+
             <p class="intro">Hello, I'm</p>
+
             <h1>Mehdi Eslami</h1>
-            <h2>Backend, Frontend & Mobile Developer</h2>
+
+            <h2>Backend • Frontend • Mobile Developer</h2>
+
             <p class="description">
-                I build backend services, modern web interfaces, and Android applications.
-                My main stack includes Java, Spring Boot, JWT-based authentication,
-                Android development with Java and Kotlin, and frontend development with Next.js, HTML, and CSS.
-                I also have experience deploying and running projects on Linux and Windows.
+                I build backend systems, web applications, and Android apps.
+                My main stack includes Java, Spring Boot, Android (Java & Kotlin), Next.js,
+                and modern web technologies.
             </p>
 
             <div class="hero-buttons">
-                <a class="btn primary" href="https://github.com/MehdiEslami1221" target="_blank">GitHub</a>
-                <a class="btn secondary" href="https://www.linkedin.com/in/mehdi-eslami" target="_blank">LinkedIn</a>
-                <a class="btn secondary" href="#contact">Contact Me</a>
-                <a class="btn secondary" href="resume.pdf" target="_blank">Download Resume</a>
+
+                <a class="btn primary" href="https://github.com/MehdiEslami1221" target="_blank">
+                    GitHub
+                </a>
+
+                <a class="btn secondary" href="https://www.linkedin.com/in/mehdi-eslami" target="_blank">
+                    LinkedIn
+                </a>
+
+                <a class="btn secondary" href="#contact">
+                    Contact
+                </a>
+
             </div>
+
         </div>
 
         <div class="hero-image">
-            <img src="images/profile.jpg" alt="Mehdi Eslami profile photo" />
+
+            <img src="images/profile.jpg" alt="profile">
+
         </div>
+
     </section>
 
     <section id="about" class="section">
+
         <h3>About Me</h3>
+
         <div class="card">
+
             <p>
-                I am a software developer with interest in backend, frontend, and mobile development.
-                I enjoy building complete applications, from backend APIs to user interfaces and Android apps.
-                My focus is on writing clean code, building maintainable systems, and learning modern technologies.
+                I am a software developer interested in backend, frontend,
+                and mobile development. I enjoy building complete systems
+                from backend APIs to modern user interfaces.
             </p>
+
             <p>
-                I work with Java and Spring Boot for backend systems, use JWT for authentication,
-                build Android applications using Java and Kotlin, and create web interfaces with Next.js, HTML, and CSS.
-                I also have basic experience with Flutter and project deployment on Linux and Windows.
+                My main focus is Java and Spring Boot development,
+                Android applications with Kotlin and Java,
+                and web development with Next.js.
             </p>
+
         </div>
+
     </section>
 
     <section id="skills" class="section">
+
         <h3>Skills</h3>
+
         <div class="skills-grid">
+
             <span>Java</span>
             <span>Spring Boot</span>
-            <span>JWT Authentication</span>
             <span>REST API</span>
+            <span>JWT Authentication</span>
             <span>Android</span>
             <span>Kotlin</span>
-            <span>Java Android</span>
-            <span>Flutter</span>
             <span>Next.js</span>
             <span>HTML</span>
             <span>CSS</span>
             <span>Git</span>
-            <span>GitHub</span>
-            <span>Linux Deployment</span>
-            <span>Windows Deployment</span>
+            <span>Linux</span>
+
         </div>
+
     </section>
 
     <section id="projects" class="section">
+
         <h3>Projects</h3>
+
         <div class="projects-grid">
+
             <div class="project-card">
-                <h4>Spring Boot Backend Project</h4>
+
+                <h4>Spring Boot Backend</h4>
+
                 <p>
-                    Backend application built with Java and Spring Boot, including REST APIs,
-                    authentication, and clean architecture for scalable development.
+                    REST API backend built using Spring Boot with authentication
+                    and scalable architecture.
                 </p>
-                <a href="https://github.com/MehdiEslami1221" target="_blank">View on GitHub</a>
+
+                <a href="https://github.com/MehdiEslami1221" target="_blank">
+                    View on GitHub
+                </a>
+
             </div>
 
             <div class="project-card">
-                <h4>Android Mobile App</h4>
+
+                <h4>Android Application</h4>
+
                 <p>
-                    Android application developed using Java and Kotlin with focus on usability,
-                    app structure, and real-world functionality.
+                    Android mobile application built using Java and Kotlin
+                    with modern UI and practical functionality.
                 </p>
-                <a href="https://github.com/MehdiEslami1221" target="_blank">View on GitHub</a>
+
+                <a href="https://github.com/MehdiEslami1221" target="_blank">
+                    View on GitHub
+                </a>
+
             </div>
 
             <div class="project-card">
-                <h4>Next.js Frontend Project</h4>
+
+                <h4>Next.js Web App</h4>
+
                 <p>
-                    Responsive frontend project using Next.js, HTML, and CSS,
-                    designed with a clean UI and component-based structure.
+                    Responsive frontend project built using Next.js and modern
+                    web technologies.
                 </p>
-                <a href="https://github.com/MehdiEslami1221" target="_blank">View on GitHub</a>
+
+                <a href="https://github.com/MehdiEslami1221" target="_blank">
+                    View on GitHub
+                </a>
+
             </div>
+
         </div>
-    </section>
 
-    <section class="section">
-        <h3>What I Can Do</h3>
-        <div class="card">
-            <ul class="services-list">
-                <li>Develop backend applications with Java and Spring Boot</li>
-                <li>Build secure authentication and authorization using JWT</li>
-                <li>Create Android apps using Java and Kotlin</li>
-                <li>Build frontend interfaces with Next.js, HTML, and CSS</li>
-                <li>Work on basic Flutter applications</li>
-                <li>Deploy and run projects on Linux and Windows environments</li>
-            </ul>
-        </div>
     </section>
 
     <section id="contact" class="section">
+
         <h3>Contact</h3>
+
         <div class="card contact-card">
-            <p><strong>Email:</strong> <a href="mailto:p3olod@gmail.com">p3olod@gmail.com</a></p>
-            <p><strong>GitHub:</strong> <a href="https://github.com/MehdiEslami1221" target="_blank">github.com/MehdiEslami1221</a></p>
-            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/mehdi-eslami" target="_blank">linkedin.com/in/mehdi-eslami</a></p>
-            <p><strong>Instagram:</strong> <a href="https://instagram.com/mage.code" target="_blank">@mage.code</a></p>
+
+            <p>Email: p3olod@gmail.com</p>
+
+            <p>
+                GitHub:
+                <a href="https://github.com/MehdiEslami1221">
+                    github.com/MehdiEslami1221
+                </a>
+            </p>
+
+            <p>
+                LinkedIn:
+                <a href="https://www.linkedin.com/in/mehdi-eslami">
+                    linkedin.com/in/mehdi-eslami
+                </a>
+            </p>
+
+            <p>
+                Instagram:
+                <a href="https://instagram.com/mage.code">
+                    @mage.code
+                </a>
+            </p>
+
         </div>
+
     </section>
+
 </main>
+
+
+<script>
+
+    const canvas = document.getElementById("matrixCanvas");
+
+    const ctx = canvas.getContext("2d");
+
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const letters = "01";
+
+    const fontSize = 16;
+
+    const columns = canvas.width / fontSize;
+
+    const drops = [];
+
+    for (let x = 0; x < columns; x++) {
+
+        drops[x] = 1;
+
+    }
+
+    function draw(){
+
+        ctx.fillStyle = "rgba(13,17,23,0.07)";
+
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+
+        ctx.fillStyle = "#00ff9c";
+
+        ctx.font = fontSize + "px monospace";
+
+        for(let i = 0; i < drops.length; i++){
+
+            const text = letters[Math.floor(Math.random()*letters.length)];
+
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+            if(drops[i] * fontSize > canvas.height && Math.random() > 0.975){
+
+                drops[i] = 0;
+
+            }
+
+            drops[i]++;
+
+        }
+
+    }
+
+    setInterval(draw,35);
+
+    window.addEventListener("resize",function(){
+
+        canvas.height = window.innerHeight;
+
+        canvas.width = window.innerWidth;
+
+    });
+
+</script>
+
 </body>
 </html>
