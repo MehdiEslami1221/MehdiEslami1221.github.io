@@ -2,12 +2,19 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
+    scroll-behavior:smooth;
 }
 
 body{
-    font-family:Arial;
-    color:#e6edf3;
+    font-family:system-ui;
     background:#0d1117;
+    color:#e6edf3;
+    line-height:1.7;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
 }
 
 #matrixCanvas{
@@ -15,12 +22,17 @@ body{
     top:0;
     left:0;
     z-index:-1;
+    opacity:0.5;
 }
+
+
+/* navbar */
 
 .navbar{
     position:sticky;
     top:0;
-    background:rgba(13,17,23,0.9);
+    background:rgba(13,17,23,0.85);
+    backdrop-filter:blur(6px);
     border-bottom:1px solid #30363d;
 }
 
@@ -35,14 +47,21 @@ body{
 
 .logo{
     font-size:20px;
-    font-weight:bold;
+    font-weight:600;
 }
 
 nav a{
     margin-left:20px;
     color:#c9d1d9;
-    text-decoration:none;
+    transition:0.3s;
 }
+
+nav a:hover{
+    color:#58a6ff;
+}
+
+
+/* layout */
 
 .container{
     max-width:1100px;
@@ -50,16 +69,13 @@ nav a{
     padding:40px 20px;
 }
 
+
+/* hero */
+
 .hero{
+    min-height:80vh;
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    min-height:80vh;
-}
-
-.hero-text{
-    max-width:600px;
 }
 
 .hero-text h1{
@@ -73,8 +89,8 @@ nav a{
 }
 
 .description{
-    margin-bottom:25px;
     color:#c9d1d9;
+    margin-bottom:25px;
 }
 
 .hero-buttons{
@@ -86,8 +102,7 @@ nav a{
 .btn{
     padding:12px 22px;
     border-radius:10px;
-    text-decoration:none;
-    font-weight:bold;
+    font-weight:600;
 }
 
 .primary{
@@ -95,34 +110,76 @@ nav a{
     color:white;
 }
 
+.primary:hover{
+    background:#2ea043;
+}
+
 .secondary{
     border:1px solid #30363d;
-    color:white;
 }
 
-.hero-image img{
-    width:280px;
-    height:280px;
-    border-radius:50%;
-    border:4px solid #58a6ff;
-    object-fit:cover;
+.secondary:hover{
+    border-color:#58a6ff;
+    color:#58a6ff;
 }
+
+
+/* sections */
 
 .section{
-    margin-top:80px;
+    margin-top:90px;
 }
 
 .section h3{
     font-size:28px;
-    margin-bottom:20px;
+    margin-bottom:30px;
 }
 
+
+/* about */
+
+.about-container{
+    display:flex;
+    align-items:center;
+    gap:40px;
+    flex-wrap:wrap;
+}
+
+.about-image img{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid #58a6ff;
+    box-shadow:
+            0 0 25px rgba(88,166,255,0.35),
+            0 0 60px rgba(88,166,255,0.15);
+    transition:0.4s;
+}
+
+.about-image img:hover{
+    transform:scale(1.05);
+    box-shadow:
+            0 0 40px rgba(88,166,255,0.55),
+            0 0 80px rgba(88,166,255,0.25);
+}
+
+.about-text{
+    flex:1;
+}
+
+
+/* card */
+
 .card{
-    background:#161b22;
+    background:rgba(22,27,34,0.9);
     border:1px solid #30363d;
-    border-radius:15px;
+    border-radius:14px;
     padding:25px;
 }
+
+
+/* skills */
 
 .skills-grid{
     display:flex;
@@ -131,15 +188,19 @@ nav a{
 }
 
 .skills-grid span{
-    background:#0d1117;
+    background:#161b22;
     border:1px solid #30363d;
     padding:8px 14px;
     border-radius:20px;
+    font-size:14px;
 }
+
+
+/* projects */
 
 .projects-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
     gap:20px;
 }
 
@@ -147,17 +208,51 @@ nav a{
     background:#161b22;
     border:1px solid #30363d;
     padding:20px;
-    border-radius:15px;
+    border-radius:14px;
+    transition:0.3s;
 }
 
-.project-card h4{
-    margin-bottom:10px;
+.project-card:hover{
+    border-color:#58a6ff;
+    transform:translateY(-6px);
 }
 
 .project-card a{
     color:#58a6ff;
 }
 
+.project-card a:hover{
+    color:#79c0ff;
+}
+
+
+/* contact */
+
 .contact-card p{
-    margin-bottom:10px;
+    margin-bottom:12px;
+}
+
+.contact-card a{
+    color:#58a6ff;
+}
+
+.contact-card a:hover{
+    color:#79c0ff;
+}
+
+
+/* responsive */
+
+@media(max-width:768px){
+
+    .about-container{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .about-image img{
+        width:180px;
+        height:180px;
+    }
+
 }
