@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mehdieslami.ir/sitemap.xml

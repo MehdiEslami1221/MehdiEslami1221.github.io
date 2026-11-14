@@ -1,25 +1,30 @@
 # Mehdi Eslami
 
-Personal portfolio at https://mehdieslami.ir — Persian and English, built with HTML, CSS and vanilla JavaScript.
+English-language portfolio at https://mehdieslami.ir, built with HTML, CSS and vanilla JavaScript.
 
-## Local preview
+## Preview
 
-Run `python -m http.server 8000` in the repository and open http://localhost:8000.
+Run `python -m http.server 8000` from this directory, then open http://localhost:8000.
 
-## Editing
+## Files
 
-- `index.html`: content, project links and contact details. Paired `data-fa` / `data-en` attributes hold translations.
-- `style.css`: responsive layout, typography and visual treatments.
-- `app.js`: language preference, project-brief handoff and circuit animation.
-- `assets/portrait.webp`: optimized portrait.
-- `CNAME`: GitHub Pages custom domain; preserve it when deploying.
+- `index.html`: crawlable content, metadata, project links and ProfilePage/Person JSON-LD.
+- `style.css`: responsive layout and decorative components.
+- `app.js`: project inquiry handoff, circuit animation and sourced quote rotation.
+- `robots.txt` and `sitemap.xml`: crawler guidance and canonical page discovery.
+- `404.html`: accessible recovery page, excluded from indexing.
+- `CNAME`: GitHub Pages custom domain. Keep this file when deploying.
 
-## Project inquiries
+## Inquiries
 
-The form validates a brief and opens a draft addressed to `Mr_MehdiEslami` in Telegram or `P30lod@gmail.com` in the visitor's email app. The visitor must send the message. A copyable brief and a direct link remain available if the app does not open. No server-side submission, delivery confirmation, storage or tracking is implemented. Automatic delivery would require a separately configured backend or form service; never place mail credentials or bot tokens in this repository.
+The form opens a prepared Telegram message to `Mr_MehdiEslami` or an email to `P30lod@gmail.com`. Visitors must press send in the destination app. The site does not store submissions or claim delivery. The copyable brief remains available if an app does not open. Automatic delivery requires a separately configured backend or form provider; do not put service credentials in this repository.
 
-## Accessibility and performance
+## Search setup
 
-Self-hosted variable font and WebP portrait; no frontend framework or third-party scripts. Keyboard focus, reduced-motion support, animation toggle, bounded canvas rendering and hidden-tab suspension. Project graphics are illustrative interface concepts, not application screenshots or real usage figures.
+Verify the domain in Google Search Console and Bing Webmaster Tools using their actual verification records, then submit https://mehdieslami.ir/sitemap.xml. Inspect the homepage URL and request indexing. No verification token is shipped until the account owner provides one. Neither metadata nor a sitemap guarantees indexing or ranking. This is a single English page, so there are no invented language alternates. The .ir domain remains country-associated; English content does not remove that signal.
 
-Vazirmatn is distributed under the SIL Open Font License, included in `assets/OFL.txt`.
+## Motion and accessibility
+
+Both the background and quote rotation have pause controls. Reduced-motion preferences disable both by default. Quote rotation pauses outside the viewport, while hovered or keyboard-focused, and in hidden tabs. The circuit field has bounded nodes, connections, pixel density and frame rate. No third-party JavaScript or analytics is loaded.
+
+Quotes include source links in the interface. Project illustrations are interface concepts, not live metrics or screenshots. The portrait is an optimized copy of the owner's supplied image. Vazirmatn is licensed under the SIL Open Font License; see `assets/OFL.txt`.
