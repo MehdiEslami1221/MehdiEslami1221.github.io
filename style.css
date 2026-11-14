@@ -9,3 +9,4 @@ html{overflow-x:clip}body{overflow-x:clip}.network-viewport{position:fixed;inset
 @media(prefers-reduced-motion:reduce){.quote-body.changing figure{animation:none}.mini-window{transition:none}}
 /* Monochrome portrait, including hover and keyboard interaction. */
 .portrait-frame img,.portrait-frame:hover img{filter:grayscale(1) contrast(1.08) brightness(.87)}
+@media(max-width:320px){.header{flex-wrap:wrap;height:auto;min-height:80px;padding-block:14px;row-gap:10px}.header nav{flex-basis:100%!important;margin-inline-start:0;justify-content:space-between}}
