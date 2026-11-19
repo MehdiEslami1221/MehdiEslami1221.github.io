@@ -1,0 +1,6 @@
+node_modules/
+.openai/
+.DS_Store
+
+preview-qa.html
+preview-desktop.html
