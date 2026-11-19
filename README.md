@@ -2,6 +2,8 @@
 
 English-language portfolio at https://mehdieslami.ir, built with HTML, CSS and vanilla JavaScript.
 
+[Portfolio maintenance guide](AGENTS.md) covers the visual design, visitor flows and checks for future updates.
+
 ## Preview
 
 Run `python -m http.server 8000` from this directory, then open http://localhost:8000.
