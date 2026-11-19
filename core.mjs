@@ -1,39 +1,17 @@
 // Pure browser/Node utilities. No requests, user tracking or third-party runtime.
-const TEHRAN = "Asia/Tehran";
+// Native local dates follow the visitor's device zone, including DST changes.
+// Day 256 is Gregorian; neither the UI language nor an IP address selects a zone.
 export function programmerDayStart(year) {
-  const utcDay = new Date(Date.UTC(year, 0, 256));
-  const wall = Date.UTC(year, utcDay.getUTCMonth(), utcDay.getUTCDate());
-  const parts = new Intl.DateTimeFormat("en-GB", {
-    timeZone: TEHRAN,
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hourCycle: "h23",
-  }).formatToParts(new Date(wall));
-  const p = Object.fromEntries(parts.map((p) => [p.type, p.value]));
-  const local = Date.UTC(
-    +p.year,
-    +p.month - 1,
-    +p.day,
-    +p.hour,
-    +p.minute,
-    +p.second,
-  );
-  return wall - (local - wall);
+  return new Date(year, 0, 256).getTime();
 }
 export function programmerDayState(now = Date.now()) {
-  const year = +new Intl.DateTimeFormat("en", {
-    timeZone: TEHRAN,
-    year: "numeric",
-  }).format(new Date(now));
-  const today = programmerDayStart(year),
-    end = today + 86400000;
+  const year = new Date(now).getFullYear();
+  const today = programmerDayStart(year);
+  // The following local midnight may be 23 or 25 hours away in a DST zone.
+  const end = new Date(year, 0, 257).getTime();
   const active = now >= today && now < end;
   const target = now >= end ? programmerDayStart(year + 1) : today;
-  const seconds = Math.max(0, Math.floor((target - now) / 1000));
+  const seconds = Math.max(0, Math.ceil((target - now) / 1000));
   return {
     active,
     target,
@@ -76,20 +54,17 @@ export function stockMovement(stock, quantity, direction) {
   return stock + (direction === "in" ? quantity : -quantity);
 }
 export function calendarEvent(target) {
-  const date = new Intl.DateTimeFormat("en-CA", {
-    timeZone: TEHRAN,
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  })
-    .format(new Date(target))
-    .replaceAll("-", "");
-  const next = new Date(
-    Date.UTC(+date.slice(0, 4), +date.slice(4, 6) - 1, +date.slice(6, 8) + 1),
-  )
-    .toISOString()
-    .slice(0, 10)
-    .replaceAll("-", "");
+  const localDate = new Date(target);
+  const calendarDate = (date) =>
+    `${date.getFullYear()}${String(date.getMonth() + 1).padStart(2, "0")}${String(date.getDate()).padStart(2, "0")}`;
+  const date = calendarDate(localDate);
+  const next = calendarDate(
+    new Date(
+      localDate.getFullYear(),
+      localDate.getMonth(),
+      localDate.getDate() + 1,
+    ),
+  );
   return [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",

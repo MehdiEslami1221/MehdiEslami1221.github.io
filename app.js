@@ -4,7 +4,7 @@ import {
   contrastRatio,
   textStats,
   stockMovement,
-} from "./core.mjs";
+} from "./core.mjs?v=20261120-local";
 ("use strict");
 const $ = (selector) => document.querySelector(selector);
 const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -207,7 +207,7 @@ if ("IntersectionObserver" in window) {
 }
 quoteLabel();
 
-// A circuit field with traveling packets and gentle pointer response.
+// A living circuit field: drifting constellations, light trails and a quiet orbit.
 // Cap pixel density, connections and frame rate; stop all timers when the tab is hidden.
 const canvas = $("#network");
 const ctx = canvas.getContext("2d");
@@ -257,9 +257,159 @@ function resize() {
   });
   draw();
 }
+// Draw a short distance along an existing connection, so packets follow its bends.
+function pointOnTrace(points, progress) {
+  const lengths = points
+    .slice(1)
+    .map((p, i) => Math.hypot(p.x - points[i].x, p.y - points[i].y));
+  let distance =
+    Math.max(0, Math.min(1, progress)) * lengths.reduce((a, b) => a + b, 0);
+  for (let i = 0; i < lengths.length; i++) {
+    if (distance <= lengths[i] || i === lengths.length - 1) {
+      const ratio = lengths[i] ? distance / lengths[i] : 0;
+      return {
+        x: points[i].x + (points[i + 1].x - points[i].x) * ratio,
+        y: points[i].y + (points[i + 1].y - points[i].y) * ratio,
+      };
+    }
+    distance -= lengths[i];
+  }
+  return points[0];
+}
+const fieldPointer = { x: 0, y: 0 };
+function drawLivingField() {
+  const mobile = width < 700;
+  const hasPointer = !paused && pointer.x >= 0;
+  const targetX = hasPointer ? (pointer.x / width - 0.5) * 16 : 0;
+  const targetY = hasPointer ? (pointer.y / height - 0.5) * 12 : 0;
+  if (paused) {
+    fieldPointer.x = 0;
+    fieldPointer.y = 0;
+  } else {
+    fieldPointer.x += (targetX - fieldPointer.x) * 0.045;
+    fieldPointer.y += (targetY - fieldPointer.y) * 0.045;
+  }
+  ctx.save();
+  // Two slow pools of light give the flat circuit field a little depth.
+  for (const [x, y, rgb, phase] of [
+    [width * 0.2, height * 0.35, "94,170,105", 0],
+    [width * 0.8, height * 0.65, "54,126,142", 2],
+  ]) {
+    const gx = x + Math.sin(time * 0.09 + phase) * width * 0.06,
+      gy = y + Math.cos(time * 0.08 + phase) * height * 0.05;
+    const glow = ctx.createRadialGradient(
+      gx,
+      gy,
+      0,
+      gx,
+      gy,
+      Math.max(width, height) * 0.48,
+    );
+    glow.addColorStop(0, `rgba(${rgb},.065)`);
+    glow.addColorStop(1, `rgba(${rgb},0)`);
+    ctx.fillStyle = glow;
+    ctx.fillRect(0, 0, width, height);
+  }
+  const drifting = nodes.map((n) => ({
+    x: n.x + Math.sin(time * 0.19 + n.phase) * 8 + fieldPointer.x,
+    y: n.y + Math.cos(time * 0.15 + n.phase) * 7 + fieldPointer.y,
+  }));
+  paths.forEach((path, i) => {
+    const a = drifting[path.a],
+      b = drifting[path.b];
+    const points = [
+      a,
+      { x: a.x + (b.x - a.x) * 0.34, y: a.y },
+      { x: a.x + (b.x - a.x) * 0.66, y: b.y },
+      b,
+    ];
+    const distance = hasPointer
+      ? Math.hypot((a.x + b.x) / 2 - pointer.x, (a.y + b.y) / 2 - pointer.y)
+      : 1000;
+    const focus = Math.max(0, 1 - distance / 250);
+    ctx.beginPath();
+    ctx.moveTo(a.x, a.y);
+    points.slice(1).forEach((p) => ctx.lineTo(p.x, p.y));
+    ctx.lineWidth = 0.7;
+    ctx.strokeStyle = `rgba(151,202,117,${0.09 + focus * 0.17})`;
+    ctx.stroke();
+    if (i % (mobile ? 3 : 2) !== 0) return;
+    const progress = (time * path.speed + path.phase) % 1;
+    const head = pointOnTrace(points, progress),
+      tail = pointOnTrace(points, Math.max(0, progress - 0.13));
+    if (Math.hypot(head.x - tail.x, head.y - tail.y) > 0.1) {
+      const trail = ctx.createLinearGradient(tail.x, tail.y, head.x, head.y);
+      trail.addColorStop(0, "rgba(188,243,106,0)");
+      trail.addColorStop(1, `rgba(188,243,106,${0.5 + focus * 0.2})`);
+      ctx.strokeStyle = trail;
+      ctx.lineWidth = 1.35;
+      ctx.beginPath();
+      ctx.moveTo(tail.x, tail.y);
+      ctx.lineTo(head.x, head.y);
+      ctx.stroke();
+    }
+    ctx.fillStyle = "rgba(188,243,106,.08)";
+    ctx.beginPath();
+    ctx.arc(head.x, head.y, 4, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = `rgba(216,255,167,${0.6 + focus * 0.2})`;
+    ctx.beginPath();
+    ctx.arc(head.x, head.y, 1.3, 0, Math.PI * 2);
+    ctx.fill();
+  });
+  drifting.forEach((node, i) => {
+    const breath = 0.23 + (Math.sin(time * 0.6 + nodes[i].phase) + 1) * 0.09;
+    ctx.fillStyle = `rgba(176,224,137,${breath})`;
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, nodes[i].r, 0, Math.PI * 2);
+    ctx.fill();
+    if (i % 8 === 0) {
+      const pulse = (time * 0.13 + nodes[i].phase / 6.28) % 1;
+      ctx.strokeStyle = `rgba(188,243,106,${(1 - pulse) * 0.16})`;
+      ctx.lineWidth = 0.6;
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, 4 + pulse * 13, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.font = "10px monospace";
+      ctx.fillStyle = "rgba(158,193,143,.24)";
+      ctx.fillText(tokens[(i / 8) % tokens.length], node.x + 12, node.y - 10);
+    }
+  });
+  // A small orbit, rather than a full-screen effect, keeps the text readable.
+  const cx = width * (mobile ? 0.7 : 0.77) + fieldPointer.x * 1.5,
+    cy = height * 0.44 + fieldPointer.y * 1.5;
+  const rx = mobile ? 105 : Math.min(width * 0.15, 230),
+    ry = rx * 0.4,
+    angle = -0.45;
+  ctx.translate(cx, cy);
+  ctx.rotate(angle);
+  ctx.lineWidth = 0.7;
+  ctx.strokeStyle = "rgba(142,196,148,.12)";
+  ctx.beginPath();
+  ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.strokeStyle = "rgba(93,162,169,.10)";
+  ctx.beginPath();
+  ctx.ellipse(0, 0, rx * 0.76, ry * 1.35, 0.4, 0, Math.PI * 2);
+  ctx.stroke();
+  for (let i = 0; i < 2; i++) {
+    const phase = time * 0.14 + i * Math.PI;
+    const x = Math.cos(phase) * rx,
+      y = Math.sin(phase) * ry;
+    ctx.fillStyle = i ? "rgba(109,200,208,.55)" : "rgba(188,243,106,.65)";
+    ctx.beginPath();
+    ctx.arc(x, y, i ? 1.7 : 2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.restore();
+}
 function draw() {
   if (!ctx) return;
   ctx.clearRect(0, 0, width, height);
+  if (!document.body.classList.contains("celebrating")) {
+    drawLivingField();
+    return;
+  }
   if (document.body.classList.contains("celebrating")) {
     const colors = ["#bcf36a", "#7de2ff", "#c5a5ff"];
     ctx.font = "12px monospace";
@@ -471,18 +621,20 @@ function renderCurrentQuote() {
   $("#quote-text").lang = lang;
 }
 
-// Day 256 is computed per Gregorian year, including leap years, in Tehran time.
+// Day 256 starts at local midnight in the visitor’s device zone.
 let previewCelebration = false;
 let dayTimer;
 function updateDay() {
   const state = programmerDayState();
+  const zone = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
+  $("#day-zone").textContent = zone;
   document.body.classList.toggle(
     "celebrating",
     state.active || previewCelebration,
   );
   $("#day-date").textContent = new Intl.DateTimeFormat(
     lang === "fa" ? "fa-IR" : "en-GB",
-    { timeZone: "Asia/Tehran", dateStyle: "full" },
+    { timeZone: zone, dateStyle: "full" },
   ).format(new Date(state.target));
   $("#day-message").textContent = state.active
     ? tr(

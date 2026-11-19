@@ -18,7 +18,7 @@ The two app screenshots are real local captures; see `docs/screenshots.md`. Ware
 
 ## Browser features and boundaries
 
-- Programmer’s Day is the 256th Gregorian day. `core.mjs` computes midnight in Asia/Tehran, including leap years and the next-year boundary. The full holiday uses the celebration scene automatically. Manual preview is temporary and must not falsify the countdown. No scheduled automation is needed: this is client-side page behavior.
+- Programmer’s Day is the 256th Gregorian day. `core.mjs` uses native local dates for the visitor’s device zone, including leap years, daylight-saving offsets and the next-year boundary. Keep the date label, visible zone, countdown, celebration boundary and calendar export aligned; do not infer a zone from the interface language, IP or country. The full holiday uses the celebration scene automatically. Manual preview is temporary and must not falsify the countdown. No scheduled automation is needed: this is client-side page behavior.
 - All three project demos are explicitly browser-only. DearLater does not send messages or enforce real secrecy; Didgah does not collect research responses; Warehouse does not write real inventory records. Keep negative-stock and quantity checks.
 - JSON formatting uses `JSON.parse` / `JSON.stringify`, never `eval`. Render user text with textContent or form values. Text, contrast and JSON tools make no network calls.
 - Native dialogs provide focus trapping and Escape. Keep close buttons, visible focus indicators, deep-link restoration and keyboard menu behavior. Do not rely only on hover for an action.
@@ -30,7 +30,7 @@ The two app screenshots are real local captures; see `docs/screenshots.md`. Ware
 1. Run `npm run build`, `npm test`, `node --check app.js` and `git diff --check` when relevant inputs changed.
 2. Preview the actual static routes. Check Persian and English at 360px and 1280px; inspect the portrait, card layout, countdown, lab, quote controls and contact form for overflow and legibility.
 3. Check language switching without input loss, project search/filter/empty state, opening/closing project details, a shared deep link, keyboard menu, and motion pause. Exercise altered demos/tools with ordinary and invalid input. Never send a real inquiry as a test.
-4. For date changes, test ordinary/leap years, one second before midnight, the entire holiday and annual rollover. The pure tests do not replace checking the visible celebration preview.
+4. For date changes, test UTC, Tehran, Berlin, Los Angeles, Tokyo and Kiritimati, including different active states at the same instant and summer offsets while the current date is in winter. Also test ordinary/leap years, one second before midnight, the entire holiday and annual rollover. The pure tests do not replace checking the visible celebration preview.
 5. Report checks actually performed and any verification limits. Keep CNAME, `.nojekyll`, canonical URLs, JSON-LD, crawler files, font files and asset provenance intact.
 
 ## متن آماده برای دفعهٔ بعد

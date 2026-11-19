@@ -9,27 +9,64 @@ import {
   stockMovement,
 } from "../core.mjs";
 import { readFile, access } from "node:fs/promises";
-test("Day 256 accounts for leap years, Tehran midnight and annual rollover", () => {
-  assert.equal(
-    new Date(programmerDayStart(2027)).toISOString(),
-    "2027-09-12T20:30:00.000Z",
+// Run the actual local-Date implementation in different runtime device zones.
+// Explicit expectations catch accidental use of UTC, Tehran or the current offset.
+import { spawnSync } from "node:child_process";
+const coreURL = new URL("../core.mjs", import.meta.url).href;
+function inZone(zone) {
+  const script = `import {programmerDayStart,programmerDayState,calendarEvent} from ${JSON.stringify(coreURL)};
+    const start=programmerDayStart(2027),leap=programmerDayStart(2028),end=new Date(2028,0,257).getTime();
+    console.log(JSON.stringify({
+      start:new Date(start).toISOString(),
+      leapDate:[new Date(leap).getMonth()+1,new Date(leap).getDate()],
+      centuryDate:new Date(programmerDayStart(2100)).getDate(),
+      before:programmerDayState(leap-1).active,atStart:programmerDayState(leap).active,
+      lastMillisecond:programmerDayState(end-1).active,after:programmerDayState(end).active,
+      next:programmerDayState(end).target,expectedNext:programmerDayStart(2029),
+      oneSecond:programmerDayState(start-1000).seconds,
+      winterTarget:programmerDayState(Date.parse('2027-01-15T12:00:00Z')).target,
+      sameInstant:programmerDayState(Date.parse('2027-09-12T23:00:00Z')).active,
+      event:calendarEvent(leap)
+    }));`;
+  const child = spawnSync(
+    process.execPath,
+    ["--input-type=module", "-e", script],
+    { env: { ...process.env, TZ: zone }, encoding: "utf8", timeout: 15000 },
   );
-  assert.equal(
-    new Date(programmerDayStart(2028)).toISOString(),
-    "2028-09-11T20:30:00.000Z",
-  );
-  const start = programmerDayStart(2028);
-  assert.equal(programmerDayState(start - 1).active, false);
-  assert.equal(programmerDayState(start).active, true);
-  assert.equal(programmerDayState(start + 86399999).active, true);
-  assert.equal(programmerDayState(start + 86400000).active, false);
-  assert.equal(
-    programmerDayState(start + 86400000).target,
-    programmerDayStart(2029),
-  );
-  assert.equal(programmerDayState(start - 1000).seconds, 1);
+  assert.equal(child.status, 0, child.stderr);
+  return JSON.parse(child.stdout);
+}
+test("Local holidays follow six device zones, DST offsets, leap years and rollover", () => {
+  const expected = {
+    UTC: ["2027-09-13T00:00:00.000Z", false],
+    "Asia/Tehran": ["2027-09-12T20:30:00.000Z", true],
+    "Europe/Berlin": ["2027-09-12T22:00:00.000Z", true],
+    "America/Los_Angeles": ["2027-09-13T07:00:00.000Z", false],
+    "Asia/Tokyo": ["2027-09-12T15:00:00.000Z", true],
+    "Pacific/Kiritimati": ["2027-09-12T10:00:00.000Z", true],
+  };
+  for (const [zone, [start, active]] of Object.entries(expected)) {
+    const result = inZone(zone);
+    assert.equal(result.start, start, zone);
+    assert.equal(
+      result.winterTarget,
+      Date.parse(start),
+      zone + " must use the holiday offset, not winter offset",
+    );
+    assert.equal(result.sameInstant, active, zone);
+    assert.deepEqual(result.leapDate, [9, 12], zone);
+    assert.equal(result.centuryDate, 13, zone + " 2100 is not a leap year");
+    assert.equal(result.before, false, zone);
+    assert.equal(result.atStart, true, zone);
+    assert.equal(result.lastMillisecond, true, zone);
+    assert.equal(result.after, false, zone);
+    assert.equal(result.next, result.expectedNext, zone);
+    assert.equal(result.oneSecond, 1, zone);
+    assert.match(result.event, /DTSTART;VALUE=DATE:20280912\r\n/, zone);
+    assert.match(result.event, /DTEND;VALUE=DATE:20280913\r\n/, zone);
+  }
 });
-test("Calendar uses the holiday date, exclusive end and RFC line breaks", () => {
+test("Calendar uses the local all-day date, exclusive end and RFC line breaks", () => {
   const event = calendarEvent(programmerDayStart(2028));
   assert.match(event, /DTSTART;VALUE=DATE:20280912\r\n/);
   assert.match(event, /DTEND;VALUE=DATE:20280913\r\n/);

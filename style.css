@@ -2979,3 +2979,11 @@ html[lang="fa"] .countdown {
 :root {
   color-scheme: dark;
 }
+/* Keep the device-zone identifier readable inside either language direction. */
+#day-zone {
+  display: inline-block;
+  margin-inline-start: 0.5em;
+  color: #a3b896;
+  font: 12px/1.8 monospace;
+  overflow-wrap: anywhere;
+}
