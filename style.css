@@ -10,3 +10,13 @@ html{overflow-x:clip}body{overflow-x:clip}.network-viewport{position:fixed;inset
 /* Monochrome portrait, including hover and keyboard interaction. */
 .portrait-frame img,.portrait-frame:hover img{filter:grayscale(1) contrast(1.08) brightness(.87)}
 @media(max-width:320px){.header{flex-wrap:wrap;height:auto;min-height:80px;padding-block:14px;row-gap:10px}.header nav{flex-basis:100%!important;margin-inline-start:0;justify-content:space-between}}
+
+.letter-preview { background: radial-gradient(ellipse at center, #233445, #10171c 75%); }
+.sealed-envelope { position: relative; width: min(58%, 245px); aspect-ratio: 1.9; display: grid; place-items: center; background: #293e51; border: 1px solid #677583; box-shadow: 0 12px 22px #0005; transform: rotate(-5deg); }
+.sealed-envelope::before { content: ""; position: absolute; inset: 0; background: linear-gradient(160deg, #667788, #35485c); clip-path: polygon(0 0, 100% 0, 50% 57%); }
+.sealed-envelope i { position: relative; border: 1px solid #f2d49c; border-radius: 50%; padding: 4px 8px; background: #b78649; color: white; font: italic 19px Georgia, serif; }
+.survey-chart { display: grid; gap: 10px; padding: 14px 0; }
+.survey-chart i { height: 9px; width: 78%; border-radius: 2px; background: #b6df82; }
+.survey-chart i:nth-child(2) { width: 48%; background: #749661; }
+.survey-chart i:nth-child(3) { width: 88%; }
+.survey-chart i:nth-child(4) { width: 62%; background: #749661; }
