@@ -12,11 +12,11 @@ npm test
 npm run dev
 ```
 
-Open the printed URL (normally http://127.0.0.1:8000). A plain static HTTP server also works. `npm run build` regenerates `fa/index.html` and the bilingual sitemap from `index.html`; commit the generated files so GitHub Pages needs no build step. `.nojekyll` preserves the static output. Keep `CNAME` when deploying.
+Open the printed URL (normally http://127.0.0.1:8000). A plain static HTTP server also works. `npm run build` refreshes homepage metadata, regenerates `fa/index.html`, creates ten localized service pages and rebuilds the twelve-URL sitemap; commit the generated files so GitHub Pages needs no build step. `.nojekyll` preserves the static output. Keep `CNAME` when deploying.
 
 ## What visitors can do
 
-- Switch between English and Persian, including right-to-left layout, localized labels, dates and quotations. `/` and `/fa/` contain crawlable content without JavaScript. Language changes preserve the current section and form/tool input. A browser preference remembers the chosen language; explicit `/fa/` links open in Persian.
+- Switch between English and Persian, including right-to-left layout, localized labels, dates and quotations. `/` and `/fa/` contain crawlable content without JavaScript. Language changes preserve the current section and form/tool input. Each explicit URL opens its own language. Switching languages keeps the current input and updates metadata and service links together.
 - Search project names, descriptions and technologies in either language; filter web applications or the Java/API project.
 - Open a project story, see actual interface captures for all five projects, follow the source link, and copy a deep link such as `/#project-dearlater`.
 - Try three deliberately small browser demonstrations: a five-second sealed letter, a sample survey score and checked stock movements. These do **not** run or host the projects' backends and do not send messages or store real records.
@@ -55,6 +55,6 @@ Native dialogs handle focus and Escape. The footer motion control pauses the cir
 
 ## Search setup
 
-Both language routes declare canonical URLs and reciprocal language alternatives. The sitemap lists both routes. Google Search Console and Bing Webmaster verification still require the owner's actual records. A sitemap and metadata do not guarantee indexing or ranking. The .ir domain remains country-associated.
+All twelve localized pages declare self-canonical URLs and reciprocal language alternatives. The sitemap lists both homepages, both service overviews and four service pages in each language. `seo.mjs` is shared with the homepage language controller, and `content/services.mjs` owns service copy. Page titles, descriptions, structured data and visible content stay aligned. Google Search Console and Bing Webmaster verification still require the owner's actual records. A sitemap and metadata do not guarantee indexing or ranking. The .ir domain remains country-associated.
 
-See [AGENTS.md](AGENTS.md) before future edits.
+See [docs/SEO.md](docs/SEO.md) for the page map, owner verification steps and measurement limits. See [AGENTS.md](AGENTS.md) before future edits.
