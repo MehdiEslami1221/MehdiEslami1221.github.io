@@ -39,6 +39,8 @@ Open the printed URL (normally http://127.0.0.1:8000). A plain static HTTP serve
 | `tests/core.test.mjs` | Date boundaries, all-day calendar, contrast, Unicode text, stock validation and static-route checks |
 | `docs/screenshots.md` | Which captures are real, their source revisions and demo scope                                      |
 
+Project cards display the captured interface edge-to-edge, without a filtered border or shadow. Captions sit below the image in normal flow. Mobile cards use one column with separate action and note rows; English project names stay isolated inside the Persian layout. Keep screenshot decorations outside inversion filters to avoid bright halos.
+
 The supplied IRANSansX Regular and Bold webfonts are used in Persian. They are owner-supplied commercial assets, not covered by the Vazirmatn SIL license. Keep their applicable license with your own records. The existing Vazirmatn fallback retains `assets/OFL.txt`.
 
 ## Inquiries and privacy
