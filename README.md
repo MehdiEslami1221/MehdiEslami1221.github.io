@@ -18,12 +18,12 @@ Open the printed URL (normally http://127.0.0.1:8000). A plain static HTTP serve
 
 - Switch between English and Persian, including right-to-left layout, localized labels, dates and quotations. `/` and `/fa/` contain crawlable content without JavaScript. Language changes preserve the current section and form/tool input. A browser preference remembers the chosen language; explicit `/fa/` links open in Persian.
 - Search project names, descriptions and technologies in either language; filter web applications or the Java/API project.
-- Open a project story, see actual app captures for DearLater and Didgah, follow the source link, and copy a deep link such as `/#project-dearlater`.
+- Open a project story, see actual interface captures for all five projects, follow the source link, and copy a deep link such as `/#project-dearlater`.
 - Try three deliberately small browser demonstrations: a five-second sealed letter, a sample survey score and checked stock movements. These do **not** run or host the projects' backends and do not send messages or store real records.
 - Count down to the next Programmer's Day (Gregorian day 256), using **the visitor’s device time zone**. Leap years, daylight-saving offsets, the whole local celebration day and the annual rollover are handled. The detected IANA zone is displayed beside the counter; there is no country lookup or location permission. On that date the background changes automatically while the page is open. The calendar download is an all-day `.ics` event. No notification, scheduler or unattended process is implied.
 - Preview and end the celebration manually without changing the actual countdown. The celebration adds an aurora palette and bounded falling code to the existing circuit field.
 - Format/minify JSON, count words/Unicode characters and estimate reading time, or compare text/background contrast. User input is processed in the current browser tab and is never uploaded.
-- Use `Ctrl/Cmd K` for a searchable command menu, or open it with the header button. `Esc` closes native dialogs. A short introduction can be printed or saved as PDF through the browser's print dialog; it is not a fabricated employment résumé.
+- Use `Ctrl/Cmd K` for a searchable command menu, or open it with the header button. `Esc` closes native dialogs. Download the owner-supplied English/Persian résumés in dark or light/ATS style from `#resume`. All four original PDFs stay byte-for-byte unchanged. A short introduction can be printed or saved as PDF through the browser's print dialog; it is not a fabricated employment résumé.
 
 ## Source map
 
@@ -49,7 +49,7 @@ Local storage holds only language and motion preferences. Project demonstrations
 
 ## Accessibility and motion
 
-Native dialogs handle focus and Escape. The footer motion control pauses the circuit and decorative CSS motion; the quote pause control remains separate. Both start paused for reduced-motion preferences. Background animation and quote timers stop when the page is hidden; the clock recalculates on return. Quote rotation pauses on hover, keyboard focus or outside its viewport. The default scene uses gently drifting nodes, chamfered light trails, two ambient light pools and a subtle orbit, with bounded mouse parallax. The original celebration scene stays separate. Mobile canvas density, packet count and frame rate are bounded.
+Native dialogs handle focus and Escape. The footer motion control pauses the circuit and decorative CSS motion; the quote pause control remains separate. Both start paused for reduced-motion preferences. Background animation and quote timers stop when the page is hidden; the clock recalculates on return. Quote rotation pauses on hover, keyboard focus or outside its viewport. The default scene uses gently drifting nodes, chamfered light trails, two ambient light pools and a subtle orbit, with bounded mouse parallax. Occasional single shooting stars leave a brief green reflection on nearby panel edges. The light follows viewport coordinates, with panel measurements bounded to 10Hz while a star is active; pause, reduced motion, hidden tabs and resize clear it. The original celebration scene stays separate. Mobile canvas density, packet count and frame rate are bounded.
 
 ## Search setup
 

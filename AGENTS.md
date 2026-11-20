@@ -12,9 +12,9 @@ This is the owner's bilingual portfolio at https://mehdieslami.ir on GitHub Page
 
 ## Presentation and navigation
 
-The home sequence is introduction/portrait, technology strip, work, Programmer's Day, lab, about/skills, sourced quotes, contact, footer. Cards retain repository links and a separate detail button. The last unfiltered card is wide; filtering uses regular cards. Do not nest buttons in anchors.
+The home sequence is introduction/portrait, technology strip, work, Programmer's Day, lab, about/skills, sourced quotes, résumé downloads, contact, footer. Cards retain repository links and a separate detail button. The last unfiltered card is wide; filtering uses regular cards. Do not nest buttons in anchors.
 
-The two app screenshots are real local captures; see `docs/screenshots.md`. Warehouse, Yadban and VideoFetch use labelled interface concepts. Do not pass concepts or synthetic metrics off as real screenshots, customers or results. Keep genuine source repository links available without JavaScript.
+All five app images are real local interface captures; see `docs/screenshots.md`. Warehouse uses synthetic local records, Yadban mounts the original Dashboard with a read-only sample API, and VideoFetch shows its actual frontend with the backend disconnected. Do not pass concepts or synthetic metrics off as real screenshots, customers or results. Keep genuine source repository links available without JavaScript.
 
 ## Browser features and boundaries
 
@@ -36,3 +36,8 @@ The two app screenshots are real local captures; see `docs/screenshots.md`. Ware
 ## متن آماده برای دفعهٔ بعد
 
 > می‌خوام سایت شخصی مهدی اسلامی رو به‌روز کنم. درخواست من «[تغییر]» است. اول README.md و AGENTS.md نسخهٔ فعلی رو بخون. ظاهر فعلی، فارسی روان و نسخهٔ انگلیسی رو حفظ کن و قابلیت‌ها همچنان بدون سرور روی GitHub Pages اجرا بشن. بعد از تغییر، خروجی فارسی رو دوباره بساز و نمایش موبایل، دسکتاپ و مسیر مرتبط رو بررسی کن. آخرش بگو چی تغییر کرد و چی واقعاً تست شد.
+
+## Meteors and supplied résumés
+
+- Occasional single meteors complement the default circuit field. Reflections use bounded local CSS overlays on nearby panels; cached rects are refreshed at most 10Hz only during a meteor. Pause, hidden tabs, resize and celebration clear the light; reduced motion disables it. Keep it subtle and preserve the separate day-256 scene.
+- `assets/resumes/` contains the four original PDFs supplied by the owner on 2026-11-20. Keep their bytes unchanged. Both routes have direct view/download links without JavaScript. Light/ATS is the résumé style, not a website theme switch. Preserve the `#resume` anchor and quick navigation entry.

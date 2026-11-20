@@ -6,6 +6,7 @@ const args = process.argv.slice(2),
 const port = +(index >= 0 ? args[index + 1] : process.env.PORT || 8000);
 const root = path.resolve(".");
 const types = {
+  ".pdf": "application/pdf",
   ".html": "text/html; charset=utf-8",
   ".js": "text/javascript; charset=utf-8",
   ".mjs": "text/javascript; charset=utf-8",

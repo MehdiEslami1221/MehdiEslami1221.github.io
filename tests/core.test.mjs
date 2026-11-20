@@ -7,6 +7,9 @@ import {
   contrastRatio,
   textStats,
   stockMovement,
+  planMeteor,
+  meteorPose,
+  meteorReflection,
 } from "../core.mjs";
 import { readFile, access } from "node:fs/promises";
 // Run the actual local-Date implementation in different runtime device zones.
@@ -106,7 +109,7 @@ test("Both static routes include the real content and language alternatives with
     /<link rel="canonical" href="https:\/\/mehdieslami.ir\/fa\/">/,
   );
   for (const html of [en, fa]) {
-    for (const anchor of ["work", "about", "contact", "lab", "day"])
+    for (const anchor of ["work", "about", "contact", "lab", "day", "resume"])
       assert.match(html, new RegExp(`id="${anchor}"`));
     for (const project of [
       "dearlater",
@@ -119,6 +122,50 @@ test("Both static routes include the real content and language alternatives with
     assert.match(html, /hreflang="fa"/);
     assert.match(html, /hreflang="en"/);
   }
-  for (const asset of ["dearlater", "didgah"])
+  for (const asset of [
+    "dearlater",
+    "didgah",
+    "warehouse",
+    "yadban",
+    "videofetch",
+  ])
     await access(`assets/${asset}.webp`);
+});
+
+test("Meteors expire and nearby panels receive bounded, local reflected light", () => {
+  const shot = planMeteor(1280, 900, () => 0.5),
+    mobile = planMeteor(360, 780, () => 0.5);
+  assert.equal(meteorPose(shot, -1), null);
+  assert.equal(meteorPose(shot, shot.duration), null);
+  assert.equal(meteorPose(shot, 0).alpha, 0);
+  assert.ok(mobile.tail < shot.tail);
+  assert.ok(mobile.gap > shot.gap);
+  const pose = { x: 50, y: 100, alpha: 0.62 };
+  const rect = { left: 100, right: 300, top: 50, bottom: 250 };
+  const close = meteorReflection(rect, pose);
+  const far = meteorReflection(rect, { ...pose, x: -1000 });
+  assert.equal(close.x, -50);
+  assert.equal(close.y, 50);
+  assert.ok(close.strength > 0 && close.strength < 0.62);
+  assert.equal(far.strength, 0);
+  assert.equal(meteorReflection(rect, { ...pose, x: 150 }).strength, 0.62);
+});
+test("Four supplied PDFs remain valid downloads in both static languages", async () => {
+  for (const lang of ["en", "fa"])
+    for (const tone of ["dark", "light"]) {
+      const path = `assets/resumes/mehdi-eslami-${lang}-${tone}.pdf`;
+      const bytes = await readFile(path);
+      assert.equal(bytes.subarray(0, 5).toString(), "%PDF-");
+      assert.ok(bytes.length > 10000);
+      for (const route of ["index.html", "fa/index.html"]) {
+        const html = await readFile(route, "utf8");
+        assert.ok(
+          [...html.matchAll(/<a\b[^>]*>/g)].some(
+            ([tag]) =>
+              tag.includes(`href="/${path}"`) &&
+              /\bdownload(?:\s|>|=)/.test(tag),
+          ),
+        );
+      }
+    }
 });

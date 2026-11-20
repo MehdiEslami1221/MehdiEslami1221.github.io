@@ -4,7 +4,10 @@ import {
   contrastRatio,
   textStats,
   stockMovement,
-} from "./core.mjs?v=20261120-local";
+  planMeteor,
+  meteorPose,
+  meteorReflection,
+} from "./core.mjs?v=20261120-meteors";
 ("use strict");
 const $ = (selector) => document.querySelector(selector);
 const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -229,6 +232,7 @@ function resize() {
     window.devicePixelRatio || 1,
     width < 700 ? 1.25 : 1.5,
   );
+  clearMeteor();
   canvas.width = Math.round(width * density);
   canvas.height = Math.round(height * density);
   ctx.setTransform(density, 0, 0, density, 0, 0);
@@ -403,13 +407,100 @@ function drawLivingField() {
   }
   ctx.restore();
 }
+// Rects are measured at most ten times a second, only while a meteor is visible.
+const reflectivePanels = [
+  ...document.querySelectorAll(
+    ".project, .day-card, .lab-surface, .resume-card, #project-form",
+  ),
+].map((element) => {
+  element.classList.add("meteor-reactive");
+  const light = document.createElement("span");
+  light.className = "meteor-reflection";
+  light.setAttribute("aria-hidden", "true");
+  element.append(light);
+  return { element, light, rect: null };
+});
+let activeMeteor = null,
+  nextMeteorAt = 7 + Math.random() * 4,
+  lastLightMeasure = -1;
+function clearMeteor() {
+  activeMeteor = null;
+  nextMeteorAt = time + 7 + Math.random() * 4;
+  reflectivePanels.forEach(({ light }) => {
+    light.style.opacity = "0";
+  });
+}
+function drawMeteor() {
+  if (paused || reduced.matches || document.hidden) {
+    clearMeteor();
+    return;
+  }
+  if (!activeMeteor && time >= nextMeteorAt) {
+    activeMeteor = { ...planMeteor(width, height), started: time };
+    nextMeteorAt = time + activeMeteor.duration + activeMeteor.gap;
+    lastLightMeasure = -1;
+  }
+  if (!activeMeteor) return;
+  const pose = meteorPose(activeMeteor, time - activeMeteor.started);
+  if (!pose) {
+    activeMeteor = null;
+    reflectivePanels.forEach(({ light }) => {
+      light.style.opacity = "0";
+    });
+    return;
+  }
+  const { x, y, tailX, tailY, alpha } = pose;
+  ctx.save();
+  const trail = ctx.createLinearGradient(tailX, tailY, x, y);
+  trail.addColorStop(0, "rgba(120,220,150,0)");
+  trail.addColorStop(0.75, `rgba(173,240,121,${alpha * 0.55})`);
+  trail.addColorStop(1, `rgba(225,255,200,${alpha})`);
+  ctx.strokeStyle = trail;
+  ctx.lineWidth = 1.7;
+  ctx.lineCap = "round";
+  ctx.shadowColor = "#bcf36a";
+  ctx.shadowBlur = 12;
+  ctx.beginPath();
+  ctx.moveTo(tailX, tailY);
+  ctx.lineTo(x, y);
+  ctx.stroke();
+  ctx.fillStyle = `rgba(228,255,210,${alpha})`;
+  ctx.beginPath();
+  ctx.arc(x, y, 2, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+  if (lastLightMeasure < 0 || time - lastLightMeasure > 0.1) {
+    reflectivePanels.forEach((panel) => {
+      panel.rect = panel.element.getBoundingClientRect();
+    });
+    lastLightMeasure = time;
+  }
+  reflectivePanels.forEach(({ element, light, rect }) => {
+    if (
+      !rect ||
+      !rect.width ||
+      rect.bottom < 0 ||
+      rect.top > height ||
+      element.hidden
+    ) {
+      light.style.opacity = "0";
+      return;
+    }
+    const reflection = meteorReflection(rect, pose, width < 700 ? 180 : 260);
+    light.style.setProperty("--light-x", `${reflection.x.toFixed(1)}px`);
+    light.style.setProperty("--light-y", `${reflection.y.toFixed(1)}px`);
+    light.style.opacity = reflection.strength.toFixed(3);
+  });
+}
 function draw() {
   if (!ctx) return;
   ctx.clearRect(0, 0, width, height);
   if (!document.body.classList.contains("celebrating")) {
     drawLivingField();
+    drawMeteor();
     return;
   }
+  clearMeteor();
   if (document.body.classList.contains("celebrating")) {
     const colors = ["#bcf36a", "#7de2ff", "#c5a5ff"];
     ctx.font = "12px monospace";
@@ -487,8 +578,10 @@ function start() {
   }
 }
 function stop() {
+  clearMeteor();
   cancelAnimationFrame(raf);
   raf = 0;
+  draw();
 }
 $("#motion").addEventListener("click", () => {
   paused = !paused;
@@ -867,6 +960,7 @@ const projectData = {
     repo: "didgah",
   },
   warehouse: {
+    image: "warehouse",
     name: "Gorgan Warehouse",
     stack: "Next.js · TypeScript · SQLite · Inventory",
     problem: [
@@ -888,6 +982,7 @@ const projectData = {
     repo: "gorgan-warehouse",
   },
   yadban: {
+    image: "yadban",
     name: "Yadban",
     stack: "Next.js · Cloudflare Workers · D1 · Web Push",
     problem: ["A little less to remember.", "یه کم سبک‌ترشدنِ فکر."],
@@ -906,6 +1001,7 @@ const projectData = {
     repo: "yadban",
   },
   videofetch: {
+    image: "videofetch",
     name: "VideoFetch",
     stack: "Java · Spring Boot · Next.js · yt-dlp · FFmpeg",
     problem: [
@@ -942,7 +1038,7 @@ function renderProject(id) {
   if (!p) return;
   const phrase = (pair) => escapeHTML(tr(...pair));
   $("#project-content").innerHTML =
-    `<h2 id="project-title">${escapeHTML(p.name)}</h2><p class="project-stack" dir="ltr">${p.stack}</p>${p.image ? `<figure class="case-image"><img src="/assets/${p.image}.webp" width="1348" height="925" alt="${escapeHTML(tr("Actual app screenshot with synthetic demonstration data", "تصویر اجرای واقعی با اطلاعات ساختگی نمایشی"))}"><figcaption>${tr("Captured from the running app with demo data.", "از اجرای واقعی برنامه با اطلاعات نمونه.")}</figcaption></figure>` : ""}<p class="case-lead">${phrase(p.problem)}</p><p>${phrase(p.story)}</p><div class="case-grid"><div><h3>${tr("A decision that matters", "یه تصمیم مهم")}</h3><p>${phrase(p.decision)}</p></div><div><h3>${tr("Current scope", "محدودهٔ فعلی")}</h3><p>${phrase(p.scope)}</p></div></div>${["dearlater", "didgah", "warehouse"].includes(id) ? `<section class="mini-demo"><h3>${tr("A tiny hands-on version", "یه تجربهٔ کوچیک")}</h3><p class="small muted">${tr("Browser-only demonstration. It does not send messages or save real project records.", "این فقط یه نمایش داخل مرورگره؛ پیامی نمی‌فرسته و رکورد واقعی پروژه رو تغییر نمی‌ده.")}</p>${demoMarkup(id)}</section>` : ""}<div class="tool-actions"><a class="button primary" href="https://github.com/MehdiEslami1221/${p.repo}" target="_blank" rel="noopener noreferrer">${tr("Explore the source", "دیدن کد پروژه")}</a><button type="button" class="button secondary" id="share-project">${tr("Copy project link", "کپی لینک پروژه")}</button></div>`;
+    `<h2 id="project-title">${escapeHTML(p.name)}</h2><p class="project-stack" dir="ltr">${p.stack}</p>${p.image ? `<figure class="case-image"><img src="/assets/${p.image}.webp" width="1348" height="${["warehouse", "yadban", "videofetch"].includes(p.image) ? 850 : 925}" data-capture-tone="${p.image === "videofetch" ? "dark" : "light"}" alt="${escapeHTML(tr("Capture of the running project interface", "تصویر رابط واقعی پروژه در حال اجرا"))}"><figcaption>${p.image === "videofetch" ? tr("Running frontend capture; backend disconnected during this session. Monochrome display treatment.", "تصویر اجرای رابط؛ در این اجرا بک‌اند متصل نیست. نمایش با رنگ‌بندی تک‌رنگ.") : tr("Running interface with synthetic demo data. Monochrome display treatment.", "تصویر رابط اجراشده با اطلاعات نمونه؛ با رنگ‌بندی تک‌رنگ.")}</figcaption></figure>` : ""}<p class="case-lead">${phrase(p.problem)}</p><p>${phrase(p.story)}</p><div class="case-grid"><div><h3>${tr("A decision that matters", "یه تصمیم مهم")}</h3><p>${phrase(p.decision)}</p></div><div><h3>${tr("Current scope", "محدودهٔ فعلی")}</h3><p>${phrase(p.scope)}</p></div></div>${["dearlater", "didgah", "warehouse"].includes(id) ? `<section class="mini-demo"><h3>${tr("A tiny hands-on version", "یه تجربهٔ کوچیک")}</h3><p class="small muted">${tr("Browser-only demonstration. It does not send messages or save real project records.", "این فقط یه نمایش داخل مرورگره؛ پیامی نمی‌فرسته و رکورد واقعی پروژه رو تغییر نمی‌ده.")}</p>${demoMarkup(id)}</section>` : ""}<div class="tool-actions"><a class="button primary" href="https://github.com/MehdiEslami1221/${p.repo}" target="_blank" rel="noopener noreferrer">${tr("Explore the source", "دیدن کد پروژه")}</a><button type="button" class="button secondary" id="share-project">${tr("Copy project link", "کپی لینک پروژه")}</button></div>`;
   $("#project-dialog").setAttribute("aria-labelledby", "project-title");
   $("#share-project").addEventListener("click", () =>
     copyText(
@@ -1104,6 +1200,25 @@ $("#print-overview").addEventListener("click", () => window.print());
 
 function commandList() {
   return [
+    {
+      en: "Watch a shooting star",
+      fa: "دیدن یه شهاب",
+      keys: "meteor shooting star شهاب",
+      run: () => {
+        if (
+          !paused &&
+          !reduced.matches &&
+          !document.body.classList.contains("celebrating")
+        )
+          nextMeteorAt = time;
+      },
+    },
+    {
+      en: "Download my résumé",
+      fa: "دانلود رزومه‌ام",
+      keys: "resume cv رزومه فارسی انگلیسی",
+      run: () => jump("#resume"),
+    },
     {
       en: "Explore projects",
       fa: "دیدن پروژه‌ها",
