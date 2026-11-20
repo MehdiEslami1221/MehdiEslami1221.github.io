@@ -1,5 +1,14 @@
 import { readFile, writeFile, mkdir } from "node:fs/promises";
-let html = await readFile("index.html", "utf8");
+import {
+  SITE_URL,
+  HOME_SEO,
+  homeSchema,
+  homePath,
+  servicePath,
+} from "../seo.mjs";
+import { services } from "../content/services.mjs";
+import { escapeHTML, renderServicePage } from "./service-pages.mjs";
+const escape = escapeHTML;
 const decode = (s) =>
   s
     .replace(/&quot;/g, '"')
@@ -7,87 +16,116 @@ const decode = (s) =>
     .replace(/&lt;/g, "<")
     .replace(/&gt;/g, ">")
     .replace(/&amp;/g, "&");
-const escape = (s) =>
-  s
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;");
-html = html.replace(
-  /<([a-z0-9]+)\b([^<>]*\bdata-en="[^"]*"[^<>]*\bdata-fa="([^"]*)"[^<>]*)>[^<]*<\/\1\s*>/g,
-  (_, tag, attrs, value) => `<${tag}${attrs}>${escape(decode(value))}</${tag}>`,
-);
-html = html.replace(/<[^>]+>/g, (tag) => {
-  for (const [data, attr] of [
-    ["placeholder", "placeholder"],
-    ["aria", "aria-label"],
-    ["alt", "alt"],
-  ]) {
-    const match = tag.match(new RegExp(`data-${data}-fa="([^"]*)"`));
-    if (match)
-      tag = tag.replace(
-        new RegExp(`(?<![\\w-])${attr}="[^"]*"`),
-        `${attr}="${match[1]}"`,
-      );
-  }
-  return tag;
-});
-html = html.replace('<html dir="ltr" lang="en">', '<html dir="rtl" lang="fa">');
-html = html.replace(
-  /<title>[^<]*<\/title>/,
-  "<title>مهدی اسلامی | توسعه‌دهندهٔ جاوا، وب و اندروید</title>",
-);
-const description =
-  "من مهدی اسلامی‌ام؛ بک‌اند جاوا، سایت و اپلیکیشن اندروید می‌سازم. نمونه‌کارهام رو ببین، دموها رو امتحان کن و از پروژه‌ات بگو.";
-html = html.replace(/<meta\b[^>]*>/g, (tag) => {
-  if (
-    /(?:name|property)="(?:description|og:description|twitter:description)"/.test(
-      tag,
-    )
-  )
-    return tag.replace(/content="[^"]*"/, `content="${description}"`);
-  if (/(?:name|property)="(?:og:title|twitter:title)"/.test(tag))
-    return tag.replace(
-      /content="[^"]*"/,
-      'content="مهدی اسلامی | توسعه‌دهندهٔ جاوا، وب و اندروید"',
-    );
-  if (/property="og:locale"/.test(tag)) return tag.replace("en_US", "fa_IR");
-  if (/property="og:url"/.test(tag))
-    return tag.replace("https://mehdieslami.ir/", "https://mehdieslami.ir/fa/");
-  return tag;
-});
-html = html.replace(
-  /<link\b[^>]*rel="canonical"[^>]*>/,
-  '<link rel="canonical" href="https://mehdieslami.ir/fa/">',
-);
-html = html.replace(
-  /<a([^>]*class="language-switch"[^>]*)>\s*فارسی\s*<\/a\s*>/,
-  '<a class="language-switch" href="/" lang="en" hreflang="en">EN</a>',
-);
-html = html.replace(/(<blockquote\b[^>]*id="quote-text"[^>]*>)[\s\S]*?(<\/blockquote\s*>)/, '$1سادگی قبل از پیچیدگی نمی‌آد؛ بعد از اون به دست می‌آد.$2');
-html = html.replace(/(<span\b[^>]*id="quote-author"[^>]*>)[\s\S]*?(<\/span\s*>)/, '$1آلن پرلیس$2');
-html = html.replace(
-  /<script type="application\/ld\+json">([\s\S]*?)<\/script>/,
-  (_, json) => {
-    const schema = JSON.parse(json);
-    schema.url = "https://mehdieslami.ir/fa/";
-    schema["@id"] = "https://mehdieslami.ir/fa/#profile";
-    schema.inLanguage = "fa";
-    schema.name = "مهدی اسلامی — توسعه‌دهندهٔ نرم‌افزار";
-    return `<script type="application/ld+json">${JSON.stringify(schema, null, 2)}</script>`;
-  },
-);
+const attrPairs = [
+  ["placeholder", "placeholder"],
+  ["aria", "aria-label"],
+  ["alt", "alt"],
+  ["href", "href"],
+];
+function localize(html) {
+  html = html.replace(
+    /<([a-z0-9]+)\b([^<>]*\bdata-en="[^"]*"[^<>]*\bdata-fa="([^"]*)"[^<>]*)>[^<]*<\/\1\s*>/g,
+    (_, tag, attrs, value) =>
+      `<${tag}${attrs}>${escape(decode(value))}</${tag}>`,
+  );
+  html = html.replace(/<[^>]+>/g, (tag) => {
+    for (const [data, attr] of attrPairs) {
+      const match = tag.match(new RegExp(`data-${data}-fa="([^"]*)"`));
+      if (match)
+        tag = tag.replace(
+          new RegExp(`(?<![\\w-])${attr}="[^"]*"`),
+          `${attr}="${match[1]}"`,
+        );
+    }
+    return tag;
+  });
+  html = html.replace(
+    '<html dir="ltr" lang="en">',
+    '<html dir="rtl" lang="fa">',
+  );
+  html = html.replace(
+    /<a([^>]*class="language-switch"[^>]*)>\s*فارسی\s*<\/a\s*>/,
+    '<a class="language-switch" href="/" lang="en" hreflang="en">EN</a>',
+  );
+  html = html.replace(
+    /(<blockquote\b[^>]*id="quote-text"[^>]*>)[\s\S]*?(<\/blockquote\s*>)/,
+    "$1سادگی قبل از پیچیدگی نمی‌آد؛ بعد از اون به دست می‌آد.$2",
+  );
+  html = html.replace(
+    'href="/assets/vazirmatn.woff2"',
+    'href="/assets/fonts/IRANSansX-Regular.woff2"',
+  );
+  return html.replace(
+    /(<span\b[^>]*id="quote-author"[^>]*>)[\s\S]*?(<\/span\s*>)/,
+    "$1آلن پرلیس$2",
+  );
+}
+function homeMetadata(html, lang) {
+  const meta = HOME_SEO[lang];
+  html = html.replace(
+    /<title>[^<]*<\/title>/,
+    `<title>${escape(meta.title)}</title>`,
+  );
+  html = html.replace(/<meta\b[^>]*>/g, (tag) => {
+    const key = tag.match(/(?:name|property)="([^"]*)"/)?.[1];
+    const map = {
+      description: meta.description,
+      "og:description": meta.description,
+      "twitter:description": meta.description,
+      "og:title": meta.title,
+      "twitter:title": meta.title,
+      "og:url": SITE_URL + homePath(lang),
+      "og:locale": lang === "fa" ? "fa_IR" : "en_US",
+      "og:locale:alternate": lang === "fa" ? "en_US" : "fa_IR",
+      "og:image:alt": meta.imageAlt,
+      "twitter:image:alt": meta.imageAlt,
+    };
+    return key in map
+      ? tag.replace(/content="[^"]*"/, `content="${escape(map[key])}"`)
+      : tag;
+  });
+  html = html.replace(
+    /<link\b[^>]*rel="canonical"[^>]*>/,
+    `<link rel="canonical" href="${SITE_URL + homePath(lang)}">`,
+  );
+  return html.replace(
+    /<script\b[^>]*type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/,
+    `<script id="site-schema" type="application/ld+json">${JSON.stringify(homeSchema(lang), null, 2).replaceAll("<", "\\u003c")}</script>`,
+  );
+}
+let source = await readFile("index.html", "utf8");
+source = homeMetadata(source, "en");
+await writeFile("index.html", source);
 await mkdir("fa", { recursive: true });
-await writeFile("fa/index.html", html);
+await writeFile("fa/index.html", homeMetadata(localize(source), "fa"));
+const pairs = [["/", "/fa/"]];
+for (const service of [null, ...services]) {
+  pairs.push([
+    servicePath("en", service?.slug),
+    servicePath("fa", service?.slug),
+  ]);
+  for (const lang of ["en", "fa"]) {
+    const path = servicePath(lang, service?.slug).slice(1);
+    await mkdir(path, { recursive: true });
+    await writeFile(path + "index.html", renderServicePage(lang, service));
+  }
+}
+const alternatives = (pair) =>
+  ["en", "fa", "x-default"]
+    .map(
+      (lang, i) =>
+        `<xhtml:link rel="alternate" hreflang="${lang}" href="${SITE_URL + pair[i === 1 ? 1 : 0]}"/>`,
+    )
+    .join("");
+const urls = pairs.flatMap((pair) =>
+  pair.map(
+    (path) => `<url><loc>${SITE_URL + path}</loc>${alternatives(pair)}</url>`,
+  ),
+);
 await writeFile(
   "sitemap.xml",
   '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">' +
-    ["", "fa/"]
-      .map(
-        (route) =>
-          `<url><loc>https://mehdieslami.ir/${route}</loc><xhtml:link rel="alternate" hreflang="en" href="https://mehdieslami.ir/"/><xhtml:link rel="alternate" hreflang="fa" href="https://mehdieslami.ir/fa/"/></url>`,
-      )
-      .join("") +
+    urls.join("") +
     "</urlset>\n",
 );
-console.log("Built Persian route and bilingual sitemap.");
+console.log(`Built ${urls.length} static localized pages and sitemap.`);

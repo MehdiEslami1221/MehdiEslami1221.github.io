@@ -8,6 +8,7 @@ import {
   meteorPose,
   meteorReflection,
 } from "./core.mjs?v=20261120-meteors";
+import { HOME_SEO, SITE_URL, homeSchema } from "./seo.mjs?v=20261120-seo1";
 ("use strict");
 const $ = (selector) => document.querySelector(selector);
 const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -636,6 +637,7 @@ function localize(scope = document) {
     ["placeholder", "placeholder"],
     ["aria", "aria-label"],
     ["alt", "alt"],
+    ["href", "href"],
   ])
     scope
       .querySelectorAll(`[data-${data}-en]`)
@@ -660,17 +662,10 @@ function setLanguage(next, updateHistory = true) {
   switcher.hreflang = switcher.lang;
   const path = lang === "fa" ? "/fa/" : "/";
   if (updateHistory) history.pushState(null, "", path + location.hash);
-  const title = tr(
-    "Mehdi Eslami | Java, Spring Boot & Web Developer",
-    "مهدی اسلامی | توسعه‌دهندهٔ جاوا، وب و اندروید",
-  );
-  const description = tr(
-    "Mehdi Eslami builds Java and Spring Boot backends, websites and Android apps. Explore his projects and get in touch.",
-    "من مهدی اسلامی‌ام؛ بک‌اند جاوا، سایت و اپلیکیشن اندروید می‌سازم. نمونه‌کارهام رو ببین، دموها رو امتحان کن و از پروژه‌ات بگو.",
-  );
+  const { title, description, imageAlt } = HOME_SEO[lang];
   document.title = title;
   $('meta[name="description"]').content = description;
-  $('link[rel="canonical"]').href = "https://mehdieslami.ir" + path;
+  $('link[rel="canonical"]').href = SITE_URL + path;
   $('meta[property="og:url"]').content = "https://mehdieslami.ir" + path;
   $('meta[property="og:locale"]').content = lang === "fa" ? "fa_IR" : "en_US";
   for (const query of [
@@ -683,6 +678,11 @@ function setLanguage(next, updateHistory = true) {
     'meta[name="twitter:description"]',
   ])
     $(query).content = description;
+  $('meta[property="og:locale:alternate"]').content =
+    lang === "fa" ? "en_US" : "fa_IR";
+  $('meta[property="og:image:alt"]').content = imageAlt;
+  $('meta[name="twitter:image:alt"]').content = imageAlt;
+  $("#site-schema").textContent = JSON.stringify(homeSchema(lang));
   motionLabel();
   quoteLabel();
   renderCurrentQuote();
@@ -1201,6 +1201,12 @@ $("#print-overview").addEventListener("click", () => window.print());
 function commandList() {
   return [
     {
+      en: "Website and software services",
+      fa: "خدمات طراحی سایت و برنامه‌نویسی",
+      keys: "services website programming سفارش خدمات",
+      run: () => jump("#services"),
+    },
+    {
       en: "Watch a shooting star",
       fa: "دیدن یه شهاب",
       keys: "meteor shooting star شهاب",
@@ -1382,14 +1388,9 @@ window.addEventListener(
   { passive: true },
 );
 window.addEventListener("resize", updateProgress, { passive: true });
-const initial = location.pathname.startsWith("/fa")
-  ? "fa"
-  : getSaved("portfolio-language") === "fa"
-    ? "fa"
-    : "en";
+// The explicit URL owns the language; opening an English result stays English.
+const initial = location.pathname.startsWith("/fa") ? "fa" : "en";
 setLanguage(initial, false);
-if (initial === "fa" && !location.pathname.startsWith("/fa"))
-  history.replaceState(null, "", "/fa/" + location.hash);
 updateDay();
 scheduleDay();
 updateProgress();
