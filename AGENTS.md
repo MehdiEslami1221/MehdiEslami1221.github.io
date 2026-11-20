@@ -41,3 +41,7 @@ All five app images are real local interface captures; see `docs/screenshots.md`
 
 - Occasional single meteors complement the default circuit field. Reflections use bounded local CSS overlays on nearby panels; cached rects are refreshed at most 10Hz only during a meteor. Pause, hidden tabs, resize and celebration clear the light; reduced motion disables it. Keep it subtle and preserve the separate day-256 scene.
 - `assets/resumes/` contains the four original PDFs supplied by the owner on 2026-11-20. Keep their bytes unchanged. Both routes have direct view/download links without JavaScript. Light/ATS is the résumé style, not a website theme switch. Preserve the `#resume` anchor and quick navigation entry.
+
+## Project card presentation
+
+Screenshot images are edge-to-edge inside each project card, without an image border or shadow. Inversion filters also invert those decorations, producing an unwanted pale halo. Keep capture captions in normal document flow below the image, with inherited Persian typography/direction. At mobile widths, place the detail action and secondary note on separate rows; keep descriptions at 16px and isolate English project headings from the RTL context.
