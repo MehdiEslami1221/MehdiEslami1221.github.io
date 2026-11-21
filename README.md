@@ -25,6 +25,8 @@ Open the printed URL (normally http://127.0.0.1:8000). A plain static HTTP serve
 - Format/minify JSON, count words/Unicode characters and estimate reading time, or compare text/background contrast. User input is processed in the current browser tab and is never uploaded.
 - Use `Ctrl/Cmd K` for a searchable command menu, or open it with the header button. `Esc` closes native dialogs. Download the owner-supplied English/Persian résumés in dark or light/ATS style from `#resume`. All four original PDFs stay byte-for-byte unchanged. A short introduction can be printed or saved as PDF through the browser's print dialog; it is not a fabricated employment résumé.
 
+The Persian version uses formal, fluent written Persian with clear service descriptions and respectful address. Keep this voice consistent in page copy, metadata, project details and interface messages.
+
 ## Source map
 
 | File                  | Purpose                                                                                             |
