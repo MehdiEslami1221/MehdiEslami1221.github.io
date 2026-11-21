@@ -5,7 +5,7 @@ This is the owner's bilingual portfolio at https://mehdieslami.ir on GitHub Page
 ## Content and languages
 
 - `index.html` is canonical source; static English is under `/`. Each localized text leaf has `data-en` and `data-fa`. Attribute translations use `data-placeholder-*`, `data-aria-*` and `data-alt-*`.
-- Persian must be natural and conversational, suitable for a client: “از پروژه‌ات بگو”, “ببین چی ساختم”. Avoid literal or formal machine-like translations. Use the supplied IRANSansX files in Persian and preserve their owner-supplied licensing status.
+- Persian must be formal, fluent and natural, as requested by the owner on 2026-11-21. Use standard written Persian and respectful plural address (شما / کنید), concise labels such as “درخواست همکاری” and “مشاهدهٔ نمونه‌کارها”, and concrete explanations of the work. Avoid slang, literal translations, vague slogans, inflated claims, ornate prose and repeated marketing formulas. Keep that voice consistent in metadata, service pages, project details, dialogs, tool feedback and form messages. Use the supplied IRANSansX files in Persian and preserve their owner-supplied licensing status.
 - Run `npm run build` after changes to HTML, translations or metadata. It creates the static `/fa/` route and the bilingual sitemap. Do not edit `fa/index.html` directly. When adding a new translatable attribute, update both the build script and the runtime localizer.
 - Runtime messages and project stories are in `app.js`. Keep English/Persian messages paired. Preserve form and lab input while switching languages; update existing status messages too.
 - Preserve public anchors `#work`, `#services`, `#about`, `#contact`, `#day` and `#lab`, and deep links `#project-dearlater`, `#project-didgah`, `#project-warehouse`, `#project-yadban` and `#project-videofetch`.
@@ -35,7 +35,7 @@ All five app images are real local interface captures; see `docs/screenshots.md`
 
 ## متن آماده برای دفعهٔ بعد
 
-> می‌خوام سایت شخصی مهدی اسلامی رو به‌روز کنم. درخواست من «[تغییر]» است. اول README.md و AGENTS.md نسخهٔ فعلی رو بخون. ظاهر فعلی، فارسی روان و نسخهٔ انگلیسی رو حفظ کن و قابلیت‌ها همچنان بدون سرور روی GitHub Pages اجرا بشن. بعد از تغییر، خروجی فارسی رو دوباره بساز و نمایش موبایل، دسکتاپ و مسیر مرتبط رو بررسی کن. آخرش بگو چی تغییر کرد و چی واقعاً تست شد.
+> می‌خوام سایت شخصی مهدی اسلامی رو به‌روز کنم. درخواست من «[تغییر]» است. اول README.md و AGENTS.md نسخهٔ فعلی رو بخون. ظاهر فعلی، فارسی رسمی و روان و نسخهٔ انگلیسی رو حفظ کن و قابلیت‌ها همچنان بدون سرور روی GitHub Pages اجرا بشن. بعد از تغییر، خروجی فارسی رو دوباره بساز و نمایش موبایل، دسکتاپ و مسیر مرتبط رو بررسی کن. آخرش بگو چی تغییر کرد و چی واقعاً تست شد.
 
 ## Meteors and supplied résumés
 

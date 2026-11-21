@@ -49,7 +49,7 @@ function localize(html) {
   );
   html = html.replace(
     /(<blockquote\b[^>]*id="quote-text"[^>]*>)[\s\S]*?(<\/blockquote\s*>)/,
-    "$1سادگی قبل از پیچیدگی نمی‌آد؛ بعد از اون به دست می‌آد.$2",
+    "$1سادگی پیش از پیچیدگی به دست نمی‌آید؛ پس از آن حاصل می‌شود.$2",
   );
   html = html.replace(
     'href="/assets/vazirmatn.woff2"',

@@ -103,7 +103,7 @@ test("Both static routes include the real content and language alternatives with
     fa = await readFile("fa/index.html", "utf8");
   assert.match(en, /<html dir="ltr" lang="en">/);
   assert.match(fa, /<html dir="rtl" lang="fa">/);
-  assert.match(fa, />سلام، من مهدی‌ام\.</);
+  assert.match(fa, />سلام، من مهدی اسلامی هستم\.</);
   assert.match(
     fa,
     /<link rel="canonical" href="https:\/\/mehdieslami.ir\/fa\/">/,
