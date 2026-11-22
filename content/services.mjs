@@ -13,7 +13,7 @@ export const services = [
         "Commission a responsive business or personal website from Mehdi Eslami. Discuss page structure, bilingual content, technical SEO and a clear route to contact.",
       heading: "A website built around your business.",
       intro:
-        "A website should help visitors understand what you do and take the next step. I build personal and business websites with clear content, responsive layouts and a practical way to get in touch.",
+        "I design and build personal and business websites, with responsive layouts, clear content and an easy way to get in touch.",
       fitTitle: "Start with what your visitors need",
       fit: "A portfolio, a service business and a campaign landing page need different things. Before designing screens, we work out who is visiting, which questions they need answered and what action should follow. That shapes the page structure, the writing and the contact flow.",
       outputs: [
@@ -26,7 +26,7 @@ export const services = [
       decision:
         "An introduction or portfolio site can often stay static, which keeps hosting and maintenance simple. Accounts, private records, payments or a shared dashboard change the requirements. I separate those needs early so the proposal covers the right infrastructure instead of adding complexity by default.",
       example:
-        "DearLater shows my work on a responsive bilingual interface, writing forms and a clear preview flow. The project combines a writing form with a preview flow and demonstrates the interface work behind it. You can inspect the source and the captured interface in my portfolio.",
+        "In DearLater, I built a bilingual interface for writing messages, previewing sealed letters and choosing when they open.",
       start:
         "Send a short description of your business, the pages you have in mind, any existing identity or content, and a reference site if you have one. Mention whether you need Persian, English or both. From there we can define scope and discuss timing and cost.",
       faqs: [
@@ -49,7 +49,7 @@ export const services = [
       "title": "سفارش طراحی سایت | مهدی اسلامی",
       "description": "طراحی وب‌سایت شخصی و شرکتی با مهدی اسلامی؛ نمایش مناسب در موبایل و دسکتاپ، محتوای فارسی و انگلیسی و تنظیمات سئوی فنی، متناسب با نیاز پروژه.",
       "heading": "طراحی سایت برای معرفی شما و کسب‌وکارتان.",
-      "intro": "وب‌سایت باید خدمات شما را به‌روشنی معرفی کند و راه ارتباط با شما را در دسترس قرار دهد. من وب‌سایت‌های شخصی و شرکتی را با ساختار منظم، محتوای قابل‌فهم و نمایش مناسب در موبایل و دسکتاپ طراحی و توسعه می‌دهم.",
+      "intro": "وب‌سایت‌های شخصی و شرکتی را با محتوای روشن، نمایش مناسب در موبایل و دسکتاپ و دسترسی آسان به اطلاعات تماس طراحی و توسعه می‌دهم.",
       "fitTitle": "مخاطب و هدف سایت را مشخص می‌کنیم",
       "fit": "نیاز یک سایت شخصی با سایت یک شرکت خدماتی یا صفحهٔ معرفی محصول یکسان نیست. پیش از طراحی، مخاطبان، پرسش‌های اصلی آن‌ها و هدف هر صفحه را بررسی می‌کنیم. نتیجهٔ این بررسی، مبنای دسته‌بندی محتوا، طراحی صفحات و انتخاب روش تماس خواهد بود.",
       "outputs": [
@@ -60,7 +60,7 @@ export const services = [
       ],
       "decisionTitle": "زیرساخت سایت را بر اساس امکانات انتخاب می‌کنیم",
       "decision": "برای معرفی خدمات و نمایش نمونه‌کارها، اغلب یک سایت ایستا کافی است؛ چنین سایتی به پردازش سمت سرور نیاز ندارد و نگهداری آن ساده‌تر است. امکاناتی مانند حساب کاربری، پرداخت یا ذخیرهٔ اطلاعات خصوصی، به زیرساخت متفاوتی نیاز دارند. پیش از شروع، این موارد را مشخص می‌کنیم تا هزینه و نیازهای میزبانی روشن باشد.",
-      "example": "DearLater نمونه‌ای از کار من در طراحی رابط دوزبانه است. فرم نوشتن پیام، پیش‌نمایش نامه و مراحل آماده‌سازی آن، بخش‌هایی از این پروژه‌اند. تصویر اجرای برنامه و کد منبع در بخش نمونه‌کارها در دسترس است.",
+      "example": "در DearLater، رابط دوزبانه‌ای برای نوشتن پیام، پیش‌نمایش نامهٔ سربه‌مهر و انتخاب زمان بازشدن آن طراحی کرده‌ام.",
       "start": "برای شروع، نوع فعالیت، صفحات موردنیاز و محتوای آمادهٔ خود را معرفی کنید. اگر لوگو، هویت بصری یا نمونهٔ سایتی در نظر دارید، آن را نیز بفرستید. زبان سایت و امکانات اصلی را مشخص کنید تا بتوانیم دربارهٔ جزئیات کار، زمان اجرا و هزینه گفت‌وگو کنیم.",
       "faqs": [
         [
@@ -91,7 +91,7 @@ export const services = [
         "Build a custom web application with Mehdi Eslami: management dashboards, forms, inventory workflows and reports designed around the people using them.",
       heading: "Turn a daily workflow into a usable web app.",
       intro:
-        "When spreadsheets and scattered messages make a job harder to track, a focused web application can help. I develop forms, dashboards and management workflows around the records and decisions that matter to your team.",
+        "I build web applications for forms, dashboards and day-to-day management. The screens, records and reports follow the way your team works.",
       fitTitle: "Understand the workflow before choosing screens",
       fit: "We start with a real example: who enters a record, who reviews it, what can change and what report is needed at the end. Exceptions matter too. A duplicate submission, an incomplete form or an invalid stock movement should lead to a clear result rather than an unexplained failure.",
       outputs: [
@@ -104,7 +104,7 @@ export const services = [
       decision:
         "A browser-only demonstration is useful for explaining an interaction, but it is not a substitute for a live database or access control. For a working team application, we define storage, authentication, backup and hosting requirements alongside the interface. The deployment choice follows the actual data and access needs.",
       example:
-        "Gorgan Warehouse is a portfolio application for stock receipts, handovers and inventory reports. Automatic document identifiers, checked outgoing quantities and printable records show the workflow in practice. The public screenshots use sample data; the project does not imply official municipal endorsement.",
+        "In Gorgan Warehouse, I implemented stock receipts, staff handovers, automatic document numbers and inventory reports. Outgoing quantities are checked against available stock.",
       start:
         "Describe one task from beginning to end and share a blank form or an anonymized example of the required report. List the roles involved and the parts that currently cause errors. That gives us a concrete starting point for deciding what the first version should do.",
       faqs: [
@@ -127,7 +127,7 @@ export const services = [
       "title": "برنامه‌نویسی اختصاصی وب و سامانه | مهدی اسلامی",
       "description": "سفارش برنامه‌نویسی اختصاصی وب به مهدی اسلامی؛ طراحی پنل مدیریت، فرم‌های سازمانی، گردش کار، سامانهٔ انبار و گزارش‌های متناسب با نیاز مجموعه.",
       "heading": "سامانه‌ای متناسب با روند کار مجموعهٔ شما.",
-      "intro": "وقتی اطلاعات میان فایل‌ها و پیام‌های مختلف پراکنده است، پیگیری کار دشوار می‌شود. من سامانه‌های تحت وب، فرم‌ها و پنل‌های مدیریتی را بر اساس روند کار مجموعه طراحی می‌کنم تا ثبت، بررسی و گزارش‌گیری از اطلاعات منظم‌تر انجام شود.",
+      "intro": "فرم‌ها، داشبوردها و سامانه‌های مدیریتی را بر اساس روند کار مجموعهٔ شما توسعه می‌دهم؛ از ثبت اطلاعات و تعیین سطح دسترسی تا پیگیری کارها و گزارش‌گیری.",
       "fitTitle": "ابتدا روند کار را بررسی می‌کنیم",
       "fit": "از یک نمونهٔ واقعی شروع می‌کنیم: چه کسی اطلاعات را ثبت می‌کند، چه کسی آن را بررسی می‌کند، چه تغییراتی مجاز است و در پایان چه گزارشی لازم دارید؟ وضعیت‌هایی مانند ثبت تکراری، فرم ناقص یا خروج کالا بیش از موجودی نیز بررسی می‌شوند تا سامانه در برابر خطاها رفتار مشخصی داشته باشد.",
       "outputs": [
@@ -138,7 +138,7 @@ export const services = [
       ],
       "decisionTitle": "ذخیره‌سازی و دسترسی کاربران را از ابتدا مشخص می‌کنیم",
       "decision": "نسخهٔ نمایشی داخل مرورگر برای آشنایی با یک قابلیت مناسب است. سامانه‌ای که چند نفر با آن کار می‌کنند، علاوه بر رابط کاربری، به پایگاه داده، احراز هویت و کنترل دسترسی نیاز دارد. روش ذخیره‌سازی، پشتیبان‌گیری و میزبانی نیز بخشی از طراحی سامانه است و پیش از پیاده‌سازی بررسی می‌شود.",
-      "example": "در پروژهٔ انبار گرگان، ثبت ورود کالا، تحویل به کارکنان، شماره‌گذاری خودکار اسناد و گزارش موجودی پیاده‌سازی شده است. تصاویر با اطلاعات نمونه تهیه شده‌اند و معرفی این پروژه به معنای تأیید رسمی شهرداری نیست. کد منبع و توضیحات فنی در صفحهٔ پروژه قرار دارد.",
+      "example": "در پروژهٔ انبار گرگان، ثبت ورود کالا، تحویل به کارکنان، شماره‌گذاری خودکار اسناد و گزارش موجودی را پیاده‌سازی کرده‌ام. هنگام ثبت خروج، موجودی کالا نیز بررسی می‌شود.",
       "start": "یکی از کارهای روزمرهٔ مجموعه را از ابتدا تا پایان توضیح دهید. یک فرم خالی یا نمونه‌گزارش بدون اطلاعات شخصی نیز به شناخت نیازها کمک می‌کند. نقش کاربران و بخش‌هایی را که بیشتر دچار خطا یا تأخیر می‌شوند، مشخص کنید تا امکانات نسخهٔ نخست را تعیین کنیم.",
       "faqs": [
         [
@@ -169,7 +169,7 @@ export const services = [
         "Work with Mehdi Eslami on Java and Spring Boot backends: REST APIs, validation, database workflows and third-party integrations with clear error handling.",
       heading: "A Java backend your interface can rely on.",
       intro:
-        "I develop Java and Spring Boot backends for web and mobile applications. The work includes REST APIs, data validation, database workflows and integrations, with attention to what happens when a request fails.",
+        "I develop Java and Spring Boot backends for web and mobile apps, including REST APIs, input validation, database operations and service integrations.",
       fitTitle: "Make the API contract clear",
       fit: "Before implementation, we define the inputs, outputs and rules of each important operation. A missing field, an unauthorized request and a temporarily unavailable provider should not all produce the same vague error. A clear contract also lets the frontend and backend move forward without guessing each other’s behavior.",
       outputs: [
@@ -182,7 +182,7 @@ export const services = [
       decision:
         "An external platform may require a user session, change its responses or reject a request. I design explicit states and useful failure messages so the interface can explain what happened. Credentials belong on the backend; they should not be embedded in a public website or frontend bundle.",
       example:
-        "VideoFetch combines Spring Boot and a Next.js interface for media metadata and processing workflows. Its design includes metadata fallback and explicit platform failures. The portfolio capture shows the running frontend with a disconnected backend; it is not evidence that every upstream download succeeds.",
+        "For VideoFetch, I built a Spring Boot backend alongside a Next.js interface to retrieve media information and manage downloads. The backend supports metadata fallback and explains failures when a platform requires sign-in or blocks a request.",
       start:
         "Tell me which application will call the API, the records it needs and any existing system it must connect to. If you already have endpoint notes or a database model, those make a good starting point. Use sample data and leave production credentials out of the initial brief.",
       faqs: [
@@ -205,7 +205,7 @@ export const services = [
       "title": "برنامه‌نویس جاوا و Spring Boot | مهدی اسلامی",
       "description": "توسعهٔ بک‌اند با جاوا و Spring Boot توسط مهدی اسلامی؛ طراحی REST API، اعتبارسنجی ورودی، اتصال به پایگاه داده و سرویس‌های بیرونی و مدیریت خطاها.",
       "heading": "توسعهٔ بک‌اند با جاوا و Spring Boot.",
-      "intro": "برای برنامه‌های وب و موبایل، بک‌اند را با جاوا و Spring Boot توسعه می‌دهم. طراحی API، بررسی صحت ورودی‌ها، ارتباط با پایگاه داده و اتصال به سرویس‌های بیرونی از بخش‌های این کار است. پاسخ هر درخواست و نحوهٔ مدیریت خطا نیز در طراحی مشخص می‌شود.",
+      "intro": "بک‌اند برنامه‌های وب و موبایل را با جاوا و Spring Boot توسعه می‌دهم؛ شامل طراحی REST API، اعتبارسنجی ورودی‌ها، ارتباط با پایگاه داده و اتصال به سرویس‌های بیرونی.",
       "fitTitle": "ورودی و خروجی API باید مشخص باشد",
       "fit": "پیش از پیاده‌سازی، اطلاعات ورودی، پاسخ و قواعد هر عملیات را تعریف می‌کنیم. ورودی ناقص، نداشتن مجوز دسترسی و قطع ارتباط با یک سرویس، خطاهای متفاوتی هستند و باید پاسخ مناسب خود را داشته باشند. تعریف دقیق این موارد، هماهنگی میان رابط کاربری و بک‌اند را آسان‌تر می‌کند.",
       "outputs": [
@@ -216,7 +216,7 @@ export const services = [
       ],
       "decisionTitle": "اتصال به سرویس‌های بیرونی نیازمند مدیریت خطاست",
       "decision": "ممکن است یک سرویس بیرونی به ورود کاربر نیاز داشته باشد، ساختار پاسخ خود را تغییر دهد یا درخواست را نپذیرد. برنامه باید این وضعیت‌ها را تشخیص دهد و پیام قابل‌فهمی نمایش دهد. رمزها و کلیدهای دسترسی نیز باید در محیط امن بک‌اند نگهداری شوند و در کد عمومی سایت قرار نگیرند.",
-      "example": "VideoFetch با بک‌اند Spring Boot و رابط Next.js برای دریافت اطلاعات رسانه و مدیریت دانلود توسعه یافته است. دریافت اطلاعات از روش جایگزین و نمایش خطاهای پلتفرم، بخشی از طراحی آن است. تصویر این سایت از اجرای واقعی رابط کاربری، بدون اتصال به بک‌اند، تهیه شده و به معنای موفقیت همهٔ دانلودها نیست.",
+      "example": "در VideoFetch، بک‌اند Spring Boot را در کنار رابط Next.js برای دریافت اطلاعات رسانه و مدیریت دانلود توسعه داده‌ام. دریافت اطلاعات از روش جایگزین و توضیح خطاهای پلتفرم، بخشی از این کار است.",
       "start": "توضیح دهید API برای چه برنامه‌ای استفاده می‌شود، با چه اطلاعاتی کار می‌کند و باید به کدام سامانه‌ها متصل شود. اگر مدل پایگاه داده یا مستندات فعلی را دارید، ارائهٔ آن‌ها مفید است. برای معرفی پروژه از اطلاعات نمونه استفاده کنید و رمز یا کلید دسترسی واقعی نفرستید.",
       "faqs": [
         [
@@ -247,7 +247,7 @@ export const services = [
         "Discuss a native Android app with Mehdi Eslami: Java or Kotlin interfaces, API integration and practical user flows, based on your product requirements.",
       heading: "An Android app shaped around its users.",
       intro:
-        "I develop native Android applications with Java and Kotlin. The starting point is a useful user journey: what someone opens the app to do, which information they need and how they know the task is complete.",
+        "I develop native Android apps with Java and Kotlin, from screen layouts and navigation to API integration and handling user input.",
       fitTitle: "Decide whether an app is the right fit",
       fit: "A mobile-friendly website may already cover a simple introduction or form. A native app becomes more useful when the product needs deeper device integration or a focused experience used repeatedly. We compare those needs before committing to a separate Android application.",
       outputs: [
@@ -260,7 +260,7 @@ export const services = [
       decision:
         "Login, server data, permissions and distribution affect how an app works in practice. We identify those dependencies early. Testing needs to cover the target devices, Android versions and important screen flows.",
       example:
-        "My background includes native Android work in Java and API integration, including development of a ride-hailing application at Dropp Group. The downloadable English and Persian résumés describe this experience and the Android tools I have worked with. A concrete screen flow from your product gives us a useful way to discuss the requirements.",
+        "My Android experience includes Java development and API integration for a ride-hailing application at Dropp Group.",
       start:
         "Share the main task the app should solve, the people using it and the devices you want to support. Explain whether there is already a backend, a design or an existing Android app to extend. A few concrete screen flows are more useful than a long list of disconnected features.",
       faqs: [
@@ -283,7 +283,7 @@ export const services = [
       "title": "طراحی اپلیکیشن اندروید | مهدی اسلامی",
       "description": "سفارش ساخت اپلیکیشن اندروید به مهدی اسلامی؛ برنامه‌نویسی با جاوا و کاتلین، طراحی رابط کاربری و اتصال به API، متناسب با نیاز و امکانات پروژه.",
       "heading": "طراحی و توسعهٔ اپلیکیشن اندروید.",
-      "intro": "با جاوا و کاتلین، اپلیکیشن اندروید توسعه می‌دهم. طراحی صفحات، مراحل انجام کار و اتصال به API را بر اساس نیاز کاربران مشخص می‌کنم تا استفاده از امکانات برنامه و پیگیری نتیجهٔ هر عملیات آسان باشد.",
+      "intro": "با جاوا و کاتلین، اپلیکیشن اندروید توسعه می‌دهم؛ از طراحی صفحات و مسیر حرکت کاربر تا دریافت اطلاعات از API و مدیریت ورودی‌ها.",
       "fitTitle": "آیا اپلیکیشن انتخاب مناسبی است؟",
       "fit": "برای معرفی خدمات یا ارائهٔ یک فرم ساده، ممکن است وب‌سایت سازگار با موبایل کافی باشد. اگر برنامه به امکانات دستگاه یا استفادهٔ مکرر کاربران وابسته باشد، اپلیکیشن اندروید می‌تواند انتخاب مناسب‌تری باشد. پیش از شروع، این نیازها را بررسی می‌کنیم تا هزینهٔ توسعه بر اساس کاربرد برنامه تعیین شود.",
       "outputs": [
@@ -294,7 +294,7 @@ export const services = [
       ],
       "decisionTitle": "نیازهای اجرا و انتشار هم بخشی از پروژه است",
       "decision": "حساب کاربری، اطلاعات سرور، مجوزهای دستگاه و روش انتشار بر استفاده از برنامه اثر می‌گذارند. این موارد باید از ابتدا مشخص شوند. بررسی نسخهٔ نهایی نیز شامل مراحل اصلی کاربر و دستگاه‌ها و نسخه‌های اندروید توافق‌شده خواهد بود.",
-      "example": "در سابقهٔ کاری من، توسعهٔ اندروید با جاوا و اتصال به API، از جمله همکاری در اپلیکیشن درخواست خودرو در Dropp Group، وجود دارد. شرح این تجربه و ابزارهای مورد استفاده در رزومهٔ فارسی و انگلیسی آمده است.",
+      "example": "در Dropp Group، در توسعهٔ اپلیکیشن درخواست خودرو با جاوا و اتصال آن به API همکاری داشته‌ام.",
       "start": "کاربرد برنامه، کاربران آن و دستگاه‌های موردنظر را معرفی کنید. مشخص کنید طراحی یا بک‌اند آماده دارید، برنامه از ابتدا ساخته می‌شود یا قرار است نسخهٔ فعلی توسعه یابد. توضیح چند کار اصلی که کاربر باید با برنامه انجام دهد، به تعیین امکانات نسخهٔ نخست کمک می‌کند.",
       "faqs": [
         [
