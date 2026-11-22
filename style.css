@@ -111,8 +111,19 @@ a:hover {
   letter-spacing: 1.3px;
 }
 .brand-icon {
-  font: bold 40px Arial;
-  letter-spacing: -5px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: 56px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+}
+.brand-icon img,
+.footer-mark img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 .brand-icon span,
 .accent,
@@ -788,8 +799,10 @@ footer {
   font-size: 10px;
 }
 .footer-mark {
-  font: bold 32px Arial;
-  letter-spacing: -3px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: 48px;
+  height: 36px;
 }
 #motion {
   background: none;
@@ -865,7 +878,8 @@ footer {
     font-size: 6px;
   }
   .brand-icon {
-    font-size: 34px;
+    width: 46px;
+    height: 34px;
   }
   nav {
     gap: 16px;
@@ -1035,7 +1049,8 @@ footer {
     font-size: 9px;
   }
   footer .footer-mark {
-    font-size: 26px;
+    width: 44px;
+    height: 32px;
   }
   .socials {
     max-width: none;
@@ -2322,7 +2337,8 @@ body:has(dialog[open]) {
   left: calc(50% - 21px);
   top: 70px;
   border-radius: 50%;
-  background: var(--accent);
+  background: #080a09;
+  border: 1px solid var(--accent);
   color: #173013;
   width: 42px;
   height: 42px;
@@ -2331,6 +2347,11 @@ body:has(dialog[open]) {
   font: bold 23px Arial;
   z-index: 4;
   transition: opacity 0.3s;
+}
+.demo-seal img {
+  width: 32px;
+  height: 24px;
+  object-fit: contain;
 }
 .demo-letter {
   position: absolute;
