@@ -12,7 +12,7 @@ npm test
 npm run dev
 ```
 
-Open the printed URL (normally http://127.0.0.1:8000). A plain static HTTP server also works. `npm run build` refreshes homepage metadata, regenerates `fa/index.html`, creates ten localized service pages and rebuilds the sixteen-URL sitemap; commit the generated files so GitHub Pages needs no build step. `.nojekyll` preserves the static output. Keep `CNAME` when deploying.
+Open the printed URL (normally http://127.0.0.1:8000). A plain static HTTP server also works. `npm run build` refreshes homepage metadata, regenerates `fa/index.html`, creates ten localized service pages and rebuilds the fourteen-URL sitemap; commit the generated files so GitHub Pages needs no build step. `.nojekyll` preserves the static output. Keep `CNAME` when deploying.
 
 ## What visitors can do
 
@@ -31,7 +31,7 @@ The Persian version uses formal, fluent written Persian with clear service descr
 
 `site.webmanifest` supplies the install name, standalone display, charcoal launch
 background, dedicated 192/512px icons and a separate safe-zone maskable icon.
-All twelve routes link to the same manifest and retain the existing root app
+All fourteen routes link to the same manifest and retain the existing root app
 identity. There are no global background or color-scheme overrides: the original
 negative-z-index circuit canvas and native controls retain their previous appearance.
 
@@ -75,7 +75,7 @@ The supplied IRANSansX Regular and Bold webfonts are used in Persian. They are o
 
 The project form prepares a Telegram message to `Mr_MehdiEslami` or an email to `P30lod@gmail.com`. Visitors must press **send in the destination app**. The site does not store submissions or claim delivery. Copyable text and an explicit fallback link remain available. Do not add credentials or Telegram tokens to client JavaScript.
 
-Local storage holds language and motion preferences and the optional circuit-game personal best. A short-lived session draft preserves tool input when switching language. Project demonstrations reset when reopened. There are no third-party analytics, runtime libraries or external font requests.
+Local storage holds language and motion preferences and favorite profile-style identifiers. A short-lived session draft preserves tool input when switching language. Project demonstrations reset when reopened. There are no third-party analytics, runtime libraries or external font requests.
 
 ## Accessibility and motion
 
@@ -83,17 +83,21 @@ Native dialogs handle focus and Escape. The footer motion control pauses the cir
 
 ## Search setup
 
-All sixteen localized pages declare self-canonical URLs and reciprocal language alternatives. The sitemap lists both homepages, both service overviews, four service pages in each language, and the paired playground and profile-text routes. `seo.mjs` is shared with the homepage language controller, and `content/services.mjs` owns service copy. Page titles, descriptions, structured data and visible content stay aligned. Google Search Console and Bing Webmaster verification still require the owner's actual records. A sitemap and metadata do not guarantee indexing or ranking. The .ir domain remains country-associated.
+All fourteen localized pages declare self-canonical URLs and reciprocal language alternatives. The sitemap lists both homepages, both service overviews, four service pages in each language, and the paired profile-text routes. `seo.mjs` is shared with the homepage language controller, and `content/services.mjs` owns service copy. Page titles, descriptions, structured data and visible content stay aligned. Google Search Console and Bing Webmaster verification still require the owner's actual records. A sitemap and metadata do not guarantee indexing or ranking. The .ir domain remains country-associated.
 
 See [docs/SEO.md](docs/SEO.md) for the page map, owner verification steps and measurement limits. See [AGENTS.md](AGENTS.md) before future edits.
 
-## Interactive studio
+## Profile text generator
 
-The homepage links to `/playground/` and `/fa/playground/`, with five experiments:
-a project/technology connection map, a three-round circuit puzzle, a project-brief
-builder, a step-by-step request simulation and a downloadable circuit signature.
-The profile text tool has dedicated `/tools/profile-text/` and
-`/fa/tools/profile-text/` routes with copyable Persian frames, Latin Unicode
-lettering and real ASCII output. These tools run locally in the browser.
+`/tools/profile-text/` and `/fa/tools/profile-text/` provide copyable English and
+Persian lettering, decorative frames, emoji and ASCII. Categories, style search,
+preview sizing, favorites, a custom combination builder, bulk copying and text
+export make the results easier to browse. Results are deduplicated and displayed
+in batches of 24. The generator runs in the browser without an external service.
 
-See [docs/STUDIO.md](docs/STUDIO.md) for behavior, data boundaries and maintenance.
+The former playground routes redirect to the profile tool and are excluded from
+indexing and the sitemap. The five retired experiments are no longer part of the
+interface or executable code. Existing JSON, text and contrast tools remain in
+`#lab`.
+
+See [docs/PROFILE_TEXT.md](docs/PROFILE_TEXT.md) for behavior and maintenance.
