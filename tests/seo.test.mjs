@@ -25,6 +25,7 @@ const schemas = (html) =>
     ),
   ].map((m) => JSON.parse(m[1]));
 const pages = [
+  {en:"/tools/image-optimizer/",fa:"/fa/tools/image-optimizer/"},
   {en:profilePath("en"),fa:profilePath("fa")},
   { en: "/", fa: "/fa/" },
   ...["", ...services.map((s) => s.slug)].map((slug) => ({
@@ -80,12 +81,12 @@ test("Every localized page has a unique title, self canonical and reciprocal lan
         path,
       );
     }
-  assert.equal(titles.size, 14);
+  assert.equal(titles.size, 16);
 });
-test("All fourteen pages are in the sitemap and all local HTML links and resources resolve", async () => {
+test("All sixteen pages are in the sitemap and all local HTML links and resources resolve", async () => {
   const sitemap = await readFile("sitemap.xml", "utf8");
   const locs = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => m[1]);
-  assert.equal(new Set(locs).size, 14);
+  assert.equal(new Set(locs).size, 16);
   for (const pair of pages)
     for (const lang of ["en", "fa"]) {
       const path = pair[lang],

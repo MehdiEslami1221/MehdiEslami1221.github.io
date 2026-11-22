@@ -9,8 +9,14 @@ import {
 import { services } from "../content/services.mjs";
 import { escapeHTML, renderServicePage } from "./service-pages.mjs";
 import { launchHead, launchBody } from "./pwa-shell.mjs";
-import { homeProfile, renderProfilePage, retiredPlayground } from "./profile-pages.mjs";
+import {
+  homeProfile,
+  renderProfilePage,
+  retiredPlayground,
+} from "./profile-pages.mjs";
 import { profilePath } from "../content/profile.mjs";
+import { homeImage, renderImagePage } from "./image-pages.mjs";
+import { imagePath } from "../content/image.mjs";
 const escape = escapeHTML;
 const decode = (s) =>
   s
@@ -97,9 +103,27 @@ function homeMetadata(html, lang) {
   );
 }
 let source = await readFile("index.html", "utf8");
-source = source.replace(/<!-- app-launch-head -->[\s\S]*?<!-- \/app-launch-head -->/, `<!-- app-launch-head -->\n${launchHead()}\n<!-- /app-launch-head -->`);
-source = source.replace(/<!-- app-launch-body -->[\s\S]*?<!-- \/app-launch-body -->/, `<!-- app-launch-body -->\n${launchBody()}\n<!-- /app-launch-body -->`);
-source = source.replace(/<!-- studio-discovery -->[\s\S]*?<!-- \/studio-discovery -->/, `<!-- studio-discovery -->\n${homeProfile()}\n<!-- /studio-discovery -->`);
+source = source.replace(
+  /<!-- app-launch-head -->[\s\S]*?<!-- \/app-launch-head -->/,
+  `<!-- app-launch-head -->\n${launchHead()}\n<!-- /app-launch-head -->`,
+);
+source = source.replace(
+  /<!-- app-launch-body -->[\s\S]*?<!-- \/app-launch-body -->/,
+  `<!-- app-launch-body -->\n${launchBody()}\n<!-- /app-launch-body -->`,
+);
+source = source.replace(
+  /<!-- studio-discovery -->[\s\S]*?<!-- \/studio-discovery -->/,
+  `<!-- studio-discovery -->\n${homeProfile()}\n<!-- /studio-discovery -->`,
+);
+if (!source.includes("<!-- image-discovery -->"))
+  source = source.replace(
+    "<!-- /studio-discovery -->",
+    "<!-- /studio-discovery -->\n<!-- image-discovery --><!-- /image-discovery -->",
+  );
+source = source.replace(
+  /<!-- image-discovery -->[\s\S]*?<!-- \/image-discovery -->/,
+  `<!-- image-discovery -->\n${homeImage()}\n<!-- /image-discovery -->`,
+);
 source = homeMetadata(source, "en");
 await writeFile("index.html", source);
 await mkdir("fa", { recursive: true });
@@ -124,6 +148,12 @@ for (const lang of ["en", "fa"]) {
   const retired = (lang === "fa" ? "fa/" : "") + "playground/";
   await mkdir(retired, { recursive: true });
   await writeFile(retired + "index.html", retiredPlayground(lang));
+}
+pairs.push([imagePath("en"), imagePath("fa")]);
+for (const lang of ["en", "fa"]) {
+  const path = imagePath(lang).slice(1);
+  await mkdir(path, { recursive: true });
+  await writeFile(path + "index.html", renderImagePage(lang));
 }
 const alternatives = (pair) =>
   ["en", "fa", "x-default"]

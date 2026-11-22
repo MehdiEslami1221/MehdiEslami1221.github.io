@@ -12,7 +12,7 @@ This is the owner's bilingual portfolio at https://mehdieslami.ir on GitHub Page
 
 ## Presentation and navigation
 
-The home sequence is introduction/portrait, technology strip, work, services, Programmer's Day, lab, profile-text discovery, about/skills, sourced quotes, résumé downloads, contact, footer. Cards retain repository links and a separate detail button. The last unfiltered card is wide; filtering uses regular cards. Do not nest buttons in anchors.
+The home sequence is introduction/portrait, technology strip, work, services, Programmer's Day, lab, profile-text discovery, image-tool discovery, about/skills, sourced quotes, résumé downloads, contact, footer. Cards retain repository links and a separate detail button. The last unfiltered card is wide; filtering uses regular cards. Do not nest buttons in anchors.
 
 All five app images are real local interface captures; see `docs/screenshots.md`. Warehouse uses synthetic local records, Yadban mounts the original Dashboard with a read-only sample API, and VideoFetch shows its actual frontend with the backend disconnected. Do not pass concepts or synthetic metrics off as real screenshots, customers or results. Keep genuine source repository links available without JavaScript.
 
@@ -49,10 +49,10 @@ Screenshot images are edge-to-edge inside each project card, without an image bo
 ## Bilingual search and service routes
 
 - Read `docs/SEO.md`. `seo.mjs` owns homepage metadata and stable Person/WebSite IDs. Keep the owner's `#me` ID stable across languages and pages. Structured data must describe visible facts; do not invent ratings, customers, prices, office addresses or rich-result eligibility.
-- Edit service copy in `content/services.mjs`, the template in `scripts/service-pages.mjs`, and styles in `services.css`. Build commits ten generated service HTML pages plus both homes and the fourteen-URL sitemap. Do not hand-edit generated service outputs. Keep paired routes self-canonical with reciprocal hreflang and x-default. Do not stamp a fake current lastmod date on every build.
+- Edit service copy in `content/services.mjs`, the template in `scripts/service-pages.mjs`, and styles in `services.css`. Build commits ten generated service HTML pages plus both homes and the sixteen-URL sitemap. Do not hand-edit generated service outputs. Keep paired routes self-canonical with reciprocal hreflang and x-default. Do not stamp a fake current lastmod date on every build.
 - Homepage services links use `data-href-en` / `data-href-fa`; both the static builder and runtime localizer handle them. Homepage language switches update title, description, social metadata, JSON-LD and service hrefs. Keep in-progress tool and form input. At initial load, respect the explicit URL, including English `/`, rather than changing the route from stored preference. Service pages use ordinary native language links and work without JavaScript.
 - The navigation services link complements the homepage `#services` section; the lab remains reachable at `#lab` and in the command menu. Preserve the approved homepage background, meteors, real captures, no-halo card styles and original supplied résumés.
-- Run `npm run build`, `npm test`, `node --check app.js` and `git diff --check`. `tests/seo.test.mjs` covers all fourteen routes, unique metadata, local links, reciprocal language paths, sitemap coverage and honest schema. Review mobile and desktop service pages, contact links, native details, and homepage language changes in the browser. Search Console verification and search rankings need the owner's real account data; do not imply they have been performed.
+- Run `npm run build`, `npm test`, `node --check app.js` and `git diff --check`. `tests/seo.test.mjs` covers all sixteen routes, unique metadata, local links, reciprocal language paths, sitemap coverage and honest schema. Review mobile and desktop service pages, contact links, native details, and homepage language changes in the browser. Search Console verification and search rankings need the owner's real account data; do not imply they have been performed.
 
 ## Personal monogram
 
@@ -69,9 +69,40 @@ Screenshot images are edge-to-edge inside each project card, without an image bo
 
 ## Profile text and glass panels
 
-- Read `docs/PROFILE_TEXT.md` before changing the generator. `content/profile.mjs` owns localized copy and SEO; `scripts/profile-pages.mjs` generates both profile routes, the homepage feature and retired-route redirects. Keep fourteen indexable routes in the sitemap, including both profile pages. Preserve prior service and homepage metadata.
+- Read `docs/PROFILE_TEXT.md` before changing the generator. `content/profile.mjs` owns localized copy and SEO; `scripts/profile-pages.mjs` generates both profile routes, the homepage feature and retired-route redirects. Keep sixteen indexable routes in the sitemap, including both profile pages. Preserve prior service and homepage metadata.
 - The profile generator is the only retained feature from the former playground. Do not restore the skills map, circuit game, project builder, request simulator or light signature without an explicit scope change. Keep their code and entry points removed. Retired `/playground/` routes redirect to the profile tool and remain `noindex`.
 - `profile-core.mjs` owns Unicode alphabets, bounded effects, Persian joining, frames, custom mixes and real ASCII. Validate assigned Unicode code points, deduplicate actual outputs and do not advertise an invariant result count for every input. Keep alphabet exceptions for script, italic, Gothic and double-struck letters; naive arithmetic produces unassigned characters.
 - Preserve Persian joining and ZWNJ. Tatweel must be inserted only at valid joins. Presentation forms must normalize back to the same base text. Never imitate Persian font variety by breaking words into isolated letters or replacing them with unrelated letters.
 - User text is rendered with `textContent` or form values. Favorites persist style IDs only; the language-switch draft is session-scoped and consumed on entry. Preserve name, filters and custom-combination input when switching language. Keep clipboard failure usable, output batches bounded and mobile output contained within cards.
 - Glass styling belongs on panels. Preserve the transparent root, existing circuit scene and meteors, real project captures, celebration behavior and launch isolation. Use the profile discovery card in the existing reflection system.
+
+
+## Image processing workbench
+
+- Read `docs/IMAGE_TOOLS.md`. Edit `content/image.mjs`, `scripts/image-pages.mjs`,
+  `image.css`, `image.js`, `image-engine.mjs` and `image-core.mjs`. Rebuild both
+  generated image routes and the sixteen-URL sitemap. The image tool is a separate
+  authorized feature; the five rejected playground features remain retired.
+- Keep all image processing local. Do not introduce uploads, persistent image
+  storage, accounts, credentials, external codecs, API keys or a server.
+- Inspect container headers before decoding. Reject unsupported/animated images,
+  bound input bytes/pixels/batch count, process sequentially, close bitmaps and
+  revoke object URLs. Preserve EXIF orientation on input without copying camera
+  metadata into newly encoded files. Never execute SVG or user file contents.
+- A target is a maximum actual byte size, not an estimate or a guaranteed exact
+  size. Honor quality bounds and the explicit dimension-reduction toggle. PNG
+  quality is not adjustable; never silently substitute a browser's fallback MIME.
+  Show unreachable targets and larger exports honestly. Never claim lossless
+  resizing, recovered detail from upscaling or universal competitor superiority.
+- Geometry is crop, then quarter-turn rotation, then flips in output coordinates.
+  Pointer crop has numeric equivalents. With aspect lock, width and height are a
+  bounding box; stretching requires explicitly disabling the lock. Clear stale
+  results whenever settings change. Mobile processing/cancel controls stay reachable.
+- Language changes preserve files/settings/results in memory and update the page
+  metadata. User filenames are textContent; ZIP paths and download names are
+  sanitized, UTF-8 and collision-safe. Do not put filenames or file data in URLs,
+  localStorage, sessionStorage, HTML strings or structured data.
+- Check geometry, target feasibility/cancellation, actual browser MIME and pixels,
+  transparency, EXIF orientation, file picker validation, multiple images, ZIP
+  extraction, both locales and mobile overflow. Preserve original portraits,
+  background code, launch assets and supplied résumés byte-for-byte.

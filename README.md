@@ -12,7 +12,7 @@ npm test
 npm run dev
 ```
 
-Open the printed URL (normally http://127.0.0.1:8000). A plain static HTTP server also works. `npm run build` refreshes homepage metadata, regenerates `fa/index.html`, creates ten localized service pages and rebuilds the fourteen-URL sitemap; commit the generated files so GitHub Pages needs no build step. `.nojekyll` preserves the static output. Keep `CNAME` when deploying.
+Open the printed URL (normally http://127.0.0.1:8000). A plain static HTTP server also works. `npm run build` refreshes homepage metadata, regenerates `fa/index.html`, creates ten localized service pages and rebuilds the sixteen-URL sitemap; commit the generated files so GitHub Pages needs no build step. `.nojekyll` preserves the static output. Keep `CNAME` when deploying.
 
 ## What visitors can do
 
@@ -31,7 +31,7 @@ The Persian version uses formal, fluent written Persian with clear service descr
 
 `site.webmanifest` supplies the install name, standalone display, charcoal launch
 background, dedicated 192/512px icons and a separate safe-zone maskable icon.
-All fourteen routes link to the same manifest and retain the existing root app
+All sixteen routes link to the same manifest and retain the existing root app
 identity. There are no global background or color-scheme overrides: the original
 negative-z-index circuit canvas and native controls retain their previous appearance.
 
@@ -83,7 +83,7 @@ Native dialogs handle focus and Escape. The footer motion control pauses the cir
 
 ## Search setup
 
-All fourteen localized pages declare self-canonical URLs and reciprocal language alternatives. The sitemap lists both homepages, both service overviews, four service pages in each language, and the paired profile-text routes. `seo.mjs` is shared with the homepage language controller, and `content/services.mjs` owns service copy. Page titles, descriptions, structured data and visible content stay aligned. Google Search Console and Bing Webmaster verification still require the owner's actual records. A sitemap and metadata do not guarantee indexing or ranking. The .ir domain remains country-associated.
+All sixteen localized pages declare self-canonical URLs and reciprocal language alternatives. The sitemap lists both homepages, both service overviews, four service pages in each language, and the paired profile-text and image-tool routes. `seo.mjs` is shared with the homepage language controller, and `content/services.mjs` owns service copy. Page titles, descriptions, structured data and visible content stay aligned. Google Search Console and Bing Webmaster verification still require the owner's actual records. A sitemap and metadata do not guarantee indexing or ranking. The .ir domain remains country-associated.
 
 See [docs/SEO.md](docs/SEO.md) for the page map, owner verification steps and measurement limits. See [AGENTS.md](AGENTS.md) before future edits.
 
@@ -101,3 +101,19 @@ interface or executable code. Existing JSON, text and contrast tools remain in
 `#lab`.
 
 See [docs/PROFILE_TEXT.md](docs/PROFILE_TEXT.md) for behavior and maintenance.
+
+
+## Image compressor and resizer
+
+`/tools/image-optimizer/` and `/fa/tools/image-optimizer/` provide a browser-only
+image workbench. JPEG, PNG and still WebP inputs support independent per-image
+settings, quality bounds, an actual KB target, optional dimension reduction,
+aspect-locked resizing or explicit stretching, crop percentages and pointer
+selection, rotation, flips and transparency/background control. A split preview
+and a native full-resolution dialog make the output inspectable. Batch export
+uses a dependency-free UTF-8 ZIP writer; settings can be copied to the whole queue.
+The locale shell can switch while working files remain in memory.
+
+See [docs/IMAGE_TOOLS.md](docs/IMAGE_TOOLS.md) for limits, encoding trade-offs,
+source files and verification. The existing homepage presentation and splash
+remain unchanged; a new discovery card links to the tool.

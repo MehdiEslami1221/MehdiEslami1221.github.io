@@ -5,7 +5,7 @@ Its public routes are `/tools/profile-text/` and `/fa/tools/profile-text/`.
 The skills map, circuit game, project builder, request simulator and light
 signature have been removed from navigation, source modules and public content.
 Their old playground URLs redirect to the corresponding profile tool, declare
-`noindex` and are omitted from the fourteen-URL sitemap.
+`noindex` and are omitted from the sixteen-URL sitemap.
 
 ## Source map
 
