@@ -806,7 +806,7 @@ function filterProjects() {
   });
   $("#project-results").textContent = visible
     ? tr(
-        `${visible} projects to explore`,
+        `${visible} ${visible === 1 ? "project" : "projects"} found`,
         `${new Intl.NumberFormat("fa").format(visible)} پروژه یافت شد`,
       )
     : tr(
