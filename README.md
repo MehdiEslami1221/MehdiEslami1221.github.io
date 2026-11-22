@@ -31,8 +31,9 @@ The Persian version uses formal, fluent written Persian with clear service descr
 
 `site.webmanifest` supplies the install name, standalone display, charcoal launch
 background, dedicated 192/512px icons and a separate safe-zone maskable icon.
-Supported launchers also expose Projects, Résumé and Contact shortcuts. All twelve
-routes link to the same manifest and retain the existing root app identity.
+All twelve routes link to the same manifest and retain the existing root app
+identity. There are no global background or color-scheme overrides: the original
+negative-z-index circuit canvas and native controls retain their previous appearance.
 
 `scripts/pwa-shell.mjs` generates shared launch markup and early detection during
 the normal build. `pwa.css` and `pwa.js` provide a brief, localized monogram intro
@@ -49,7 +50,7 @@ environment. This does not add a runtime dependency. On Android, existing
 installations may need a manifest refresh or reinstall to pick up the native
 launch appearance; always verify that on a real device.
 
-## Source files
+## Source map
 
 | File                  | Purpose                                                                                             |
 | --------------------- | --------------------------------------------------------------------------------------------------- |

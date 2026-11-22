@@ -7,6 +7,13 @@ import { launchHead } from '../scripts/pwa-shell.mjs';
 const init = launchHead().match(/<script>([\s\S]*?)<\/script>/)[1];
 const controller = await readFile(new URL('../pwa.js', import.meta.url), 'utf8');
 
+test('Launch head leaves the original page canvas and color scheme untouched', () => {
+  const head = launchHead();
+  assert.doesNotMatch(head, /color-scheme/i);
+  const styles = [...head.matchAll(/<style>([\s\S]*?)<\/style>/g)].map(match => match[1]);
+  assert.deepEqual(styles, ['.app-launch{display:none}']);
+});
+
 function environment({ installed = true, navigation = 'navigate', seen = false, reduced = false, blockedStorage = false } = {}) {
   const attributes = new Map(), timers = [], frames = [], events = new Map();
   let removed = false;

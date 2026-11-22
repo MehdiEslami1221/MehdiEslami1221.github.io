@@ -1,9 +1,8 @@
 // One install identity and one launch treatment for all twelve static routes.
 export function launchHead() {
-  return `<meta name="color-scheme" content="dark">
-<meta name="application-name" content="Mehdi Eslami">
+  return `<meta name="application-name" content="Mehdi Eslami">
 <link rel="manifest" href="/site.webmanifest">
-<style>html{background:#080a09;color-scheme:dark}.app-launch{display:none}</style>
+<style>.app-launch{display:none}</style>
 <script>
 (() => {
   const root = document.documentElement;
