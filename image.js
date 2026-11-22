@@ -60,12 +60,12 @@ const errors = {
     "حجم فایل‌های انتخابی از محدودیت ۱۰۰ مگابایت بیشتر است.",
   ],
   fileRead: [
-    "The gallery did not provide readable file data. Try “Choose from device files” below.",
-    "دادهٔ این عکس از گالری خوانده نشد؛ دکمهٔ «انتخاب از فایل‌های دستگاه» را امتحان کنید.",
+    "The browser could not read the selected file. Try “Choose from device files” below.",
+    "مرورگر نتوانست فایل انتخاب‌شده را بخواند. از گزینهٔ «انتخاب از فایل‌های دستگاه» استفاده کنید.",
   ],
   internal: [
     "The image could not be added. Reload the page and try again.",
-    "افزودن عکس انجام نشد؛ صفحه را بازخوانی و دوباره امتحان کنید.",
+    "عکس اضافه نشد. صفحه را دوباره باز کنید و عکس را انتخاب کنید.",
   ],
   encode: [
     "The browser could not export this image. Try smaller dimensions.",
@@ -334,7 +334,7 @@ function renderResult() {
     : "";
   $("dirty").textContent = has
     ? t("Ready to download", "آمادهٔ دریافت")
-    : t("Settings not processed", "تنظیمات پردازش نشده‌اند");
+    : t("Settings not processed", "برای این تنظیمات هنوز خروجی ساخته نشده است");
   $("result-status").classList.toggle("im-warning", has && !o.met);
   $("result-status").textContent = item.error
     ? errorText(item.error)
@@ -343,16 +343,16 @@ function renderResult() {
       : !o.met
         ? t(
             "Target not reached at these settings. Lower the quality floor, enable smaller dimensions or increase the target.",
-            "با این تنظیمات به حجم هدف نرسید. حداقل کیفیت را کم کنید، کاهش ابعاد را فعال کنید یا حجم هدف را بیشتر کنید.",
+            "با این تنظیمات، حجم خروجی از حد تعیین‌شده بیشتر است. حداقل کیفیت را پایین بیاورید، اجازهٔ کاهش ابعاد بدهید یا حداکثر حجم را بیشتر کنید.",
           )
         : item.options.target
           ? t(
               "Target reached. Actual size: ",
-              "حجم هدف تأمین شد. حجم واقعی: ",
+              "عکس به حجم موردنظر رسید. حجم نهایی: ",
             ) + bytes(o.blob.size)
           : t(
               "Export ready. Check the preview before downloading.",
-              "خروجی آماده است؛ پیش از دریافت، پیش‌نمایش را بررسی کنید.",
+              "عکس آمادهٔ دانلود است. می‌توانید نتیجه را در پیش‌نمایش بررسی کنید.",
             );
   if (has) {
     $("after").src = o.url;
@@ -379,7 +379,7 @@ async function addFiles(files) {
   renderQueue();
   const failures =
     files.length > available
-      ? [t("20-image limit reached.", "محدودیت ۲۰ عکس تکمیل شد.")]
+      ? [t("20-image limit reached.", "حداکثر ۲۰ عکس می‌توانید انتخاب کنید.")]
       : [];
   let count = 0;
   try {
@@ -527,7 +527,7 @@ function removeAll() {
   for (const key of ["crop-image", "before", "after"])
     $(key).removeAttribute("src");
   renderQueue();
-  status("Images removed from this session.", "عکس‌ها از این جلسه حذف شدند.");
+  status("All images removed.", "همهٔ عکس‌ها حذف شدند.");
 }
 function applyAspect() {
   const item = active();
@@ -676,7 +676,7 @@ function bind() {
     renderResult();
     status(
       "Settings applied to every image. Process them to create new outputs.",
-      "تنظیمات روی همهٔ عکس‌ها اعمال شد؛ برای ساخت خروجی جدید، پردازش را بزنید.",
+      "تنظیمات به همهٔ عکس‌ها منتقل شد. برای ساخت خروجی، «پردازش همهٔ عکس‌ها» را بزنید.",
     );
   });
   $("process").addEventListener("click", () => processItems([active()]));

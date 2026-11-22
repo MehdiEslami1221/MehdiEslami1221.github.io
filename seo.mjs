@@ -4,13 +4,13 @@ export const HOME_SEO = {
   en: {
     title: "Mehdi Eslami | Web Developer & Java Programmer",
     description:
-      "Mehdi Eslami develops websites, custom web applications, Java and Spring Boot APIs, and Android apps. Explore real projects and discuss your software requirements.",
+      "Mehdi Eslami, software developer working with Java, Spring Boot, Next.js and Android. View projects, download a résumé or get in touch about a project.",
     imageAlt: "Mehdi Eslami — web, Java and Android developer",
   },
   fa: {
     title: "مهدی اسلامی | طراحی سایت و برنامه‌نویسی اختصاصی",
     description:
-      "مهدی اسلامی، توسعه‌دهندهٔ جاوا، وب و اندروید؛ معرفی نمونه‌کارها و خدمات طراحی سایت، برنامه‌نویسی اختصاصی و توسعهٔ بک‌اند، همراه با راه‌های تماس برای همکاری.",
+      "وب‌سایت مهدی اسلامی، برنامه‌نویس جاوا، وب و اندروید. مشاهدهٔ نمونه‌کارها، دریافت رزومه و تماس برای طراحی سایت، ساخت سامانه و توسعهٔ بک‌اند با Spring Boot.",
     imageAlt: "مهدی اسلامی؛ توسعه‌دهنده وب، جاوا و اندروید",
   },
 };

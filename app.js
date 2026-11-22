@@ -8,7 +8,7 @@ import {
   meteorPose,
   meteorReflection,
 } from "./core.mjs?v=20261120-meteors";
-import { HOME_SEO, SITE_URL, homeSchema } from "./seo.mjs?v=20261121-fa1";
+import { HOME_SEO, SITE_URL, homeSchema } from "./seo.mjs?v=20261123-copy1";
 ("use strict");
 const $ = (selector) => document.querySelector(selector);
 const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -56,7 +56,7 @@ form.addEventListener("submit", (event) => {
     message(
       "#form-status",
       "Please enter your name, contact details and at least 10 characters about the project.",
-      "نام و اطلاعات تماس را وارد کنید و دست‌کم ۱۰ نویسه دربارهٔ پروژه بنویسید.",
+      "نام و راه تماس خود را وارد کنید. توضیحات پروژه هم باید دست‌کم ۱۰ حرف یا نشانه داشته باشد.",
     );
     return;
   }
@@ -82,7 +82,7 @@ form.addEventListener("submit", (event) => {
   message(
     "#form-status",
     "Your brief is ready. Press send in Telegram or your email app to finish. If the app did not open, use the link below or copy the text.",
-    "متن درخواست آماده است. برای تکمیل ارسال، پیام را در تلگرام یا برنامهٔ ایمیل ارسال کنید. اگر برنامه باز نشد، از پیوند پایین یا گزینهٔ کپی متن استفاده کنید.",
+    "متن پیام آماده شد. برای ارسال درخواست، آن را در تلگرام یا ایمیل بفرستید. اگر برنامه باز نشد، از لینک پایین یا گزینهٔ کپی متن استفاده کنید.",
   );
   if (channel === "email") window.location.href = url;
   else window.open(url, "_blank", "noopener,noreferrer");
@@ -867,7 +867,7 @@ function formatJSON(compact) {
       null,
       compact ? 0 : 2,
     );
-    message("#json-status", "Valid JSON. All set.", "ساختار JSON معتبر است.");
+    message("#json-status", "Valid JSON.", "ساختار JSON معتبر است.");
     $("#json-status").classList.remove("error");
   } catch {
     message(
@@ -920,11 +920,11 @@ const projectData = {
     stack: "Next.js · TypeScript · SQLite · Telegram",
     image: "dearlater",
     problem: [
-      "Some messages deserve a better moment.",
+      "Scheduled Telegram messages and sealed letters.",
       "ارسال پیام در زمان تعیین‌شده.",
     ],
     story: [
-      "A bilingual writing desk for scheduled Telegram messages and sealed letters. The recipient sees the envelope first; the application releases the letter after its opening time.",
+      "A bilingual app for scheduling Telegram messages and sending sealed letters. The recipient can view the envelope straight away and read the letter once its opening time arrives.",
       "برنامه‌ای دوزبانه برای پیام‌های زمان‌بندی‌شده و نامه‌های سربه‌مهر تلگرام. گیرنده ابتدا پاکت را می‌بیند و متن نامه پس از زمان تعیین‌شده در دسترس او قرار می‌گیرد.",
     ],
     decision: [
@@ -933,7 +933,7 @@ const projectData = {
     ],
     scope: [
       "A single-owner local edition. A live Telegram session is required for real delivery.",
-      "نسخهٔ محلی برای استفادهٔ یک صاحب حساب طراحی شده است. ارسال واقعی پیام به اتصال تلگرام نیاز دارد.",
+      "این نسخه روی دستگاه خودتان اجرا می‌شود و برای یک حساب کاربری طراحی شده است. ارسال پیام به اتصال حساب تلگرام نیاز دارد.",
     ],
     repo: "dearlater",
   },
@@ -942,7 +942,7 @@ const projectData = {
     stack: "Next.js · TypeScript · SQLite · PDF",
     image: "didgah",
     problem: [
-      "A questionnaire is only useful when its answers become readable.",
+      "Research questionnaires, response summaries and PDF reports.",
       "جمع‌آوری پاسخ‌ها و تهیهٔ گزارش پژوهشی.",
     ],
     story: [
@@ -964,7 +964,7 @@ const projectData = {
     name: "Gorgan Warehouse",
     stack: "Next.js · TypeScript · SQLite · Inventory",
     problem: [
-      "Know what came in, what went out, and who received it.",
+      "Stock receipts, inventory and staff handovers.",
       "ثبت ورود کالا، کنترل موجودی و پیگیری تحویل.",
     ],
     story: [
@@ -985,7 +985,7 @@ const projectData = {
     image: "yadban",
     name: "Yadban",
     stack: "Next.js · Cloudflare Workers · D1 · Web Push",
-    problem: ["A little less to remember.", "مدیریت موعدها و یادآوری کارهای روزمره."],
+    problem: ["Installments, bills and recurring reminders.", "مدیریت موعدها و یادآوری کارهای روزمره."],
     story: [
       "A bilingual personal planner for installments, bills and recurring reminders, with calendar views and Web Push notifications in its full deployment.",
       "برنامه‌ای شخصی و دوزبانه برای اقساط، قبض‌ها و یادآوری‌های تکرارشونده؛ با تقویم و اعلان وب در نسخهٔ کامل پروژه.",
@@ -996,7 +996,7 @@ const projectData = {
     ],
     scope: [
       "Single-owner. Reminder delivery depends on the deployed scheduler and device permissions.",
-      "برای استفادهٔ یک صاحب حساب طراحی شده است. دریافت اعلان به فعال‌بودن زمان‌بند و مجوز اعلان دستگاه بستگی دارد.",
+      "این برنامه برای استفادهٔ شخصی طراحی شده است. برای دریافت یادآوری، سرویس زمان‌بندی باید فعال باشد و دستگاه اجازهٔ نمایش اعلان داشته باشد.",
     ],
     repo: "yadban",
   },
@@ -1005,7 +1005,7 @@ const projectData = {
     name: "VideoFetch",
     stack: "Java · Spring Boot · Next.js · yt-dlp · FFmpeg",
     problem: [
-      "Media workflows need honest feedback when platforms say no.",
+      "Video information and download tracking.",
       "دریافت اطلاعات رسانه و مدیریت درخواست‌های دانلود.",
     ],
     story: [
@@ -1013,8 +1013,8 @@ const projectData = {
       "بک‌اند Spring Boot و رابط Next.js برای دریافت اطلاعات رسانه و مدیریت روند دانلود.",
     ],
     decision: [
-      "Metadata fallback and clear failure messages matter when an upstream platform requires sign-in or blocks extraction.",
-      "اگر پلتفرم به ورود کاربر نیاز داشته باشد یا دریافت اطلاعات را متوقف کند، برنامه از روش جایگزین برای اطلاعات پشتیبانی‌شده استفاده می‌کند و خطا را توضیح می‌دهد.",
+      "When a platform requires sign-in or blocks a download, the app explains the error. Where supported, it can still retrieve video information using a fallback method.",
+      "اگر پلتفرم اجازهٔ دانلود ندهد یا به ورود کاربر نیاز داشته باشد، برنامه دلیل خطا را نمایش می‌دهد. در صورت پشتیبانی، اطلاعات ویدئو از روش جایگزین دریافت می‌شود.",
     ],
     scope: [
       "Platform restrictions still apply. There is no real download service on this portfolio.",
@@ -1038,7 +1038,7 @@ function renderProject(id) {
   if (!p) return;
   const phrase = (pair) => escapeHTML(tr(...pair));
   $("#project-content").innerHTML =
-    `<h2 id="project-title">${escapeHTML(p.name)}</h2><p class="project-stack" dir="ltr">${p.stack}</p>${p.image ? `<figure class="case-image"><img src="/assets/${p.image}.webp" width="1348" height="${["warehouse", "yadban", "videofetch"].includes(p.image) ? 850 : 925}" data-capture-tone="${p.image === "videofetch" ? "dark" : "light"}" alt="${escapeHTML(tr("Capture of the running project interface", "تصویر رابط واقعی پروژه در حال اجرا"))}"><figcaption>${p.image === "videofetch" ? tr("Interface preview; backend disconnected.", "پیش‌نمایش رابط کاربری؛ بدون اتصال به بک‌اند.") : tr("Project preview with sample data.", "پیش‌نمایش پروژه با اطلاعات نمونه.")}</figcaption></figure>` : ""}<p class="case-lead">${phrase(p.problem)}</p><p>${phrase(p.story)}</p><div class="case-grid"><div><h3>${tr("Implementation", "نکتهٔ فنی")}</h3><p>${phrase(p.decision)}</p></div><div><h3>${tr("Current scope", "محدودهٔ فعلی")}</h3><p>${phrase(p.scope)}</p></div></div>${["dearlater", "didgah", "warehouse"].includes(id) ? `<section class="mini-demo"><h3>${tr("Try a short demo", "نمونهٔ تعاملی")}</h3><p class="small muted">${tr("Browser-only demonstration. It does not send messages or save real project records.", "این نمونه فقط در مرورگر اجرا می‌شود؛ پیامی ارسال نمی‌کند و اطلاعات واقعی پروژه را تغییر نمی‌دهد.")}</p>${demoMarkup(id)}</section>` : ""}<div class="tool-actions"><a class="button primary" href="https://github.com/MehdiEslami1221/${p.repo}" target="_blank" rel="noopener noreferrer">${tr("Explore the source", "مشاهدهٔ کد پروژه")}</a><button type="button" class="button secondary" id="share-project">${tr("Copy project link", "کپی لینک پروژه")}</button></div>`;
+    `<h2 id="project-title">${escapeHTML(p.name)}</h2><p class="project-stack" dir="ltr">${p.stack}</p>${p.image ? `<figure class="case-image"><img src="/assets/${p.image}.webp" width="1348" height="${["warehouse", "yadban", "videofetch"].includes(p.image) ? 850 : 925}" data-capture-tone="${p.image === "videofetch" ? "dark" : "light"}" alt="${escapeHTML(tr("Capture of the running project interface", "تصویر رابط واقعی پروژه در حال اجرا"))}"><figcaption>${p.image === "videofetch" ? tr("Interface preview; backend disconnected.", "پیش‌نمایش رابط کاربری؛ بدون اتصال به بک‌اند.") : tr("Project preview with sample data.", "پیش‌نمایش پروژه با اطلاعات نمونه.")}</figcaption></figure>` : ""}<p class="case-lead">${phrase(p.problem)}</p><p>${phrase(p.story)}</p><div class="case-grid"><div><h3>${tr("Implementation", "نکتهٔ فنی")}</h3><p>${phrase(p.decision)}</p></div><div><h3>${tr("Current scope", "محدودهٔ فعلی")}</h3><p>${phrase(p.scope)}</p></div></div>${["dearlater", "didgah", "warehouse"].includes(id) ? `<section class="mini-demo"><h3>${tr("Try a short demo", "نمونهٔ تعاملی")}</h3><p class="small muted">${tr("Browser-only demonstration. It does not send messages or save real project records.", "این نمونه فقط در مرورگر اجرا می‌شود؛ پیامی ارسال نمی‌کند و اطلاعات واقعی پروژه را تغییر نمی‌دهد.")}</p>${demoMarkup(id)}</section>` : ""}<div class="tool-actions"><a class="button primary" href="https://github.com/MehdiEslami1221/${p.repo}" target="_blank" rel="noopener noreferrer">${tr("View source code", "مشاهدهٔ کد پروژه")}</a><button type="button" class="button secondary" id="share-project">${tr("Copy project link", "کپی لینک پروژه")}</button></div>`;
   $("#project-dialog").setAttribute("aria-labelledby", "project-title");
   $("#share-project").addEventListener("click", () =>
     copyText(
@@ -1052,7 +1052,7 @@ function renderProject(id) {
 }
 function demoMarkup(id) {
   if (id === "dearlater")
-    return `<div class="envelope-demo"><div class="demo-envelope" id="demo-envelope"><div class="demo-flap"></div><div class="demo-letter" id="demo-letter">${tr("Keep building. Good things take time.", "ساختن را ادامه دهید؛ نتیجهٔ خوب به زمان و تلاش نیاز دارد.")}</div><div class="demo-seal" aria-hidden="true"><img src="/assets/logo.svg" alt="" width="32" height="24"></div></div><button type="button" id="unlock-demo" class="button primary">${tr("Seal a letter for 5 seconds", "مهرکردن نامه برای ۵ ثانیه")}</button><p id="envelope-status" role="status"></p></div>`;
+    return `<div class="envelope-demo"><div class="demo-envelope" id="demo-envelope"><div class="demo-flap"></div><div class="demo-letter" id="demo-letter">${tr("This is a sample sealed letter.", "این یک نامهٔ سربه‌مهر نمونه است.")}</div><div class="demo-seal" aria-hidden="true"><img src="/assets/logo.svg" alt="" width="32" height="24"></div></div><button type="button" id="unlock-demo" class="button primary">${tr("Seal a letter for 5 seconds", "مهرکردن نامه برای ۵ ثانیه")}</button><p id="envelope-status" role="status"></p></div>`;
   if (id === "didgah")
     return `<p>${tr("How much does a clear interface help your day?", "یک رابط کاربری قابل‌فهم تا چه اندازه انجام کار را آسان‌تر می‌کند؟")}</p><div class="demo-options">${[0, 1, 2, 3, 4].map((n) => `<button type="button" data-score="${n}" aria-pressed="false">${new Intl.NumberFormat(lang).format(n)}</button>`).join("")}</div><div class="demo-chart" aria-hidden="true">${[0, 1, 2, 3, 4].map((n) => `<i data-bar="${n}" style="--bar:8%"></i>`).join("")}</div><p id="survey-status" role="status">${tr("Choose a score from 0 to 4. This is your selection, not research data.", "امتیازی از ۰ تا ۴ انتخاب کنید. این انتخاب فقط برای نمایش عملکرد نمونه است و دادهٔ پژوهشی محسوب نمی‌شود.")}</p>`;
   return `<div class="stock-demo"><div><span>${tr("Sample stock", "موجودی نمونه")}</span><b id="demo-stock">24</b><span>${tr("notebooks", "دفتر")}</span></div><label>${tr("Quantity", "تعداد")}<input id="stock-quantity" type="number" min="1" max="1000" step="1" value="3"></label></div><div class="tool-actions"><button type="button" id="stock-in" class="button primary">${tr("Receive stock", "ثبت ورود")}</button><button type="button" id="stock-out" class="button secondary">${tr("Hand over stock", "ثبت خروج")}</button><button type="button" id="stock-reset" class="text-link">${tr("Reset example", "شروع دوباره")}</button></div><p id="stock-status" role="status"></p>`;
@@ -1072,7 +1072,7 @@ function bindDemo(id) {
               `Sealed. Opening in ${left}…`,
               `مهرشده؛ ${new Intl.NumberFormat("fa").format(left)} ثانیه تا بازشدن…`,
             )
-          : tr("Your little letter is ready.", "زمان تعیین‌شده به پایان رسید. نامه آمادهٔ مشاهده است.");
+          : tr("The letter is ready to open.", "زمان تعیین‌شده به پایان رسید. نامه آمادهٔ مشاهده است.");
         if (!left) {
           clearInterval(envelopeTimer);
           $("#demo-envelope").classList.add("opened");

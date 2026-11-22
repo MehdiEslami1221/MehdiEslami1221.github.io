@@ -10,70 +10,70 @@ export const services = [
       name: "Website development",
       title: "Custom Website Development | Mehdi Eslami",
       description:
-        "Commission a responsive business or personal website from Mehdi Eslami. Discuss page structure, bilingual content, technical SEO and a clear route to contact.",
-      heading: "A website built around your business.",
+        "Personal and business website development by Mehdi Eslami. Responsive layouts, Persian and English pages, technical SEO and contact forms.",
+      heading: "Personal and business websites",
       intro:
-        "I design and build personal and business websites, with responsive layouts, clear content and an easy way to get in touch.",
-      fitTitle: "Start with what your visitors need",
-      fit: "A portfolio, a service business and a campaign landing page need different things. Before designing screens, we work out who is visiting, which questions they need answered and what action should follow. That shapes the page structure, the writing and the contact flow.",
+        "I build websites for businesses and individuals, with layouts for mobile and desktop, clear service pages and contact forms.",
+      fitTitle: "What does your website need to do?",
+      fit: "A personal website might focus on your work and résumé. A business website needs to explain your services and help customers reach you. We start by deciding which pages you need, what belongs on each one and how visitors should get in touch.",
       outputs: [
         "A page structure that explains your services and makes contact easy",
         "Layouts for phones, tablets and desktops, with keyboard navigation",
         "Persian and English content routes when the project needs both",
         "Page titles, descriptions, crawlable links and a sitemap suited to the content",
       ],
-      decisionTitle: "Choose the right amount of software",
+      decisionTitle: "Hosting and running costs",
       decision:
-        "An introduction or portfolio site can often stay static, which keeps hosting and maintenance simple. Accounts, private records, payments or a shared dashboard change the requirements. I separate those needs early so the proposal covers the right infrastructure instead of adding complexity by default.",
+        "A site that introduces your work or services can often use simple static hosting. Accounts, payments, bookings and saved customer data may need a backend. We work out these requirements before development so you know what hosting and ongoing costs to expect.",
       example:
         "In DearLater, I built a bilingual interface for writing messages, previewing sealed letters and choosing when they open.",
       start:
-        "Send a short description of your business, the pages you have in mind, any existing identity or content, and a reference site if you have one. Mention whether you need Persian, English or both. From there we can define scope and discuss timing and cost.",
+        "Tell me about your work, the pages and features you need, and whether the site should be in Persian, English or both. Share any content, logo or reference sites you already have. A deadline and approximate budget will help us discuss a suitable scope.",
       faqs: [
         [
-          "What affects the cost of a website?",
-          "Page count alone is not enough. Design requirements, content preparation, language versions and features such as booking or user accounts all affect the scope. A useful estimate starts with those decisions.",
+          "How much does a website cost?",
+          "The price depends on the design, pages, languages and features you need. Content preparation and connections to other services also affect the work. I can estimate the cost once we have discussed those details.",
         ],
         [
-          "Can a simple website avoid a paid server?",
-          "Often, yes. A static site can use hosting such as GitHub Pages. Features that store shared or private data need a suitable backend or external service; those costs belong in the proposal.",
+          "Do I need to pay for a server?",
+          "A simple static website can use free hosting such as GitHub Pages. Accounts, payments and features that save data may need separate services. We review hosting requirements and costs before starting.",
         ],
         [
-          "Does technical SEO guarantee first place in Google?",
-          "No. I can prepare the content structure and technical foundations. Search visibility also depends on competition, useful content, external references and whether search engines crawl and index the pages.",
+          "Is SEO included?",
+          "Page titles, descriptions, internal links and a sitemap can be included in the project. Search rankings also depend on your content, competition and site reputation; technical setup alone does not guarantee a position.",
         ],
       ],
     },
     fa: {
       "name": "طراحی و توسعهٔ سایت",
       "title": "سفارش طراحی سایت | مهدی اسلامی",
-      "description": "طراحی وب‌سایت شخصی و شرکتی با مهدی اسلامی؛ نمایش مناسب در موبایل و دسکتاپ، محتوای فارسی و انگلیسی و تنظیمات سئوی فنی، متناسب با نیاز پروژه.",
-      "heading": "طراحی سایت برای معرفی شما و کسب‌وکارتان.",
-      "intro": "وب‌سایت‌های شخصی و شرکتی را با محتوای روشن، نمایش مناسب در موبایل و دسکتاپ و دسترسی آسان به اطلاعات تماس طراحی و توسعه می‌دهم.",
-      "fitTitle": "مخاطب و هدف سایت را مشخص می‌کنیم",
-      "fit": "نیاز یک سایت شخصی با سایت یک شرکت خدماتی یا صفحهٔ معرفی محصول یکسان نیست. پیش از طراحی، مخاطبان، پرسش‌های اصلی آن‌ها و هدف هر صفحه را بررسی می‌کنیم. نتیجهٔ این بررسی، مبنای دسته‌بندی محتوا، طراحی صفحات و انتخاب روش تماس خواهد بود.",
+      "description": "طراحی سایت شخصی و شرکتی با مهدی اسلامی؛ سازگار با موبایل، با صفحات فارسی و انگلیسی، فرم تماس و تنظیمات سئوی فنی.",
+      "heading": "طراحی سایت شخصی و شرکتی",
+      "intro": "برای معرفی شما و کسب‌وکارتان سایت طراحی می‌کنم؛ با نمایش مناسب در موبایل و رایانه، صفحات معرفی خدمات و فرم تماس.",
+      "fitTitle": "سایت شما چه صفحاتی نیاز دارد؟",
+      "fit": "در سایت شخصی، معمولاً معرفی سوابق، رزومه و نمونه‌کارها اولویت دارد. در سایت شرکتی، معرفی خدمات و راه‌های ارتباط با مشتری مهم‌تر است. ابتدا مشخص می‌کنیم چه صفحاتی لازم دارید، چه محتوایی در آن‌ها قرار می‌گیرد و بازدیدکننده چطور با شما تماس بگیرد.",
       "outputs": [
-        "طراحی ساختار صفحات برای معرفی خدمات و دسترسی آسان به اطلاعات تماس",
-        "نمایش مناسب در موبایل، تبلت و دسکتاپ، همراه با امکان استفاده از صفحه‌کلید",
-        "صفحات مجزا برای فارسی و انگلیسی در پروژه‌های دوزبانه",
-        "تنظیم عنوان و توضیحات صفحات، لینک‌های داخلی و نقشهٔ سایت برای موتورهای جست‌وجو"
+        "طراحی صفحات معرفی، خدمات، نمونه‌کارها و تماس",
+        "نمایش مناسب در موبایل، تبلت و رایانه و امکان استفاده با صفحه‌کلید",
+        "صفحات جداگانهٔ فارسی و انگلیسی برای سایت دوزبانه",
+        "تنظیم عنوان و توضیحات صفحات، لینک‌های داخلی و نقشهٔ سایت"
       ],
-      "decisionTitle": "زیرساخت سایت را بر اساس امکانات انتخاب می‌کنیم",
-      "decision": "برای معرفی خدمات و نمایش نمونه‌کارها، اغلب یک سایت ایستا کافی است؛ چنین سایتی به پردازش سمت سرور نیاز ندارد و نگهداری آن ساده‌تر است. امکاناتی مانند حساب کاربری، پرداخت یا ذخیرهٔ اطلاعات خصوصی، به زیرساخت متفاوتی نیاز دارند. پیش از شروع، این موارد را مشخص می‌کنیم تا هزینه و نیازهای میزبانی روشن باشد.",
+      "decisionTitle": "میزبانی و هزینه‌های نگهداری",
+      "decision": "سایتی که برای معرفی خدمات یا نمایش نمونه‌کار ساخته می‌شود، معمولاً به میزبانی ساده‌تری نیاز دارد. حساب کاربری، پرداخت، رزرو و ذخیرهٔ اطلاعات مشتریان ممکن است به بک‌اند و سرویس‌های جداگانه نیاز داشته باشند. این موارد را پیش از شروع مشخص می‌کنیم تا هزینه‌های اجرا و نگهداری معلوم باشد.",
       "example": "در DearLater، رابط دوزبانه‌ای برای نوشتن پیام، پیش‌نمایش نامهٔ سربه‌مهر و انتخاب زمان بازشدن آن طراحی کرده‌ام.",
-      "start": "برای شروع، نوع فعالیت، صفحات موردنیاز و محتوای آمادهٔ خود را معرفی کنید. اگر لوگو، هویت بصری یا نمونهٔ سایتی در نظر دارید، آن را نیز بفرستید. زبان سایت و امکانات اصلی را مشخص کنید تا بتوانیم دربارهٔ جزئیات کار، زمان اجرا و هزینه گفت‌وگو کنیم.",
+      "start": "نوع فعالیت، صفحات و امکانات موردنیازتان را بنویسید و بگویید سایت فارسی می‌خواهید، انگلیسی یا دوزبانه. اگر محتوا، لوگو یا نمونهٔ سایتی در نظر دارید، آن را هم بفرستید. زمان مدنظر و بودجهٔ تقریبی به تعیین جزئیات پروژه کمک می‌کند.",
       "faqs": [
         [
-          "هزینهٔ طراحی سایت چگونه محاسبه می‌شود؟",
-          "تعداد صفحات، طراحی، میزان محتوای آماده، تعداد زبان‌ها و امکاناتی مانند رزرو یا حساب کاربری بر هزینه اثر دارند. پس از مشخص‌شدن این موارد، می‌توان برآورد دقیق‌تری ارائه کرد."
+          "هزینهٔ طراحی سایت چقدر است؟",
+          "هزینه به طراحی، تعداد صفحات، زبان‌ها و امکانات سایت بستگی دارد. آماده‌سازی محتوا و اتصال به سرویس‌های دیگر هم بر میزان کار اثر می‌گذارد. پس از بررسی این موارد، می‌توان هزینه و زمان اجرا را برآورد کرد."
         ],
         [
-          "آیا برای یک سایت ساده باید سرور بخرم؟",
-          "لزوماً خیر. یک سایت ایستا می‌تواند روی میزبانی رایگانی مانند GitHub Pages منتشر شود. امکاناتی که به ذخیرهٔ اطلاعات مشترک یا خصوصی نیاز دارند، باید از بک‌اند یا سرویس مناسب استفاده کنند؛ هزینهٔ این بخش پیش از اجرا مشخص می‌شود."
+          "آیا باید برای سایت سرور بخرم؟",
+          "برای یک سایت سادهٔ ایستا می‌توان از میزبانی رایگان مثل GitHub Pages استفاده کرد. امکاناتی مثل حساب کاربری، پرداخت و ذخیرهٔ اطلاعات ممکن است به سرویس جداگانه نیاز داشته باشند. نیاز و هزینهٔ میزبانی را پیش از شروع بررسی می‌کنیم."
         ],
         [
-          "آیا سئوی فنی رتبهٔ اول گوگل را تضمین می‌کند؟",
-          "خیر. سئوی فنی به موتورهای جست‌وجو کمک می‌کند ساختار و محتوای سایت را بررسی کنند. رتبهٔ صفحات به کیفیت محتوا، رقابت، اعتبار سایت و ثبت صفحات در فهرست موتور جست‌وجو نیز بستگی دارد."
+          "آیا تنظیمات سئو هم انجام می‌شود؟",
+          "تنظیم عنوان و توضیحات صفحات، لینک‌های داخلی و نقشهٔ سایت می‌تواند بخشی از پروژه باشد. رتبهٔ گوگل به محتوا، رقابت و اعتبار سایت هم بستگی دارد و صرفاً با تنظیمات فنی نمی‌توان جایگاه مشخصی را تضمین کرد."
         ]
       ]
     },
@@ -89,36 +89,36 @@ export const services = [
       title: "Custom Web Application Development | Mehdi Eslami",
       description:
         "Build a custom web application with Mehdi Eslami: management dashboards, forms, inventory workflows and reports designed around the people using them.",
-      heading: "Turn a daily workflow into a usable web app.",
+      heading: "Web applications for your team",
       intro:
-        "I build web applications for forms, dashboards and day-to-day management. The screens, records and reports follow the way your team works.",
-      fitTitle: "Understand the workflow before choosing screens",
-      fit: "We start with a real example: who enters a record, who reviews it, what can change and what report is needed at the end. Exceptions matter too. A duplicate submission, an incomplete form or an invalid stock movement should lead to a clear result rather than an unexplained failure.",
+        "I develop management systems, forms and dashboards for tasks such as recording stock, reviewing requests and preparing reports.",
+      fitTitle: "How does your team work?",
+      fit: "We follow a task from start to finish: who records the information, who checks it, what can be changed and which reports are needed. We also look at common mistakes, such as duplicate submissions or stock requests that exceed the available quantity.",
       outputs: [
-        "Forms and validation matched to the records being collected",
-        "A dashboard focused on useful information rather than decorative metrics",
-        "Search, filters and exports where the workflow needs them",
-        "Defined access rules, record changes and error states within the agreed scope",
+        "Forms with checks for missing or invalid information",
+        "Dashboards showing the records and status your team needs",
+        "Search, filters and report exports",
+        "User roles and rules for viewing and editing records",
       ],
-      decisionTitle: "Shared data needs a shared system",
+      decisionTitle: "User access and data storage",
       decision:
-        "A browser-only demonstration is useful for explaining an interaction, but it is not a substitute for a live database or access control. For a working team application, we define storage, authentication, backup and hosting requirements alongside the interface. The deployment choice follows the actual data and access needs.",
+        "We decide who can view and edit each type of record, where the data will be stored and how it will be backed up. These decisions help determine the database, login system and hosting the application needs.",
       example:
         "In Gorgan Warehouse, I implemented stock receipts, staff handovers, automatic document numbers and inventory reports. Outgoing quantities are checked against available stock.",
       start:
-        "Describe one task from beginning to end and share a blank form or an anonymized example of the required report. List the roles involved and the parts that currently cause errors. That gives us a concrete starting point for deciding what the first version should do.",
+        "Describe one of your daily tasks and share a blank form or sample report with personal details removed. Tell me who uses it, what needs approval and where delays or mistakes happen. We can use that to agree on the first version.",
       faqs: [
         [
-          "Can we start with only part of the workflow?",
-          "Yes. Defining a smaller first version helps make the essential record flow usable before adding more reports or integrations. The boundaries should be written down before implementation.",
+          "Can we build the application in stages?",
+          "Yes. We can start with the main workflow and add reports or integrations later. Each stage needs an agreed feature list and delivery criteria.",
         ],
         [
-          "Can you add PDF or spreadsheet exports?",
-          "Exports can be part of the scope. The required fields, page layout, language and expected data size should be specified so the output can be checked against a real example.",
+          "Can I export PDF or Excel reports?",
+          "Yes, exports can be included. Share an example of the layout and fields you need, along with the language and expected number of records.",
         ],
         [
-          "Will a portfolio demo store my team’s real records?",
-          "No. The demonstrations on this portfolio run in the browser and do not operate your production system. A commissioned application needs its own deployment and access rules.",
+          "Can different users have different permissions?",
+          "Yes. We can define who may view, add, edit or approve records. The roles and access rules need to be agreed before implementation.",
         ],
       ],
     },
@@ -126,32 +126,32 @@ export const services = [
       "name": "برنامه‌نویسی اختصاصی وب",
       "title": "برنامه‌نویسی اختصاصی وب و سامانه | مهدی اسلامی",
       "description": "سفارش برنامه‌نویسی اختصاصی وب به مهدی اسلامی؛ طراحی پنل مدیریت، فرم‌های سازمانی، گردش کار، سامانهٔ انبار و گزارش‌های متناسب با نیاز مجموعه.",
-      "heading": "سامانه‌ای متناسب با روند کار مجموعهٔ شما.",
-      "intro": "فرم‌ها، داشبوردها و سامانه‌های مدیریتی را بر اساس روند کار مجموعهٔ شما توسعه می‌دهم؛ از ثبت اطلاعات و تعیین سطح دسترسی تا پیگیری کارها و گزارش‌گیری.",
-      "fitTitle": "ابتدا روند کار را بررسی می‌کنیم",
-      "fit": "از یک نمونهٔ واقعی شروع می‌کنیم: چه کسی اطلاعات را ثبت می‌کند، چه کسی آن را بررسی می‌کند، چه تغییراتی مجاز است و در پایان چه گزارشی لازم دارید؟ وضعیت‌هایی مانند ثبت تکراری، فرم ناقص یا خروج کالا بیش از موجودی نیز بررسی می‌شوند تا سامانه در برابر خطاها رفتار مشخصی داشته باشد.",
+      "heading": "سامانه‌های مدیریتی تحت وب",
+      "intro": "برای کارهایی مثل ثبت موجودی، بررسی درخواست‌ها و تهیهٔ گزارش، سامانهٔ تحت وب می‌سازم؛ با فرم‌ها و پنل مدیریتی متناسب با کار مجموعهٔ شما.",
+      "fitTitle": "کارها در مجموعهٔ شما چطور انجام می‌شوند؟",
+      "fit": "یکی از کارهای روزمره را از ابتدا تا پایان بررسی می‌کنیم: چه کسی اطلاعات را ثبت می‌کند، چه کسی آن را تأیید می‌کند، چه تغییراتی مجاز است و در پایان چه گزارشی لازم دارید؟ خطاهای رایج، مثل ثبت تکراری یا درخواست کالا بیش از موجودی، هم در طراحی در نظر گرفته می‌شوند.",
       "outputs": [
-        "طراحی فرم‌ها و بررسی صحت اطلاعات هنگام ثبت",
-        "پنل مدیریت برای نمایش وضعیت کار و اطلاعات موردنیاز کاربران",
-        "جست‌وجو، فیلتر و دریافت خروجی متناسب با نیاز مجموعه",
-        "تعریف سطح دسترسی، قواعد ویرایش اطلاعات و نحوهٔ نمایش خطاها در چارچوب توافق‌شده"
+        "فرم‌های ثبت اطلاعات با بررسی ورودی‌های ناقص یا نامعتبر",
+        "پنل مدیریت برای مشاهدهٔ اطلاعات و وضعیت کارها",
+        "جست‌وجو، فیلتر و دریافت گزارش",
+        "تعریف نقش کاربران و دسترسی آن‌ها به مشاهده و ویرایش اطلاعات"
       ],
-      "decisionTitle": "ذخیره‌سازی و دسترسی کاربران را از ابتدا مشخص می‌کنیم",
-      "decision": "نسخهٔ نمایشی داخل مرورگر برای آشنایی با یک قابلیت مناسب است. سامانه‌ای که چند نفر با آن کار می‌کنند، علاوه بر رابط کاربری، به پایگاه داده، احراز هویت و کنترل دسترسی نیاز دارد. روش ذخیره‌سازی، پشتیبان‌گیری و میزبانی نیز بخشی از طراحی سامانه است و پیش از پیاده‌سازی بررسی می‌شود.",
+      "decisionTitle": "دسترسی کاربران و نگهداری اطلاعات",
+      "decision": "مشخص می‌کنیم هر کاربر چه اطلاعاتی را ببیند و چه چیزهایی را تغییر دهد. محل ذخیرهٔ اطلاعات، روش پشتیبان‌گیری و میزبانی سامانه هم از ابتدا بررسی می‌شوند. انتخاب پایگاه داده و روش ورود کاربران بر اساس همین نیازها انجام می‌شود.",
       "example": "در پروژهٔ انبار گرگان، ثبت ورود کالا، تحویل به کارکنان، شماره‌گذاری خودکار اسناد و گزارش موجودی را پیاده‌سازی کرده‌ام. هنگام ثبت خروج، موجودی کالا نیز بررسی می‌شود.",
-      "start": "یکی از کارهای روزمرهٔ مجموعه را از ابتدا تا پایان توضیح دهید. یک فرم خالی یا نمونه‌گزارش بدون اطلاعات شخصی نیز به شناخت نیازها کمک می‌کند. نقش کاربران و بخش‌هایی را که بیشتر دچار خطا یا تأخیر می‌شوند، مشخص کنید تا امکانات نسخهٔ نخست را تعیین کنیم.",
+      "start": "یکی از کارهای روزمرهٔ مجموعه را توضیح دهید و اگر می‌توانید، فرم خالی یا نمونه‌گزارشی بدون اطلاعات شخصی بفرستید. بگویید چه کسانی با آن کار می‌کنند، چه مراحلی به تأیید نیاز دارد و کجا خطا یا تأخیر پیش می‌آید. با این اطلاعات، امکانات نسخهٔ اول را مشخص می‌کنیم.",
       "faqs": [
         [
-          "آیا می‌توان ابتدا بخشی از سامانه را ساخت؟",
-          "بله. می‌توان نسخهٔ نخست را به فرایندهای اصلی محدود کرد و امکانات بعدی را در مراحل جداگانه توسعه داد. لازم است امکانات و معیارهای تحویل هر مرحله پیش از شروع مشخص باشند."
+          "آیا می‌توان سامانه را مرحله‌به‌مرحله ساخت؟",
+          "بله. می‌توان ابتدا بخش‌های اصلی را راه‌اندازی کرد و گزارش‌ها یا امکانات تکمیلی را در مراحل بعد اضافه کرد. امکانات و شرایط تحویل هر مرحله را پیش از شروع مشخص می‌کنیم."
         ],
         [
-          "آیا امکان دریافت گزارش PDF یا اکسل وجود دارد؟",
-          "بله، این قابلیت می‌تواند در برنامهٔ پروژه قرار گیرد. محتوای گزارش، قالب صفحه، زبان و حجم اطلاعات باید مشخص باشد تا خروجی با نمونهٔ موردنیاز شما مقایسه و بررسی شود."
+          "آیا خروجی PDF یا اکسل هم قابل اضافه‌شدن است؟",
+          "بله. کافی است نمونهٔ گزارش یا فهرست ستون‌های موردنیاز را بفرستید. قالب صفحه، زبان و تعداد تقریبی رکوردها را هم بررسی می‌کنیم تا خروجی مناسب کار شما باشد."
         ],
         [
-          "آیا نسخهٔ نمایشی این سایت اطلاعات واقعی مجموعهٔ من را ذخیره می‌کند؟",
-          "خیر. نمونه‌های تعاملی این سایت در مرورگر اجرا می‌شوند و اطلاعات مجموعهٔ شما را ذخیره نمی‌کنند. سامانهٔ عملیاتی به میزبانی، ذخیره‌سازی و تنظیمات دسترسی اختصاصی نیاز دارد."
+          "آیا می‌توان برای هر کاربر دسترسی متفاوت تعریف کرد؟",
+          "بله. دسترسی به مشاهده، ثبت، ویرایش یا تأیید اطلاعات می‌تواند بر اساس نقش کاربران تعیین شود. نقش‌ها و حدود دسترسی را پیش از پیاده‌سازی مشخص می‌کنیم."
         ]
       ]
     },
@@ -167,36 +167,36 @@ export const services = [
       title: "Java & Spring Boot Developer | Mehdi Eslami",
       description:
         "Work with Mehdi Eslami on Java and Spring Boot backends: REST APIs, validation, database workflows and third-party integrations with clear error handling.",
-      heading: "A Java backend your interface can rely on.",
+      heading: "Java and Spring Boot backend development",
       intro:
         "I develop Java and Spring Boot backends for web and mobile apps, including REST APIs, input validation, database operations and service integrations.",
-      fitTitle: "Make the API contract clear",
-      fit: "Before implementation, we define the inputs, outputs and rules of each important operation. A missing field, an unauthorized request and a temporarily unavailable provider should not all produce the same vague error. A clear contract also lets the frontend and backend move forward without guessing each other’s behavior.",
+      fitTitle: "Defining the API",
+      fit: "We specify what each endpoint receives, what it returns and which rules it must follow. Missing fields, access restrictions and connection failures need appropriate responses so the web or mobile app can handle them.",
       outputs: [
         "REST endpoints with defined request and response models",
         "Validation, consistent error responses and access requirements",
         "Database operations and transaction boundaries suited to the workflow",
         "Integration notes and a repeatable way to exercise important API paths",
       ],
-      decisionTitle: "Integrations have limits worth planning for",
+      decisionTitle: "Connecting to other services",
       decision:
-        "An external platform may require a user session, change its responses or reject a request. I design explicit states and useful failure messages so the interface can explain what happened. Credentials belong on the backend; they should not be embedded in a public website or frontend bundle.",
+        "External services can change, become unavailable or require users to sign in. The backend needs to handle these cases and return an error the interface can explain. Access keys and service credentials stay on the backend.",
       example:
         "For VideoFetch, I built a Spring Boot backend alongside a Next.js interface to retrieve media information and manage downloads. The backend supports metadata fallback and explains failures when a platform requires sign-in or blocks a request.",
       start:
-        "Tell me which application will call the API, the records it needs and any existing system it must connect to. If you already have endpoint notes or a database model, those make a good starting point. Use sample data and leave production credentials out of the initial brief.",
+        "Tell me which web or mobile app will use the API, what data it needs and which systems it must connect to. Existing API documentation or a database model will help. Sample data is enough for the initial discussion.",
       faqs: [
         [
-          "Can you work with an existing frontend?",
-          "Yes. We first review its API expectations and the parts of the existing contract that must remain compatible. That helps keep backend changes from unexpectedly breaking the interface.",
+          "Can you connect a backend to my existing frontend?",
+          "Yes. We review the requests and responses the frontend expects, then plan the backend around the parts that need to stay compatible.",
         ],
         [
-          "Can an API run on GitHub Pages?",
-          "GitHub Pages serves static files. A working Java API needs a runtime elsewhere. This portfolio can show the code, screenshots and a browser demo without hosting the Java backend itself.",
+          "Where will the Java backend run?",
+          "It needs hosting that supports Java and the required database. We can choose this based on traffic, data and budget. GitHub Pages can host a static frontend, but it does not run the Java backend.",
         ],
         [
-          "How are API errors checked?",
-          "Important paths should be exercised with ordinary requests and invalid or unavailable states. The exact checks depend on the endpoint and integration, and should be included in the agreed delivery scope.",
+          "How do you check the API?",
+          "We check the main operations with valid and invalid input, access restrictions and service failures. The checks depend on the endpoints and integrations included in the project.",
         ],
       ],
     },
@@ -204,32 +204,32 @@ export const services = [
       "name": "بک‌اند جاوا و Spring Boot",
       "title": "برنامه‌نویس جاوا و Spring Boot | مهدی اسلامی",
       "description": "توسعهٔ بک‌اند با جاوا و Spring Boot توسط مهدی اسلامی؛ طراحی REST API، اعتبارسنجی ورودی، اتصال به پایگاه داده و سرویس‌های بیرونی و مدیریت خطاها.",
-      "heading": "توسعهٔ بک‌اند با جاوا و Spring Boot.",
-      "intro": "بک‌اند برنامه‌های وب و موبایل را با جاوا و Spring Boot توسعه می‌دهم؛ شامل طراحی REST API، اعتبارسنجی ورودی‌ها، ارتباط با پایگاه داده و اتصال به سرویس‌های بیرونی.",
-      "fitTitle": "ورودی و خروجی API باید مشخص باشد",
-      "fit": "پیش از پیاده‌سازی، اطلاعات ورودی، پاسخ و قواعد هر عملیات را تعریف می‌کنیم. ورودی ناقص، نداشتن مجوز دسترسی و قطع ارتباط با یک سرویس، خطاهای متفاوتی هستند و باید پاسخ مناسب خود را داشته باشند. تعریف دقیق این موارد، هماهنگی میان رابط کاربری و بک‌اند را آسان‌تر می‌کند.",
+      "heading": "برنامه‌نویسی بک‌اند با جاوا و Spring Boot",
+      "intro": "بک‌اند برنامه‌های وب و موبایل را با جاوا و Spring Boot توسعه می‌دهم؛ از طراحی API و بررسی ورودی‌ها تا کار با پایگاه داده و اتصال به سرویس‌های دیگر.",
+      "fitTitle": "مشخص‌کردن عملکرد API",
+      "fit": "برای هر بخش API مشخص می‌کنیم چه اطلاعاتی دریافت می‌کند، چه پاسخی می‌دهد و چه قواعدی دارد. ورودی ناقص، نداشتن دسترسی و قطع ارتباط با سرویس دیگر، هرکدام به پاسخ مناسب نیاز دارند تا برنامهٔ وب یا موبایل بتواند آن‌ها را مدیریت کند.",
       "outputs": [
-        "طراحی مسیرهای REST با ساختار مشخص درخواست و پاسخ",
-        "اعتبارسنجی ورودی‌ها، پاسخ‌های یکدست برای خطاها و بررسی دسترسی کاربران",
-        "عملیات پایگاه داده و مدیریت تراکنش‌ها بر اساس قواعد سامانه",
-        "مستندات اتصال و روش بررسی عملیات اصلی API"
+        "طراحی REST API با ساختار مشخص درخواست و پاسخ",
+        "بررسی ورودی‌ها و مجوز دسترسی و نمایش خطاهای قابل‌فهم",
+        "اتصال به پایگاه داده و مدیریت تراکنش‌ها",
+        "مستندات API و روش بررسی عملیات اصلی"
       ],
-      "decisionTitle": "اتصال به سرویس‌های بیرونی نیازمند مدیریت خطاست",
-      "decision": "ممکن است یک سرویس بیرونی به ورود کاربر نیاز داشته باشد، ساختار پاسخ خود را تغییر دهد یا درخواست را نپذیرد. برنامه باید این وضعیت‌ها را تشخیص دهد و پیام قابل‌فهمی نمایش دهد. رمزها و کلیدهای دسترسی نیز باید در محیط امن بک‌اند نگهداری شوند و در کد عمومی سایت قرار نگیرند.",
-      "example": "در VideoFetch، بک‌اند Spring Boot را در کنار رابط Next.js برای دریافت اطلاعات رسانه و مدیریت دانلود توسعه داده‌ام. دریافت اطلاعات از روش جایگزین و توضیح خطاهای پلتفرم، بخشی از این کار است.",
-      "start": "توضیح دهید API برای چه برنامه‌ای استفاده می‌شود، با چه اطلاعاتی کار می‌کند و باید به کدام سامانه‌ها متصل شود. اگر مدل پایگاه داده یا مستندات فعلی را دارید، ارائهٔ آن‌ها مفید است. برای معرفی پروژه از اطلاعات نمونه استفاده کنید و رمز یا کلید دسترسی واقعی نفرستید.",
+      "decisionTitle": "اتصال به سرویس‌های دیگر",
+      "decision": "سرویس بیرونی ممکن است قطع شود، پاسخ متفاوتی بدهد یا به ورود کاربر نیاز داشته باشد. بک‌اند باید این وضعیت‌ها را مدیریت کند و پاسخی بدهد که رابط کاربری بتواند آن را توضیح دهد. کلیدها و اطلاعات دسترسی سرویس‌ها هم در بک‌اند نگهداری می‌شوند.",
+      "example": "در VideoFetch، دریافت اطلاعات ویدئو و مدیریت دانلود را با Spring Boot پیاده‌سازی کرده‌ام. رابط پروژه با Next.js ساخته شده است. اگر پلتفرم اجازهٔ دریافت اطلاعات ندهد، برنامه خطا را توضیح می‌دهد و در صورت امکان، اطلاعات ویدئو را از روش جایگزین می‌گیرد.",
+      "start": "بگویید API برای چه برنامه‌ای است، با چه اطلاعاتی کار می‌کند و باید به کدام سرویس‌ها متصل شود. اگر مستندات API یا مدل پایگاه داده دارید، آن‌ها را هم بفرستید. برای بررسی اولیه، اطلاعات نمونه کافی است.",
       "faqs": [
         [
-          "آیا بک‌اند جدید به رابط کاربری فعلی من متصل می‌شود؟",
-          "بله. ابتدا درخواست‌ها و پاسخ‌های موردنیاز رابط فعلی و بخش‌هایی را که باید سازگار بمانند، بررسی می‌کنیم. تغییرات API بر اساس همین بررسی برنامه‌ریزی می‌شود."
+          "آیا می‌توانید بک‌اند را به رابط کاربری فعلی وصل کنید؟",
+          "بله. ابتدا درخواست‌ها و پاسخ‌های موردانتظار رابط فعلی را بررسی می‌کنیم و مشخص می‌کنیم کدام بخش‌ها باید سازگار بمانند. توسعهٔ بک‌اند بر همین اساس انجام می‌شود."
         ],
         [
-          "آیا API جاوا روی GitHub Pages اجرا می‌شود؟",
-          "خیر. GitHub Pages برای میزبانی فایل‌های ایستا است. اجرای API جاوا به محیط اجرای جداگانه نیاز دارد. در این سایت، کد، تصاویر و نمونه‌های مرورگری پروژه‌ها بدون اجرای بک‌اند معرفی می‌شوند."
+          "بک‌اند جاوا روی چه میزبانی اجرا می‌شود؟",
+          "به میزبانی‌ای نیاز دارد که از اجرای جاوا و پایگاه دادهٔ موردنیاز پشتیبانی کند. انتخاب آن به میزان استفاده، اطلاعات پروژه و بودجه بستگی دارد. GitHub Pages برای بخش ایستای سایت مناسب است و بک‌اند جاوا را اجرا نمی‌کند."
         ],
         [
-          "خطاهای API چگونه بررسی می‌شوند؟",
-          "عملیات اصلی با ورودی معتبر، ورودی نامعتبر و وضعیت‌هایی مانند قطع سرویس یا رد درخواست بررسی می‌شوند. جزئیات آزمون‌ها به عملکرد هر مسیر بستگی دارد و در برنامهٔ تحویل پروژه مشخص می‌شود."
+          "عملکرد API چطور بررسی می‌شود؟",
+          "عملیات اصلی با ورودی درست و نادرست، دسترسی‌های مختلف و وضعیت قطع سرویس بررسی می‌شود. جزئیات این بررسی‌ها به مسیرها و سرویس‌هایی بستگی دارد که در پروژه استفاده می‌شوند."
         ]
       ]
     },
@@ -245,36 +245,36 @@ export const services = [
       title: "Android App Developer | Mehdi Eslami",
       description:
         "Discuss a native Android app with Mehdi Eslami: Java or Kotlin interfaces, API integration and practical user flows, based on your product requirements.",
-      heading: "An Android app shaped around its users.",
+      heading: "Android app development",
       intro:
         "I develop native Android apps with Java and Kotlin, from screen layouts and navigation to API integration and handling user input.",
-      fitTitle: "Decide whether an app is the right fit",
-      fit: "A mobile-friendly website may already cover a simple introduction or form. A native app becomes more useful when the product needs deeper device integration or a focused experience used repeatedly. We compare those needs before committing to a separate Android application.",
+      fitTitle: "What will people use the app for?",
+      fit: "Tell me what users need to do, how often they will use the app and which phone features it needs. For a simple form or service page, a mobile website may be enough. Repeated use or access to device features may make a native app a better fit.",
       outputs: [
         "A defined set of screens and the navigation between them",
         "Native interfaces built with the agreed Android stack",
         "API integration with clear loading, empty and error states",
         "Device and Android-version requirements, permissions and a release scope",
       ],
-      decisionTitle: "The interface is only part of delivery",
+      decisionTitle: "Preparing for release",
       decision:
-        "Login, server data, permissions and distribution affect how an app works in practice. We identify those dependencies early. Testing needs to cover the target devices, Android versions and important screen flows.",
+        "We agree on the Android versions and devices to support, required permissions and how the app will be distributed. Login and server connections also need to be planned. Before delivery, the main user flows are checked on the agreed devices and versions.",
       example:
         "My Android experience includes Java development and API integration for a ride-hailing application at Dropp Group.",
       start:
-        "Share the main task the app should solve, the people using it and the devices you want to support. Explain whether there is already a backend, a design or an existing Android app to extend. A few concrete screen flows are more useful than a long list of disconnected features.",
+        "Describe the main tasks users should complete and the phones you want to support. Let me know whether you have a design or backend, and whether this is a new app or an update to an existing one.",
       faqs: [
         [
-          "Java or Kotlin: which should the app use?",
-          "The choice depends on the existing codebase, libraries and maintenance needs. For an existing app, compatibility can matter more than replacing the language just for the sake of it.",
+          "Will you use Java or Kotlin?",
+          "That depends on the existing code, libraries and maintenance needs. For an existing app, we consider compatibility and the work involved before changing languages.",
         ],
         [
           "Does the app need a backend?",
-          "Only if its features need shared accounts, server-managed data or similar services. We define that separately so the Android scope and backend scope are both clear.",
+          "Apps that share data, manage accounts or connect to server services usually need one. We identify which features require a backend and agree on development and hosting responsibilities.",
         ],
         [
-          "Can you guarantee publication in an app store?",
-          "Store accounts, review rules and distribution requirements are separate dependencies. The intended release route and responsibilities need to be agreed before delivery.",
+          "Can you prepare the app for a store?",
+          "Release preparation can be part of the project. We agree on the store, developer account and required materials. Final approval follows the store’s review process.",
         ],
       ],
     },
@@ -282,32 +282,32 @@ export const services = [
       "name": "توسعهٔ اپلیکیشن اندروید",
       "title": "طراحی اپلیکیشن اندروید | مهدی اسلامی",
       "description": "سفارش ساخت اپلیکیشن اندروید به مهدی اسلامی؛ برنامه‌نویسی با جاوا و کاتلین، طراحی رابط کاربری و اتصال به API، متناسب با نیاز و امکانات پروژه.",
-      "heading": "طراحی و توسعهٔ اپلیکیشن اندروید.",
-      "intro": "با جاوا و کاتلین، اپلیکیشن اندروید توسعه می‌دهم؛ از طراحی صفحات و مسیر حرکت کاربر تا دریافت اطلاعات از API و مدیریت ورودی‌ها.",
-      "fitTitle": "آیا اپلیکیشن انتخاب مناسبی است؟",
-      "fit": "برای معرفی خدمات یا ارائهٔ یک فرم ساده، ممکن است وب‌سایت سازگار با موبایل کافی باشد. اگر برنامه به امکانات دستگاه یا استفادهٔ مکرر کاربران وابسته باشد، اپلیکیشن اندروید می‌تواند انتخاب مناسب‌تری باشد. پیش از شروع، این نیازها را بررسی می‌کنیم تا هزینهٔ توسعه بر اساس کاربرد برنامه تعیین شود.",
+      "heading": "ساخت اپلیکیشن اندروید",
+      "intro": "با جاوا و کاتلین اپلیکیشن اندروید می‌سازم؛ از طراحی صفحات و مراحل کار تا اتصال به API و دریافت و ثبت اطلاعات.",
+      "fitTitle": "کاربر قرار است چه کاری با برنامه انجام دهد؟",
+      "fit": "کاربرد برنامه، دفعات استفاده و امکانات موردنیاز گوشی را بررسی می‌کنیم. برای یک فرم ساده یا معرفی خدمات، ممکن است سایت سازگار با موبایل کافی باشد. اگر کاربران مرتب به برنامه مراجعه می‌کنند یا به امکانات دستگاه نیاز دارید، اپلیکیشن می‌تواند انتخاب مناسب‌تری باشد.",
       "outputs": [
-        "طراحی صفحات و مراحل انجام کار در برنامه",
-        "پیاده‌سازی رابط اندروید با زبان و ابزار توافق‌شده",
+        "طراحی صفحات و مسیر انجام کار در برنامه",
+        "پیاده‌سازی رابط کاربری با جاوا یا کاتلین",
         "اتصال به API و نمایش وضعیت بارگذاری، نبود اطلاعات و خطا",
-        "تعیین دستگاه‌ها و نسخه‌های اندروید هدف، مجوزهای لازم و روش انتشار"
+        "تعیین نسخه‌های اندروید، دستگاه‌های هدف، مجوزها و روش انتشار"
       ],
-      "decisionTitle": "نیازهای اجرا و انتشار هم بخشی از پروژه است",
-      "decision": "حساب کاربری، اطلاعات سرور، مجوزهای دستگاه و روش انتشار بر استفاده از برنامه اثر می‌گذارند. این موارد باید از ابتدا مشخص شوند. بررسی نسخهٔ نهایی نیز شامل مراحل اصلی کاربر و دستگاه‌ها و نسخه‌های اندروید توافق‌شده خواهد بود.",
+      "decisionTitle": "آماده‌سازی برای انتشار",
+      "decision": "نسخه‌های اندروید و دستگاه‌های هدف، مجوزهای لازم و روش انتشار را پیش از شروع مشخص می‌کنیم. ورود کاربران و ارتباط با سرور هم باید در برنامهٔ کار قرار بگیرند. پیش از تحویل، مراحل اصلی استفاده از برنامه روی دستگاه‌ها و نسخه‌های توافق‌شده بررسی می‌شود.",
       "example": "در Dropp Group، در توسعهٔ اپلیکیشن درخواست خودرو با جاوا و اتصال آن به API همکاری داشته‌ام.",
-      "start": "کاربرد برنامه، کاربران آن و دستگاه‌های موردنظر را معرفی کنید. مشخص کنید طراحی یا بک‌اند آماده دارید، برنامه از ابتدا ساخته می‌شود یا قرار است نسخهٔ فعلی توسعه یابد. توضیح چند کار اصلی که کاربر باید با برنامه انجام دهد، به تعیین امکانات نسخهٔ نخست کمک می‌کند.",
+      "start": "توضیح دهید کاربران چه کارهایی با برنامه انجام می‌دهند و چه گوشی‌هایی باید پشتیبانی شوند. اگر طرح اولیه یا بک‌اند دارید، بگویید. همچنین مشخص کنید برنامه از ابتدا ساخته می‌شود یا قرار است نسخهٔ موجود را توسعه دهید.",
       "faqs": [
         [
           "برنامه با جاوا ساخته می‌شود یا کاتلین؟",
-          "انتخاب زبان به کد موجود، کتابخانه‌ها و نیازهای توسعه و نگهداری بستگی دارد. در برنامهٔ موجود، سازگاری و هزینهٔ تغییر نیز بررسی می‌شود؛ تغییر زبان باید دلیل فنی مشخصی داشته باشد."
+          "به کد موجود، کتابخانه‌ها و نیازهای نگهداری بستگی دارد. در برنامه‌ای که از قبل ساخته شده، سازگاری و میزان کار لازم را بررسی می‌کنیم و بعد دربارهٔ زبان تصمیم می‌گیریم."
         ],
         [
-          "آیا اپلیکیشن حتماً به بک‌اند نیاز دارد؟",
-          "به امکانات آن بستگی دارد. حساب کاربری، اطلاعات مشترک و خدمات مبتنی بر سرور معمولاً به بک‌اند نیاز دارند. مسئولیت توسعه و میزبانی این بخش جداگانه مشخص می‌شود."
+          "آیا اپلیکیشن به بک‌اند نیاز دارد؟",
+          "اگر اطلاعات بین کاربران مشترک باشد، حساب کاربری داشته باشید یا برنامه به خدمات سرور متصل شود، معمولاً بک‌اند لازم است. امکانات وابسته به سرور و مسئولیت توسعه و میزبانی آن را جداگانه مشخص می‌کنیم."
         ],
         [
-          "آیا انتشار در فروشگاه تضمین می‌شود؟",
-          "پذیرش برنامه به حساب توسعه‌دهنده، شرایط فروشگاه و فرایند بررسی آن وابسته است. روش انتشار و مسئولیت آماده‌سازی هر بخش باید پیش از تحویل تعیین شود."
+          "آیا آماده‌سازی برای انتشار در فروشگاه را هم انجام می‌دهید؟",
+          "می‌تواند بخشی از پروژه باشد. فروشگاه مقصد، حساب توسعه‌دهنده و موارد لازم برای انتشار را از ابتدا مشخص می‌کنیم. تأیید نهایی برنامه به فرایند بررسی و شرایط همان فروشگاه بستگی دارد."
         ]
       ]
     },

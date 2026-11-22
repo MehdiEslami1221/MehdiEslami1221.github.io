@@ -61,7 +61,7 @@ function favoriteLabel(button,style) {
   const selected=favorites.has(style.id);
   button.textContent=selected?'★':'☆';
   button.setAttribute('aria-pressed',String(selected));
-  button.setAttribute('aria-label',t((selected?'Unsave ':'Save ')+style.en,(selected?'برداشتن نشانِ ':'نشان‌کردنِ ')+style.fa));
+  button.setAttribute('aria-label',t((selected?'Unsave ':'Save ')+style.en,(selected?'حذف از علاقه‌مندی‌ها: ':'افزودن به علاقه‌مندی‌ها: ')+style.fa));
 }
 function renderCards() {
   const container=$('#profile-results');container.replaceChildren();
@@ -87,7 +87,7 @@ function renderCards() {
   container.append(fragment);
   if(!matches.length) {
     const text=!cleanName($('#profile-name').value)?t('Write a name to see the styles.','برای دیدن سبک‌ها، نامی بنویسید.'):
-      category==='saved'?t('No saved styles for this text yet. Use the star on a style to keep it.','هنوز سبکی برای این متن نشان نشده است. با ستارهٔ کنار هر سبک آن را نگه دارید.'):
+      category==='saved'?t('No saved styles for this text yet. Use the star on a style to keep it.','هنوز طرحی برای این متن در علاقه‌مندی‌ها ندارید. برای اضافه‌کردن، ستارهٔ کنار طرح را بزنید.'):
       category==='persian'?t('Enter Persian text to see Persian lettering.','برای دیدن سبک‌های فارسی، نام یا عبارت فارسی وارد کنید.'):
       category==='ascii'?t('ASCII lettering supports Latin letters, numbers, spaces, dots, underscores and hyphens.','متن اسکی از حروف لاتین، عدد، فاصله، نقطه، زیرخط و خط تیره پشتیبانی می‌کند.'):
       t('No styles match. Try another category or clear the search.','سبکی پیدا نشد؛ دسته را تغییر دهید یا عبارت جست‌وجو را پاک کنید.');
@@ -131,7 +131,7 @@ $('#profile-name').addEventListener('input',event=>{if(composing||event.isCompos
 $('#profile-search').addEventListener('input',filterStyles);
 document.querySelectorAll('[data-category]').forEach(b=>b.addEventListener('click',()=>{category=b.dataset.category;filterStyles();}));
 $('#profile-more').addEventListener('click',()=>{const old=limit;limit+=24;renderCards();$('#profile-results').children[old]?.querySelector('.profile-favorite')?.focus({preventScroll:true});});
-$('#profile-shuffle').addEventListener('click',()=>{variation=(variation+1)%1000;render();announce(t('New mixes are ready. Find them in Symbols & effects.','ترکیب‌های تازه آماده‌اند؛ آن‌ها را در دستهٔ نماد و افکت ببینید.'));});
+$('#profile-shuffle').addEventListener('click',()=>{variation=(variation+1)%1000;render();announce(t('New combinations are ready in Symbols & effects.','ترکیب‌های جدید را در بخش «نماد و افکت» ببینید.'));});
 $('#profile-copy-all').addEventListener('click',event=>copy(matches.map(s=>s.text).join('\n\n'),event.currentTarget));
 $('#profile-download').addEventListener('click',()=>{
   if(!matches.length)return;
