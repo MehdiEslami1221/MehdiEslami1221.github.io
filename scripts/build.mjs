@@ -9,6 +9,8 @@ import {
 import { services } from "../content/services.mjs";
 import { escapeHTML, renderServicePage } from "./service-pages.mjs";
 import { launchHead, launchBody } from "./pwa-shell.mjs";
+import { homeStudio, renderStudioPage } from "./studio-pages.mjs";
+import { studioPath, profilePath } from "../content/studio.mjs";
 const escape = escapeHTML;
 const decode = (s) =>
   s
@@ -97,6 +99,7 @@ function homeMetadata(html, lang) {
 let source = await readFile("index.html", "utf8");
 source = source.replace(/<!-- app-launch-head -->[\s\S]*?<!-- \/app-launch-head -->/, `<!-- app-launch-head -->\n${launchHead()}\n<!-- /app-launch-head -->`);
 source = source.replace(/<!-- app-launch-body -->[\s\S]*?<!-- \/app-launch-body -->/, `<!-- app-launch-body -->\n${launchBody()}\n<!-- /app-launch-body -->`);
+source = source.replace(/<!-- studio-discovery -->[\s\S]*?<!-- \/studio-discovery -->/, `<!-- studio-discovery -->\n${homeStudio()}\n<!-- /studio-discovery -->`);
 source = homeMetadata(source, "en");
 await writeFile("index.html", source);
 await mkdir("fa", { recursive: true });
@@ -111,6 +114,15 @@ for (const service of [null, ...services]) {
     const path = servicePath(lang, service?.slug).slice(1);
     await mkdir(path, { recursive: true });
     await writeFile(path + "index.html", renderServicePage(lang, service));
+  }
+}
+for (const kind of ["playground", "profile"]) {
+  const route = kind === "profile" ? profilePath : studioPath;
+  pairs.push([route("en"), route("fa")]);
+  for (const lang of ["en", "fa"]) {
+    const path = route(lang).slice(1);
+    await mkdir(path, { recursive: true });
+    await writeFile(path + "index.html", renderStudioPage(lang, kind));
   }
 }
 const alternatives = (pair) =>

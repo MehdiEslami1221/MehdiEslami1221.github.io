@@ -411,7 +411,7 @@ function drawLivingField() {
 // Rects are measured at most ten times a second, only while a meteor is visible.
 const reflectivePanels = [
   ...document.querySelectorAll(
-    ".project, .day-card, .lab-surface, .resume-card, #project-form",
+    ".project, .day-card, .lab-surface, .resume-card, #project-form, .studio-tile, .quote-body",
   ),
 ].map((element) => {
   element.classList.add("meteor-reactive");
@@ -1236,6 +1236,18 @@ function commandList() {
       fa: "استفاده از ابزارها",
       keys: "lab json text آزمایشگاه",
       run: () => jump("#lab"),
+    },
+    {
+      en: "Interactive playground",
+      fa: "فضای تعاملی",
+      keys: "studio playground circuit بازی مدار",
+      run: () => location.assign(lang === "fa" ? "/fa/playground/" : "/playground/"),
+    },
+    {
+      en: "Make a profile name",
+      fa: "ساخت متن پروفایل",
+      keys: "profile ascii name fancy متن اسم اسکی پروفایل",
+      run: () => location.assign(lang === "fa" ? "/fa/tools/profile-text/" : "/tools/profile-text/"),
     },
     {
       en: "About Mehdi",

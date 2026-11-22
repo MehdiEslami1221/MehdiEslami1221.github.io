@@ -3059,7 +3059,7 @@ html[lang="fa"] .countdown {
   overflow: hidden;
   background: radial-gradient(
     280px circle at var(--light-x) var(--light-y),
-    #bcf36a17,
+    #bcf36a29,
     transparent 80%
   );
 }
@@ -3071,7 +3071,7 @@ html[lang="fa"] .countdown {
   padding: 1px;
   background: radial-gradient(
     280px circle at var(--light-x) var(--light-y),
-    #caff91,
+    #d9ffb5,
     transparent 80%
   );
   mask:
@@ -3233,5 +3233,20 @@ html[lang="fa"] .project .tags {
   }
   .project-art.screenshot-art .art-label {
     padding: 10px 20px;
+  }
+}
+
+/* Glass stays on panels; the transparent root and circuit layering are preserved. */
+article.project, .day-card, .lab-surface, .resume-card, #project-form, .quote-body {
+  background-color: #0c130fe0;
+  border-color: #d8f4c426;
+  box-shadow: inset 0 1px 0 #ffffff0a;
+}
+article.project .project-info, article.project .project-actions { background-color: transparent; }
+@supports ((backdrop-filter: blur(4px)) or (-webkit-backdrop-filter: blur(4px))) {
+  article.project, .day-card, .lab-surface, .resume-card, #project-form, .quote-body {
+    background-color: #0b130ea8;
+    backdrop-filter: blur(4px) saturate(115%);
+    -webkit-backdrop-filter: blur(4px) saturate(115%);
   }
 }

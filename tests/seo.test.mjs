@@ -9,6 +9,7 @@ import {
   servicePath,
 } from "../seo.mjs";
 import { services } from "../content/services.mjs";
+import {studioPath,profilePath} from "../content/studio.mjs";
 const read = (path) =>
   readFile(path === "/" ? "index.html" : path.slice(1) + "index.html", "utf8");
 const tags = (html, name) =>
@@ -24,6 +25,8 @@ const schemas = (html) =>
     ),
   ].map((m) => JSON.parse(m[1]));
 const pages = [
+  {en:studioPath("en"),fa:studioPath("fa")},
+  {en:profilePath("en"),fa:profilePath("fa")},
   { en: "/", fa: "/fa/" },
   ...["", ...services.map((s) => s.slug)].map((slug) => ({
     en: servicePath("en", slug),
@@ -78,12 +81,12 @@ test("Every localized page has a unique title, self canonical and reciprocal lan
         path,
       );
     }
-  assert.equal(titles.size, 12);
+  assert.equal(titles.size, 16);
 });
-test("All twelve pages are in the sitemap and all local HTML links and resources resolve", async () => {
+test("All sixteen pages are in the sitemap and all local HTML links and resources resolve", async () => {
   const sitemap = await readFile("sitemap.xml", "utf8");
   const locs = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => m[1]);
-  assert.equal(new Set(locs).size, 12);
+  assert.equal(new Set(locs).size, 16);
   for (const pair of pages)
     for (const lang of ["en", "fa"]) {
       const path = pair[lang],
@@ -139,7 +142,7 @@ test("Structured data describes the visible owner and service without invented r
           /aggregateRating|reviewCount|priceCurrency|streetAddress/,
         ),
       );
-      if (page["@type"] === "WebPage") {
+      if (page["@type"] === "WebPage" && path.includes("/services/")) {
         const service = graph.find((n) => n["@type"] === "Service");
         assert.ok(service);
         assert.ok(html.includes(service.description.replaceAll("&", "&amp;")));

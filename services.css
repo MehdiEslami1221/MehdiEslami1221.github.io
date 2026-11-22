@@ -363,3 +363,7 @@ html[lang="fa"] .service-page .service-hero h1 {
     gap: 24px !important;
   }
 }
+
+@supports ((backdrop-filter: blur(4px)) or (-webkit-backdrop-filter: blur(4px))) {
+  .service-tile { background-color: #0c140fba; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+}
