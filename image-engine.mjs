@@ -3,41 +3,92 @@ import {
   searchSize,
   inspectImage,
   LIMITS,
-} from "./image-core.mjs?v=20261123-image2";
+} from "./image-core.mjs?v=20261123-image3";
 // Own the selected bytes before clearing the picker or reading the image again.
 const preparedFiles = new WeakSet();
-export async function readImageBytes(file) {
-  if (typeof file.arrayBuffer === "function") {
-    try {
-      return await file.arrayBuffer();
-    } catch {
-      /* Try FileReader as well. */
-    }
-  }
-  if (typeof FileReader !== "function") throw new Error("fileRead");
-  try {
-    return await new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = reader.onabort = () => reject(new Error("fileRead"));
-      reader.readAsArrayBuffer(file);
-    });
-  } catch {
-    throw new Error("fileRead");
-  }
+function readWithFileReader(file, onProgress) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    const check = (loaded) => {
+      try {
+        onProgress(loaded);
+        return true;
+      } catch (error) {
+        reject(error);
+        reader.abort();
+        return false;
+      }
+    };
+    reader.onprogress = (event) => check(event.loaded);
+    reader.onload = () => {
+      if (check(reader.result.byteLength)) resolve(reader.result);
+    };
+    reader.onerror = reader.onabort = () => reject(new Error("fileRead"));
+    reader.readAsArrayBuffer(file);
+  });
 }
-export async function prepareImageFile(file) {
-  if (preparedFiles.has(file)) return file;
-  if (file.size > LIMITS.fileBytes) throw new Error("fileSize");
-  const buffer = await readImageBytes(file);
+// Start the read immediately, before metadata getters or file-input mutations.
+export function readImageBytes(file, onProgress = () => {}) {
+  const modern = () => {
+    if (typeof file.arrayBuffer !== "function")
+      return Promise.reject(new Error("fileRead"));
+    try {
+      return Promise.resolve(file.arrayBuffer()).then((buffer) => {
+        onProgress(buffer.byteLength);
+        return buffer;
+      });
+    } catch {
+      return Promise.reject(new Error("fileRead"));
+    }
+  };
+  const reading =
+    typeof FileReader === "function"
+      ? readWithFileReader(file, onProgress).catch((error) => {
+          if (error.message !== "fileRead") throw error;
+          onProgress(0);
+          return modern();
+        })
+      : modern();
+  return reading.catch((error) => {
+    if (["fileSize", "batchSize"].includes(error.message)) throw error;
+    throw new Error("fileRead");
+  });
+}
+function ownImageBytes(file, buffer) {
   if (!buffer.byteLength) throw new Error("fileRead");
+  if (buffer.byteLength > LIMITS.fileBytes) throw new Error("fileSize");
   const info = inspectImage(buffer);
   const owned = new File([buffer], file.name || "image", {
     type: "image/" + info.format,
-    lastModified: file.lastModified || Date.now(),
   });
   preparedFiles.add(owned);
   return owned;
+}
+export async function prepareImageFile(file) {
+  if (preparedFiles.has(file)) return file;
+  const buffer = await readImageBytes(file, (loaded) => {
+    if (loaded > LIMITS.fileBytes) throw new Error("fileSize");
+  });
+  return ownImageBytes(file, buffer);
+}
+export function captureImageFiles(files, maxBytes = LIMITS.totalBytes) {
+  const loaded = files.map(() => 0);
+  return files.map((file, index) => {
+    // Every selected file starts reading within the original change event.
+    const captured = readImageBytes(file, (bytes) => {
+      if (bytes > LIMITS.fileBytes) throw new Error("fileSize");
+      loaded[index] = bytes;
+      if (loaded.reduce((sum, n) => sum + n, 0) > maxBytes)
+        throw new Error("batchSize");
+    })
+      .then((buffer) => ownImageBytes(file, buffer))
+      .catch((error) => {
+        loaded[index] = 0;
+        throw error;
+      });
+    captured.catch(() => {}); // Later entries may reject before the sequential decoder reaches them.
+    return captured;
+  });
 }
 export function loadImageElement(blob) {
   return new Promise((resolve, reject) => {

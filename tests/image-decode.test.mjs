@@ -114,3 +114,48 @@ test("Fallback oversized bitmaps are closed before returning a pixel-limit error
   );
   assert.equal(closed, true);
 });
+
+test("All provider reads start synchronously before metadata getters and any await", async () => {
+  const { captureImageFiles } = await import("../image-engine.mjs");
+  const bytes = await readFile("assets/portrait.webp");
+  const buffer = bytes.buffer.slice(
+    bytes.byteOffset,
+    bytes.byteOffset + bytes.length,
+  );
+  const started = [],
+    finish = [];
+  const files = [0, 1].map((index) => ({
+    get size() {
+      throw Error("Provider size was queried before snapshot");
+    },
+    get lastModified() {
+      throw Error("Provider timestamp must not be queried");
+    },
+    get name() {
+      assert.ok(started.includes(index));
+      return `gallery-${index}.webp`;
+    },
+    arrayBuffer() {
+      started.push(index);
+      return new Promise((resolve) => finish.push(() => resolve(buffer)));
+    },
+  }));
+  const pending = captureImageFiles(files);
+  assert.deepEqual(started, [0, 1]);
+  finish.forEach((resolve) => resolve());
+  const owned = await Promise.all(pending);
+  assert.deepEqual(
+    owned.map((f) => f.name),
+    ["gallery-0.webp", "gallery-1.webp"],
+  );
+  assert.ok(owned.every((f) => f.size === bytes.length));
+});
+test("Capture bounds use the actual read length and reject oversized batches", async () => {
+  const { captureImageFiles } = await import("../image-engine.mjs");
+  const file = await fixture();
+  await assert.rejects(captureImageFiles([file], 1)[0], /batchSize/);
+  const oversized = {
+    arrayBuffer: async () => ({ byteLength: 40 * 1024 ** 2 + 1 }),
+  };
+  await assert.rejects(prepareImageFile(oversized), /fileSize/);
+});

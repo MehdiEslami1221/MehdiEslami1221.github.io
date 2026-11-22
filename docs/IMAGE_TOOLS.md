@@ -92,3 +92,27 @@ unsupported headers never reaching a decoder, oversized fallback cleanup and
 real HTML image decoding, including orientation and alpha. Cache versions for
 the page controller and both imported image modules must advance together when
 import behavior changes, so existing mobile clients fetch the corrected files.
+
+
+## Android file-provider reads
+
+Start all selected file reads synchronously inside the original change handler,
+before awaiting another image, inspecting provider size/timestamp or mutating the
+native file input. FileReader starts first where available; limits are checked
+from actual read progress and buffer length (40 MiB/file, 100 MiB/batch). Owned
+Files are decoded sequentially after capture. Keep read rejections observed even
+when a later file fails before the decoder reaches it. Do not disable the native
+input during capture; prevent a second picker activation with its click handler.
+
+The image picker uses `image/*`; the separate “Choose from device files” input
+has no accept filter so Android can offer its document/file picker. Both paths
+share header validation and image limits; the unfiltered picker does not permit
+unsupported files to reach a decoder. If a provider still refuses to supply bytes,
+point to the alternate picker rather than labeling the image damaged or claiming
+that a JavaScript retry can grant operating-system access.
+
+Regression tests verify synchronous starts for every selected file and assert
+that provider size/lastModified getters are never needed before capture. A
+Chromium Android provider issue is documented at
+https://issues.chromium.org/issues/40123366. This motivates the compatibility
+path; it does not establish a reproduced failure on every Android device.

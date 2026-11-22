@@ -5,13 +5,14 @@ import {
   normalizeCrop,
   fileName,
   zipFiles,
-} from "./image-core.mjs?v=20261123-image2";
+} from "./image-core.mjs?v=20261123-image3";
 import {
   decodeFile,
   prepareImageFile,
+  captureImageFiles,
   optimize,
   previewBlob,
-} from "./image-engine.mjs?v=20261123-image2";
+} from "./image-engine.mjs?v=20261123-image3";
 let lang = document.documentElement.lang,
   items = [],
   selected = null,
@@ -54,9 +55,13 @@ const errors = {
     "The browser could not decode this image. Try saving a new JPG or PNG copy.",
     "مرورگر نتوانست این تصویر را بخواند؛ یک نسخهٔ جدید JPG یا PNG از آن را انتخاب کنید.",
   ],
+  batchSize: [
+    "The selected files exceed the 100 MB batch limit.",
+    "حجم فایل‌های انتخابی از محدودیت ۱۰۰ مگابایت بیشتر است.",
+  ],
   fileRead: [
-    "The browser could not access this file. Download it to your device, then select it again.",
-    "مرورگر به این فایل دسترسی پیدا نکرد؛ آن را روی دستگاه ذخیره و دوباره انتخاب کنید.",
+    "The gallery did not provide readable file data. Try “Choose from device files” below.",
+    "دادهٔ این عکس از گالری خوانده نشد؛ دکمهٔ «انتخاب از فایل‌های دستگاه» را امتحان کنید.",
   ],
   internal: [
     "The image could not be added. Reload the page and try again.",
@@ -141,7 +146,11 @@ function renderQueue() {
   $("zip").disabled = busy || !ready;
   $("clear").disabled = busy || loading || selecting;
   $("demo").disabled = busy || loading || selecting;
-  $("files").disabled = busy || loading || selecting;
+  // Keep native inputs unchanged until selected provider files have been read.
+  for (const id of ["files", "files-disk"]) {
+    $(id).disabled = false;
+    $(id).setAttribute("aria-disabled", String(busy || loading || selecting));
+  }
   $("process-all").disabled = busy || loading || selecting;
 }
 function readControls() {
@@ -359,26 +368,27 @@ function split() {
 }
 async function addFiles(files) {
   if (busy || loading || selecting) return;
+  const available = LIMITS.files - items.length;
+  const totalBefore = items.reduce((sum, item) => sum + item.file.size, 0);
+  const selectedFiles = files.slice(0, Math.max(0, available));
+  const captured = captureImageFiles(
+    selectedFiles,
+    LIMITS.totalBytes - totalBefore,
+  );
   loading = true;
   renderQueue();
-  const failures = [];
-  let count = 0,
-    total = items.reduce((s, i) => s + i.file.size, 0);
+  const failures =
+    files.length > available
+      ? [t("20-image limit reached.", "محدودیت ۲۰ عکس تکمیل شد.")]
+      : [];
+  let count = 0;
   try {
-    for (const file of files) {
-      if (items.length >= LIMITS.files) {
-        failures.push(t("20-image limit reached.", "محدودیت ۲۰ عکس تکمیل شد."));
-        break;
-      }
-      if (total + file.size > LIMITS.totalBytes) {
-        failures.push(
-          t("The batch exceeds 100 MB.", "حجم مجموع از ۱۰۰ مگابایت بیشتر است."),
-        );
-        break;
-      }
-      let bitmap = null,
+    for (let index = 0; index < captured.length; index++) {
+      let file = null,
+        bitmap = null,
         thumb = null;
       try {
+        file = await captured[index];
         const ownedFile = await prepareImageFile(file);
         bitmap = await decodeFile(ownedFile);
         thumb = url(
@@ -399,10 +409,11 @@ async function addFiles(files) {
           error: null,
         });
         count++;
-        total += file.size;
       } catch (error) {
         revoke(thumb);
-        failures.push(file.name + ": " + errorText(error));
+        failures.push(
+          (file?.name || selectedFiles[index].name) + ": " + errorText(error),
+        );
       } finally {
         bitmap?.close?.();
       }
@@ -534,10 +545,17 @@ function applyAspect() {
   renderQueue();
 }
 function bind() {
-  $("files").addEventListener("change", async (event) => {
-    await addFiles([...event.target.files]);
-    event.target.value = "";
-  });
+  for (const id of ["files", "files-disk"]) {
+    const input = $(id);
+    input.addEventListener("click", (event) => {
+      if (busy || loading || selecting) event.preventDefault();
+    });
+    input.addEventListener("change", async (event) => {
+      const selected = [...event.currentTarget.files];
+      await addFiles(selected);
+      input.value = "";
+    });
+  }
   const drop = $("drop");
   for (const name of ["dragenter", "dragover"])
     drop.addEventListener(name, (event) => {

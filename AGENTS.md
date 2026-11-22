@@ -114,3 +114,9 @@ Screenshot images are edge-to-edge inside each project card, without an image bo
   must not require crypto.randomUUID. Advance the controller and module cache
   versions together for decoding fixes; do not label unrelated import failures
   as damaged images. See `tests/image-decode.test.mjs`.
+
+- For Android providers, start reads for the selected batch inside the change
+  event before metadata getters, UI mutation or awaiting another file. Validate
+  actual bytes/progress, then decode owned files sequentially. Keep the native
+  input enabled while reading. Preserve the separate unfiltered device-file
+  picker as well as the image/* picker; both must use the same header checks.
