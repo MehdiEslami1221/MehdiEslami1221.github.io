@@ -106,3 +106,11 @@ Screenshot images are edge-to-edge inside each project card, without an image bo
   transparency, EXIF orientation, file picker validation, multiple images, ZIP
   extraction, both locales and mobile overflow. Preserve original portraits,
   background code, launch assets and supplied résumés byte-for-byte.
+
+- Image import compatibility: own the selected bytes before clearing the picker;
+  retain the owned File for previews, reprocessing and locale switches. Retry an
+  image element when createImageBitmap rejects, not only when it is missing.
+  Keep fallback object URLs until the decoded source is closed. Queue identifiers
+  must not require crypto.randomUUID. Advance the controller and module cache
+  versions together for decoding fixes; do not label unrelated import failures
+  as damaged images. See `tests/image-decode.test.mjs`.

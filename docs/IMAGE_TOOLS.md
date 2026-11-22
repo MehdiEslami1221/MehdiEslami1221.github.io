@@ -24,8 +24,11 @@ changed by this feature.
   total and 24 million decoded pixels per image. Reject animation, SVG, HEIC,
   AVIF and malformed containers. Very long source sides above 16384 px are
   rejected before decoding. Output is bounded to 8192 px per side and 24 MP.
-- Headers are inspected before `createImageBitmap`; EXIF orientation is applied
-  by the browser. `HTMLImageElement.decode` is the compatibility fallback.
+- Selected file bytes are read once into an owned File before the picker is
+  cleared. Use FileReader if Blob.arrayBuffer fails or is absent. Inspect headers
+  before decoding. EXIF orientation is applied by the browser. If
+  createImageBitmap is absent OR rejects the image, retry with a loaded image
+  element. Keep its object URL alive until close(), after canvas drawing.
   Source metadata is not copied to Canvas exports. Color management is browser
   dependent; the tool does not promise identical print colors or custom DPI.
 - Crop percentages refer to the unrotated, orientation-correct source. Apply
@@ -74,3 +77,18 @@ pickers and memory limits still warrant device testing.
 
 - [Canvas toBlob](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob)
 - [ImageBitmap decoding and orientation](https://developer.mozilla.org/en-US/docs/Web/API/Window/createImageBitmap)
+
+
+## Image import compatibility
+
+Imports must not depend on crypto.randomUUID: local queue IDs use a monotonic
+counter and never serve as authentication tokens. An error in queue creation or
+preview encoding is not proof that the original image is damaged. Keep read,
+decode, encode, format and internal failures distinct in both languages.
+
+Compatibility tests cover an available bitmap API rejecting a valid image,
+a missing API, independent file bytes after the source provider expires,
+unsupported headers never reaching a decoder, oversized fallback cleanup and
+real HTML image decoding, including orientation and alpha. Cache versions for
+the page controller and both imported image modules must advance together when
+import behavior changes, so existing mobile clients fetch the corrected files.

@@ -5,12 +5,13 @@ import {
   normalizeCrop,
   fileName,
   zipFiles,
-} from "./image-core.mjs?v=20261122-image1";
+} from "./image-core.mjs?v=20261123-image2";
 import {
   decodeFile,
+  prepareImageFile,
   optimize,
   previewBlob,
-} from "./image-engine.mjs?v=20261122-image1";
+} from "./image-engine.mjs?v=20261123-image2";
 let lang = document.documentElement.lang,
   items = [],
   selected = null,
@@ -20,7 +21,8 @@ let lang = document.documentElement.lang,
   sourceId = null,
   viewToken = 0,
   loading = false,
-  selecting = false;
+  selecting = false,
+  imageSequence = 0;
 const $ = (id) => document.getElementById("im-" + id),
   t = (en, fa) => (lang === "fa" ? fa : en),
   active = () => items.find((i) => i.id === selected),
@@ -49,8 +51,16 @@ const errors = {
     "حجم هر فایل باید کمتر از ۴۰ مگابایت باشد.",
   ],
   decode: [
-    "This image could not be opened. It may be damaged.",
-    "این عکس باز نشد؛ ممکن است فایل آسیب دیده باشد.",
+    "The browser could not decode this image. Try saving a new JPG or PNG copy.",
+    "مرورگر نتوانست این تصویر را بخواند؛ یک نسخهٔ جدید JPG یا PNG از آن را انتخاب کنید.",
+  ],
+  fileRead: [
+    "The browser could not access this file. Download it to your device, then select it again.",
+    "مرورگر به این فایل دسترسی پیدا نکرد؛ آن را روی دستگاه ذخیره و دوباره انتخاب کنید.",
+  ],
+  internal: [
+    "The image could not be added. Reload the page and try again.",
+    "افزودن عکس انجام نشد؛ صفحه را بازخوانی و دوباره امتحان کنید.",
   ],
   encode: [
     "The browser could not export this image. Try smaller dimensions.",
@@ -62,7 +72,7 @@ const errors = {
   ],
 };
 const errorText = (error) => {
-  const pair = errors[error?.message || error] || errors.decode;
+  const pair = errors[error?.message || error] || errors.internal;
   return t(...pair);
 };
 function status(en, fa) {
@@ -366,10 +376,12 @@ async function addFiles(files) {
         );
         break;
       }
-      let bitmap = null;
+      let bitmap = null,
+        thumb = null;
       try {
-        bitmap = await decodeFile(file);
-        const thumb = url(
+        const ownedFile = await prepareImageFile(file);
+        bitmap = await decodeFile(ownedFile);
+        thumb = url(
           await previewBlob(
             bitmap,
             { ...defaults(), width: 160, height: 120 },
@@ -377,8 +389,8 @@ async function addFiles(files) {
           ),
         );
         items.push({
-          id: crypto.randomUUID(),
-          file,
+          id: "image-" + ++imageSequence,
+          file: ownedFile,
           width: bitmap.width,
           height: bitmap.height,
           thumb,
@@ -389,6 +401,7 @@ async function addFiles(files) {
         count++;
         total += file.size;
       } catch (error) {
+        revoke(thumb);
         failures.push(file.name + ": " + errorText(error));
       } finally {
         bitmap?.close?.();
