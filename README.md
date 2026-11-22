@@ -50,6 +50,9 @@ environment. This does not add a runtime dependency. On Android, existing
 installations may need a manifest refresh or reinstall to pick up the native
 launch appearance; always verify that on a real device.
 
+See [docs/LAUNCH.md](docs/LAUNCH.md) for launch styling boundaries, the background
+layering fix and checks to run before changing this feature.
+
 ## Source map
 
 | File                  | Purpose                                                                                             |
