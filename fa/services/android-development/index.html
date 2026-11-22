@@ -1,4 +1,34 @@
 <!doctype html><html dir="rtl" lang="fa"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080a09">
+<meta name="color-scheme" content="dark">
+<meta name="application-name" content="Mehdi Eslami">
+<link rel="manifest" href="/site.webmanifest">
+<style>html{background:#080a09;color-scheme:dark}.app-launch{display:none}</style>
+<script>
+(() => {
+  const root = document.documentElement;
+  const installed = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+  const navigation = performance.getEntriesByType('navigation')[0];
+  if (!installed || (navigation && navigation.type !== 'navigate')) return;
+  try {
+    if (sessionStorage.getItem('portfolio-launch-seen')) return;
+    sessionStorage.setItem('portfolio-launch-seen', '1');
+  } catch {}
+  try {
+    if (localStorage.getItem('portfolio-motion') === 'paused') root.setAttribute('data-app-motion', 'paused');
+  } catch {}
+  const dismiss = () => {
+    root.removeAttribute('data-app-launch');
+    root.removeAttribute('data-app-motion');
+  };
+  window.__portfolioLaunch = { startedAt: performance.now(), dismiss };
+  root.setAttribute('data-app-launch', '');
+  // A missing stylesheet or controller must never strand visitors on the logo.
+  setTimeout(dismiss, 1800);
+  addEventListener('pageshow', event => { if (event.persisted) dismiss(); });
+})();
+</script>
+<link rel="stylesheet" href="/pwa.css?v=20261122-launch1">
+<script defer src="/pwa.js?v=20261122-launch1"></script>
 <title>طراحی اپلیکیشن اندروید | مهدی اسلامی</title><meta name="description" content="سفارش ساخت اپلیکیشن اندروید به مهدی اسلامی؛ برنامه‌نویسی با جاوا و کاتلین، طراحی رابط کاربری و اتصال به API، متناسب با نیاز و امکانات پروژه."><meta name="author" content="Mehdi Eslami"><meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://mehdieslami.ir/fa/services/android-development/"><link rel="alternate" hreflang="en" href="https://mehdieslami.ir/services/android-development/"><link rel="alternate" hreflang="fa" href="https://mehdieslami.ir/fa/services/android-development/"><link rel="alternate" hreflang="x-default" href="https://mehdieslami.ir/services/android-development/">
 <meta property="og:type" content="website"><meta property="og:site_name" content="Mehdi Eslami"><meta property="og:title" content="طراحی اپلیکیشن اندروید | مهدی اسلامی"><meta property="og:description" content="سفارش ساخت اپلیکیشن اندروید به مهدی اسلامی؛ برنامه‌نویسی با جاوا و کاتلین، طراحی رابط کاربری و اتصال به API، متناسب با نیاز و امکانات پروژه."><meta property="og:url" content="https://mehdieslami.ir/fa/services/android-development/"><meta property="og:locale" content="fa_IR"><meta property="og:locale:alternate" content="en_US"><meta property="og:image" content="https://mehdieslami.ir/assets/social-cover.webp"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="مهدی اسلامی؛ توسعه‌دهنده وب، جاوا و اندروید">
@@ -104,7 +134,15 @@
       ]
     }
   ]
-}</script></head><body class="service-page"><a class="skip" href="#main">رفتن به محتوای صفحه</a><div class="service-ambient" aria-hidden="true"></div><header class="service-header wrap"><a class="service-brand" href="/fa/" aria-label="صفحه اصلی مهدی اسلامی"><span class="brand-icon" aria-hidden="true"><img src="/assets/logo.svg" alt="" width="56" height="42"></span><span>مهدی اسلامی</span></a><nav aria-label="منوی اصلی"><a href="/fa/#work">نمونه‌کارها</a><a href="/fa/services/">خدمات</a><a href="/fa/#contact">تماس</a></nav><a class="service-switch" href="/services/android-development/" hreflang="en" lang="en">EN</a></header><main class="wrap" id="main"><nav class="service-breadcrumb" aria-label="مسیر صفحه"><ol><li><a href="/fa/">خانه</a></li><li><a href="/fa/services/">خدمات</a></li><li><span aria-current="page">توسعهٔ اپلیکیشن اندروید</span></li></ol></nav><section class="service-hero"><p class="eyebrow">توسعهٔ اپلیکیشن اندروید</p><h1>طراحی و توسعهٔ اپلیکیشن اندروید.</h1><p class="service-owner"><a href="/fa/#about">مهدی اسلامی</a><span aria-hidden="true"> · </span><bdi lang="en">Mehdi Eslami</bdi></p><p class="service-lead">با جاوا و کاتلین، اپلیکیشن اندروید توسعه می‌دهم؛ از طراحی صفحات و مسیر حرکت کاربر تا دریافت اطلاعات از API و مدیریت ورودی‌ها.</p><a class="button primary" href="/fa/#contact">درخواست همکاری</a></section>
+}</script></head><body class="service-page"><div class="app-launch" aria-hidden="true">
+  <div class="app-launch-content">
+    <div class="app-launch-emblem"><img src="/assets/logo.svg" width="136" height="100" alt="" fetchpriority="high"></div>
+    <p class="app-launch-name" data-en="Mehdi Eslami" data-fa="مهدی اسلامی">مهدی اسلامی</p>
+    <p class="app-launch-role" data-en="Software Developer" data-fa="توسعه‌دهندهٔ نرم‌افزار">توسعه‌دهندهٔ نرم‌افزار</p>
+    <span class="app-launch-line"></span>
+  </div>
+  <span class="app-launch-domain" dir="ltr">mehdieslami.ir</span>
+</div><a class="skip" href="#main">رفتن به محتوای صفحه</a><div class="service-ambient" aria-hidden="true"></div><header class="service-header wrap"><a class="service-brand" href="/fa/" aria-label="صفحه اصلی مهدی اسلامی"><span class="brand-icon" aria-hidden="true"><img src="/assets/logo.svg" alt="" width="56" height="42"></span><span>مهدی اسلامی</span></a><nav aria-label="منوی اصلی"><a href="/fa/#work">نمونه‌کارها</a><a href="/fa/services/">خدمات</a><a href="/fa/#contact">تماس</a></nav><a class="service-switch" href="/services/android-development/" hreflang="en" lang="en">EN</a></header><main class="wrap" id="main"><nav class="service-breadcrumb" aria-label="مسیر صفحه"><ol><li><a href="/fa/">خانه</a></li><li><a href="/fa/services/">خدمات</a></li><li><span aria-current="page">توسعهٔ اپلیکیشن اندروید</span></li></ol></nav><section class="service-hero"><p class="eyebrow">توسعهٔ اپلیکیشن اندروید</p><h1>طراحی و توسعهٔ اپلیکیشن اندروید.</h1><p class="service-owner"><a href="/fa/#about">مهدی اسلامی</a><span aria-hidden="true"> · </span><bdi lang="en">Mehdi Eslami</bdi></p><p class="service-lead">با جاوا و کاتلین، اپلیکیشن اندروید توسعه می‌دهم؛ از طراحی صفحات و مسیر حرکت کاربر تا دریافت اطلاعات از API و مدیریت ورودی‌ها.</p><a class="button primary" href="/fa/#contact">درخواست همکاری</a></section>
 <div class="service-reading"><article class="service-copy"><section><h2>آیا اپلیکیشن انتخاب مناسبی است؟</h2><p>برای معرفی خدمات یا ارائهٔ یک فرم ساده، ممکن است وب‌سایت سازگار با موبایل کافی باشد. اگر برنامه به امکانات دستگاه یا استفادهٔ مکرر کاربران وابسته باشد، اپلیکیشن اندروید می‌تواند انتخاب مناسب‌تری باشد. پیش از شروع، این نیازها را بررسی می‌کنیم تا هزینهٔ توسعه بر اساس کاربرد برنامه تعیین شود.</p></section><section><h2>امکانات قابل ارائه</h2><ul><li>طراحی صفحات و مراحل انجام کار در برنامه</li><li>پیاده‌سازی رابط اندروید با زبان و ابزار توافق‌شده</li><li>اتصال به API و نمایش وضعیت بارگذاری، نبود اطلاعات و خطا</li><li>تعیین دستگاه‌ها و نسخه‌های اندروید هدف، مجوزهای لازم و روش انتشار</li></ul></section><section><h2>نیازهای اجرا و انتشار هم بخشی از پروژه است</h2><p>حساب کاربری، اطلاعات سرور، مجوزهای دستگاه و روش انتشار بر استفاده از برنامه اثر می‌گذارند. این موارد باید از ابتدا مشخص شوند. بررسی نسخهٔ نهایی نیز شامل مراحل اصلی کاربر و دستگاه‌ها و نسخه‌های اندروید توافق‌شده خواهد بود.</p></section><section><h2>اطلاعات لازم برای شروع</h2><p>کاربرد برنامه، کاربران آن و دستگاه‌های موردنظر را معرفی کنید. مشخص کنید طراحی یا بک‌اند آماده دارید، برنامه از ابتدا ساخته می‌شود یا قرار است نسخهٔ فعلی توسعه یابد. توضیح چند کار اصلی که کاربر باید با برنامه انجام دهد، به تعیین امکانات نسخهٔ نخست کمک می‌کند.</p></section><section class="service-faq"><h2>پرسش‌های متداول</h2><details><summary>برنامه با جاوا ساخته می‌شود یا کاتلین؟</summary><p>انتخاب زبان به کد موجود، کتابخانه‌ها و نیازهای توسعه و نگهداری بستگی دارد. در برنامهٔ موجود، سازگاری و هزینهٔ تغییر نیز بررسی می‌شود؛ تغییر زبان باید دلیل فنی مشخصی داشته باشد.</p></details><details><summary>آیا اپلیکیشن حتماً به بک‌اند نیاز دارد؟</summary><p>به امکانات آن بستگی دارد. حساب کاربری، اطلاعات مشترک و خدمات مبتنی بر سرور معمولاً به بک‌اند نیاز دارند. مسئولیت توسعه و میزبانی این بخش جداگانه مشخص می‌شود.</p></details><details><summary>آیا انتشار در فروشگاه تضمین می‌شود؟</summary><p>پذیرش برنامه به حساب توسعه‌دهنده، شرایط فروشگاه و فرایند بررسی آن وابسته است. روش انتشار و مسئولیت آماده‌سازی هر بخش باید پیش از تحویل تعیین شود.</p></details></section></article>
 <aside class="service-evidence"><h2>نمونه‌کار و تجربهٔ مرتبط</h2><p>در Dropp Group، در توسعهٔ اپلیکیشن درخواست خودرو با جاوا و اتصال آن به API همکاری داشته‌ام.</p><a class="text-link" href="/fa/#resume">مشاهدهٔ رزومهٔ فارسی یا انگلیسی</a></aside></div>
 <section class="service-related"><h2>خدمات مرتبط</h2><div class="service-related-links"><a href="/fa/services/website-development/">طراحی و توسعهٔ سایت</a><a href="/fa/services/custom-web-applications/">برنامه‌نویسی اختصاصی وب</a><a href="/fa/services/java-spring-boot/">بک‌اند جاوا و Spring Boot</a></div></section><section class="service-contact"><h2>برای شروع پروژه آماده‌اید؟</h2><p>موضوع پروژه، کاربران و امکانات اصلی را بنویسید تا دربارهٔ روش اجرا، زمان‌بندی و هزینه گفت‌وگو کنیم.</p><a class="button primary" href="/fa/#contact">ارسال درخواست همکاری</a></section></main><footer class="service-footer wrap"><a class="footer-mark" href="/fa/" aria-label="صفحهٔ اصلی مهدی اسلامی"><img src="/assets/logo.svg" alt="" width="48" height="36"></a><span>مهدی اسلامی · توسعه‌دهنده نرم‌افزار</span><a href="/fa/#resume">رزومه</a><a href="https://github.com/MehdiEslami1221" rel="noopener noreferrer" target="_blank">GitHub</a><a href="https://www.linkedin.com/in/mehdi-eslami/" rel="noopener noreferrer" target="_blank">LinkedIn</a></footer></body></html>

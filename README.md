@@ -27,7 +27,29 @@ Open the printed URL (normally http://127.0.0.1:8000). A plain static HTTP serve
 
 The Persian version uses formal, fluent written Persian with clear service descriptions and respectful address. Keep this voice consistent in page copy, metadata, project details and interface messages.
 
-## Source map
+## Installed app launch
+
+`site.webmanifest` supplies the install name, standalone display, charcoal launch
+background, dedicated 192/512px icons and a separate safe-zone maskable icon.
+Supported launchers also expose Projects, Résumé and Contact shortcuts. All twelve
+routes link to the same manifest and retain the existing root app identity.
+
+`scripts/pwa-shell.mjs` generates shared launch markup and early detection during
+the normal build. `pwa.css` and `pwa.js` provide a brief, localized monogram intro
+only on the first ordinary navigation in an installed app's tab session. Browser
+tabs, reloads, history restores and later internal navigation skip the intro.
+Reduced motion and the saved motion preference remove decorative movement. Input
+skips the intro immediately; an independent 1.8s fallback removes it even if the
+controller fails. No service worker, offline cache or artificial loading progress
+is introduced. Native splash sizing and timing remain browser/OS-controlled.
+
+To re-export icons after a logo geometry change, run
+`python3 scripts/export-app-icons.py` with Pillow installed in the development
+environment. This does not add a runtime dependency. On Android, existing
+installations may need a manifest refresh or reinstall to pick up the native
+launch appearance; always verify that on a real device.
+
+## Source files
 
 | File                  | Purpose                                                                                             |
 | --------------------- | --------------------------------------------------------------------------------------------------- |

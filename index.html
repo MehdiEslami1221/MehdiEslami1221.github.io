@@ -5,6 +5,38 @@
     <meta charset="utf-8" />
     <meta content="width=device-width,initial-scale=1" name="viewport" />
     <meta content="#080a09" name="theme-color" />
+    <!-- app-launch-head -->
+<meta name="color-scheme" content="dark">
+<meta name="application-name" content="Mehdi Eslami">
+<link rel="manifest" href="/site.webmanifest">
+<style>html{background:#080a09;color-scheme:dark}.app-launch{display:none}</style>
+<script>
+(() => {
+  const root = document.documentElement;
+  const installed = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+  const navigation = performance.getEntriesByType('navigation')[0];
+  if (!installed || (navigation && navigation.type !== 'navigate')) return;
+  try {
+    if (sessionStorage.getItem('portfolio-launch-seen')) return;
+    sessionStorage.setItem('portfolio-launch-seen', '1');
+  } catch {}
+  try {
+    if (localStorage.getItem('portfolio-motion') === 'paused') root.setAttribute('data-app-motion', 'paused');
+  } catch {}
+  const dismiss = () => {
+    root.removeAttribute('data-app-launch');
+    root.removeAttribute('data-app-motion');
+  };
+  window.__portfolioLaunch = { startedAt: performance.now(), dismiss };
+  root.setAttribute('data-app-launch', '');
+  // A missing stylesheet or controller must never strand visitors on the logo.
+  setTimeout(dismiss, 1800);
+  addEventListener('pageshow', event => { if (event.persisted) dismiss(); });
+})();
+</script>
+<link rel="stylesheet" href="/pwa.css?v=20261122-launch1">
+<script defer src="/pwa.js?v=20261122-launch1"></script>
+<!-- /app-launch-head -->
     <title>Mehdi Eslami | Web Developer &amp; Java Programmer</title>
     <meta
       content="Mehdi Eslami develops websites, custom web applications, Java and Spring Boot APIs, and Android apps. Explore real projects and discuss your software requirements."
@@ -131,6 +163,17 @@
     <link href="https://mehdieslami.ir/" hreflang="x-default" rel="alternate" />
   </head>
   <body>
+    <!-- app-launch-body -->
+<div class="app-launch" aria-hidden="true">
+  <div class="app-launch-content">
+    <div class="app-launch-emblem"><img src="/assets/logo.svg" width="136" height="100" alt="" fetchpriority="high"></div>
+    <p class="app-launch-name" data-en="Mehdi Eslami" data-fa="مهدی اسلامی">Mehdi Eslami</p>
+    <p class="app-launch-role" data-en="Software Developer" data-fa="توسعه‌دهندهٔ نرم‌افزار">Software Developer</p>
+    <span class="app-launch-line"></span>
+  </div>
+  <span class="app-launch-domain" dir="ltr">mehdieslami.ir</span>
+</div>
+<!-- /app-launch-body -->
     <div aria-hidden="true" class="reading-progress"><i></i></div>
     <a class="skip" href="#main"
       ><span data-en="Skip to content" data-fa="رفتن به محتوای صفحه"

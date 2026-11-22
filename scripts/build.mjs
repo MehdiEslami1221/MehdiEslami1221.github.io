@@ -8,6 +8,7 @@ import {
 } from "../seo.mjs";
 import { services } from "../content/services.mjs";
 import { escapeHTML, renderServicePage } from "./service-pages.mjs";
+import { launchHead, launchBody } from "./pwa-shell.mjs";
 const escape = escapeHTML;
 const decode = (s) =>
   s
@@ -94,6 +95,8 @@ function homeMetadata(html, lang) {
   );
 }
 let source = await readFile("index.html", "utf8");
+source = source.replace(/<!-- app-launch-head -->[\s\S]*?<!-- \/app-launch-head -->/, `<!-- app-launch-head -->\n${launchHead()}\n<!-- /app-launch-head -->`);
+source = source.replace(/<!-- app-launch-body -->[\s\S]*?<!-- \/app-launch-body -->/, `<!-- app-launch-body -->\n${launchBody()}\n<!-- /app-launch-body -->`);
 source = homeMetadata(source, "en");
 await writeFile("index.html", source);
 await mkdir("fa", { recursive: true });

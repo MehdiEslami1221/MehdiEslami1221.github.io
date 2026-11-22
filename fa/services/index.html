@@ -1,4 +1,34 @@
 <!doctype html><html dir="rtl" lang="fa"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080a09">
+<meta name="color-scheme" content="dark">
+<meta name="application-name" content="Mehdi Eslami">
+<link rel="manifest" href="/site.webmanifest">
+<style>html{background:#080a09;color-scheme:dark}.app-launch{display:none}</style>
+<script>
+(() => {
+  const root = document.documentElement;
+  const installed = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+  const navigation = performance.getEntriesByType('navigation')[0];
+  if (!installed || (navigation && navigation.type !== 'navigate')) return;
+  try {
+    if (sessionStorage.getItem('portfolio-launch-seen')) return;
+    sessionStorage.setItem('portfolio-launch-seen', '1');
+  } catch {}
+  try {
+    if (localStorage.getItem('portfolio-motion') === 'paused') root.setAttribute('data-app-motion', 'paused');
+  } catch {}
+  const dismiss = () => {
+    root.removeAttribute('data-app-launch');
+    root.removeAttribute('data-app-motion');
+  };
+  window.__portfolioLaunch = { startedAt: performance.now(), dismiss };
+  root.setAttribute('data-app-launch', '');
+  // A missing stylesheet or controller must never strand visitors on the logo.
+  setTimeout(dismiss, 1800);
+  addEventListener('pageshow', event => { if (event.persisted) dismiss(); });
+})();
+</script>
+<link rel="stylesheet" href="/pwa.css?v=20261122-launch1">
+<script defer src="/pwa.js?v=20261122-launch1"></script>
 <title>خدمات طراحی سایت و برنامه‌نویسی | مهدی اسلامی</title><meta name="description" content="خدمات طراحی سایت و برنامه‌نویسی مهدی اسلامی؛ توسعهٔ سامانه‌های وب، بک‌اند جاوا و اپلیکیشن اندروید، همراه با نمونه‌کارهای مرتبط و راهنمای شروع همکاری."><meta name="author" content="Mehdi Eslami"><meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://mehdieslami.ir/fa/services/"><link rel="alternate" hreflang="en" href="https://mehdieslami.ir/services/"><link rel="alternate" hreflang="fa" href="https://mehdieslami.ir/fa/services/"><link rel="alternate" hreflang="x-default" href="https://mehdieslami.ir/services/">
 <meta property="og:type" content="website"><meta property="og:site_name" content="Mehdi Eslami"><meta property="og:title" content="خدمات طراحی سایت و برنامه‌نویسی | مهدی اسلامی"><meta property="og:description" content="خدمات طراحی سایت و برنامه‌نویسی مهدی اسلامی؛ توسعهٔ سامانه‌های وب، بک‌اند جاوا و اپلیکیشن اندروید، همراه با نمونه‌کارهای مرتبط و راهنمای شروع همکاری."><meta property="og:url" content="https://mehdieslami.ir/fa/services/"><meta property="og:locale" content="fa_IR"><meta property="og:locale:alternate" content="en_US"><meta property="og:image" content="https://mehdieslami.ir/assets/social-cover.webp"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="مهدی اسلامی؛ توسعه‌دهنده وب، جاوا و اندروید">
@@ -130,7 +160,15 @@
       ]
     }
   ]
-}</script></head><body class="service-page"><a class="skip" href="#main">رفتن به محتوای صفحه</a><div class="service-ambient" aria-hidden="true"></div><header class="service-header wrap"><a class="service-brand" href="/fa/" aria-label="صفحه اصلی مهدی اسلامی"><span class="brand-icon" aria-hidden="true"><img src="/assets/logo.svg" alt="" width="56" height="42"></span><span>مهدی اسلامی</span></a><nav aria-label="منوی اصلی"><a href="/fa/#work">نمونه‌کارها</a><a href="/fa/services/">خدمات</a><a href="/fa/#contact">تماس</a></nav><a class="service-switch" href="/services/" hreflang="en" lang="en">EN</a></header><main class="wrap" id="main"><nav class="service-breadcrumb" aria-label="مسیر صفحه"><ol><li><a href="/fa/">خانه</a></li><li><span aria-current="page">خدمات</span></li></ol></nav><section class="service-hero"><p class="eyebrow">وب · جاوا · اندروید</p><h1>طراحی سایت و برنامه‌نویسی اختصاصی.</h1><p class="service-owner"><a href="/fa/#about">مهدی اسلامی</a><span aria-hidden="true"> · </span><bdi lang="en">Mehdi Eslami</bdi></p><p class="service-lead">وب‌سایت، سامانهٔ مدیریتی، بک‌اند جاوا و اپلیکیشن اندروید توسعه می‌دهم. نیاز پروژهٔ خود را مطرح کنید تا دربارهٔ امکانات، زمان اجرا و هزینه گفت‌وگو کنیم.</p><a class="button primary" href="/fa/#contact">ثبت درخواست همکاری</a></section>
+}</script></head><body class="service-page"><div class="app-launch" aria-hidden="true">
+  <div class="app-launch-content">
+    <div class="app-launch-emblem"><img src="/assets/logo.svg" width="136" height="100" alt="" fetchpriority="high"></div>
+    <p class="app-launch-name" data-en="Mehdi Eslami" data-fa="مهدی اسلامی">مهدی اسلامی</p>
+    <p class="app-launch-role" data-en="Software Developer" data-fa="توسعه‌دهندهٔ نرم‌افزار">توسعه‌دهندهٔ نرم‌افزار</p>
+    <span class="app-launch-line"></span>
+  </div>
+  <span class="app-launch-domain" dir="ltr">mehdieslami.ir</span>
+</div><a class="skip" href="#main">رفتن به محتوای صفحه</a><div class="service-ambient" aria-hidden="true"></div><header class="service-header wrap"><a class="service-brand" href="/fa/" aria-label="صفحه اصلی مهدی اسلامی"><span class="brand-icon" aria-hidden="true"><img src="/assets/logo.svg" alt="" width="56" height="42"></span><span>مهدی اسلامی</span></a><nav aria-label="منوی اصلی"><a href="/fa/#work">نمونه‌کارها</a><a href="/fa/services/">خدمات</a><a href="/fa/#contact">تماس</a></nav><a class="service-switch" href="/services/" hreflang="en" lang="en">EN</a></header><main class="wrap" id="main"><nav class="service-breadcrumb" aria-label="مسیر صفحه"><ol><li><a href="/fa/">خانه</a></li><li><span aria-current="page">خدمات</span></li></ol></nav><section class="service-hero"><p class="eyebrow">وب · جاوا · اندروید</p><h1>طراحی سایت و برنامه‌نویسی اختصاصی.</h1><p class="service-owner"><a href="/fa/#about">مهدی اسلامی</a><span aria-hidden="true"> · </span><bdi lang="en">Mehdi Eslami</bdi></p><p class="service-lead">وب‌سایت، سامانهٔ مدیریتی، بک‌اند جاوا و اپلیکیشن اندروید توسعه می‌دهم. نیاز پروژهٔ خود را مطرح کنید تا دربارهٔ امکانات، زمان اجرا و هزینه گفت‌وگو کنیم.</p><a class="button primary" href="/fa/#contact">ثبت درخواست همکاری</a></section>
 <div class="service-list"><a class="service-tile" href="/fa/services/website-development/"><span class="service-code" aria-hidden="true" dir="ltr">&lt;/&gt;</span><h3>طراحی و توسعهٔ سایت</h3><p>وب‌سایت‌های شخصی و شرکتی را با محتوای روشن، نمایش مناسب در موبایل و دسکتاپ و دسترسی آسان به اطلاعات تماس طراحی و توسعه می‌دهم.</p><span class="service-tile-action">جزئیات این خدمت</span></a><a class="service-tile" href="/fa/services/custom-web-applications/"><span class="service-code" aria-hidden="true" dir="ltr">{ app }</span><h3>برنامه‌نویسی اختصاصی وب</h3><p>فرم‌ها، داشبوردها و سامانه‌های مدیریتی را بر اساس روند کار مجموعهٔ شما توسعه می‌دهم؛ از ثبت اطلاعات و تعیین سطح دسترسی تا پیگیری کارها و گزارش‌گیری.</p><span class="service-tile-action">جزئیات این خدمت</span></a><a class="service-tile" href="/fa/services/java-spring-boot/"><span class="service-code" aria-hidden="true" dir="ltr">API</span><h3>بک‌اند جاوا و Spring Boot</h3><p>بک‌اند برنامه‌های وب و موبایل را با جاوا و Spring Boot توسعه می‌دهم؛ شامل طراحی REST API، اعتبارسنجی ورودی‌ها، ارتباط با پایگاه داده و اتصال به سرویس‌های بیرونی.</p><span class="service-tile-action">جزئیات این خدمت</span></a><a class="service-tile" href="/fa/services/android-development/"><span class="service-code" aria-hidden="true" dir="ltr">Android</span><h3>توسعهٔ اپلیکیشن اندروید</h3><p>با جاوا و کاتلین، اپلیکیشن اندروید توسعه می‌دهم؛ از طراحی صفحات و مسیر حرکت کاربر تا دریافت اطلاعات از API و مدیریت ورودی‌ها.</p><span class="service-tile-action">جزئیات این خدمت</span></a></div>
 <section class="service-overview-copy"><h2>انتخاب خدمت متناسب با نیاز شما</h2><p>ابتدا مشخص می‌کنیم کاربران قرار است چه کاری انجام دهند؛ با خدمات شما آشنا شوند، اطلاعات ثبت کنند، روندی را پیگیری کنند یا از امکاناتی روی گوشی استفاده کنند. سپس صفحات، اطلاعات و ارتباط با سرویس‌های دیگر را بر همین اساس مشخص می‌کنیم.</p>
 <h2>مراحل شروع همکاری</h2><ol><li>کاربرد پروژه، کاربران آن و امکانات یا محتوای آمادهٔ خود را معرفی کنید.</li><li>صفحات، اطلاعات موردنیاز، اتصال به سرویس‌ها و معیارهای تحویل را بررسی می‌کنیم.</li><li>پیش از اجرا، دربارهٔ امکانات نسخهٔ نخست، زمان‌بندی و هزینه توافق می‌کنیم.</li></ol>

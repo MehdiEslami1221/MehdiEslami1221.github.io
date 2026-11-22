@@ -1,0 +1,78 @@
+/* Only the first navigation in an installed app shows the launch treatment. */
+html[data-app-launch] .app-launch {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  pointer-events: none;
+  background: #080a09;
+  color: #edf3e9;
+  opacity: 1;
+  transition: opacity 240ms ease;
+}
+html[data-app-launch="leaving"] .app-launch { opacity: 0; }
+.app-launch::before {
+  content: "";
+  position: absolute;
+  width: min(90vw, 440px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, #bcf36a0c, transparent 68%);
+}
+.app-launch-content {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  padding: 32px;
+  animation: launch-reveal 420ms ease-out both;
+}
+.app-launch-emblem {
+  display: grid;
+  place-items: center;
+  width: 184px;
+  height: 152px;
+}
+.app-launch-emblem img {
+  display: block;
+  width: 136px;
+  height: 100px;
+  filter: drop-shadow(0 0 22px #bcf36a19);
+}
+.app-launch-name {
+  margin: 24px 0 4px;
+  font: 600 23px/1.6 Vazir, Arial, sans-serif;
+  letter-spacing: -.035em;
+}
+html[lang="fa"] .app-launch-name,
+html[lang="fa"] .app-launch-role { font-family: IRANSansX, Vazir, sans-serif; letter-spacing: 0; }
+.app-launch-role { margin: 0; color: #9ba19b; font-size: 14px; line-height: 1.8; }
+.app-launch-line {
+  display: block;
+  width: 48px;
+  height: 2px;
+  margin-top: 28px;
+  background: #bcf36a;
+  box-shadow: 0 0 16px #bcf36a55;
+  transform-origin: center;
+  animation: launch-line 500ms ease-out both;
+}
+.app-launch-domain {
+  position: absolute;
+  bottom: max(32px, env(safe-area-inset-bottom));
+  color: #9ba19b;
+  font: 14px/1.5 Arial, sans-serif;
+  letter-spacing: .12em;
+}
+@keyframes launch-reveal { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes launch-line { from { opacity: 0; transform: scaleX(.25); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .app-launch-content, .app-launch-line { animation: none; }
+  html[data-app-launch] .app-launch { transition: none; }
+}
+html[data-app-motion="paused"] .app-launch-content,
+html[data-app-motion="paused"] .app-launch-line { animation: none; }
+html[data-app-motion="paused"] .app-launch { transition: none; }
+@media print { html[data-app-launch] .app-launch { display: none; } }

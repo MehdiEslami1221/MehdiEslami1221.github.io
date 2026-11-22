@@ -17,6 +17,8 @@ const types = {
   ".woff2": "font/woff2",
   ".xml": "application/xml",
   ".txt": "text/plain; charset=utf-8",
+  ".png": "image/png",
+  ".webmanifest": "application/manifest+json",
 };
 http
   .createServer(async (req, res) => {
