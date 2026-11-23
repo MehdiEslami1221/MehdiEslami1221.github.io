@@ -1,3 +1,4 @@
+import { clockTime } from "./date-clock.mjs?v=20261123-clock1";
 import {
   CALENDARS,
   parts,
@@ -10,7 +11,6 @@ import {
   monthLength,
   yearLength,
   isLeap,
-  weekday,
   age,
   difference,
   shiftDays,
@@ -31,8 +31,6 @@ if (root)
         : "The date tool could not initialize. Try an updated browser.";
   });
 async function init() {
-  const { eventsOn, eventsBetween } =
-    await import("./date-events.mjs?v=20261123-date1");
   const $ = (id) => root.querySelector("#dt-" + id),
     t = (en, fa) => (document.documentElement.lang === "fa" ? fa : en),
     lang = () => (document.documentElement.lang === "fa" ? "fa" : "en"),
@@ -165,33 +163,6 @@ async function init() {
       container.append(card);
     }
   }
-  function eventList(day) {
-    $("event-date").textContent =
-      formatDay(day, "persian", lang(), true) + " · " + isolatedISO(day);
-    const entries = eventsOn(day);
-    $("events").replaceChildren();
-    if (!entries.length)
-      $("events").append(
-        element(
-          "p",
-          t(
-            "No occasion is listed for this date in this selection.",
-            "در فهرست منتخب، مناسبتی برای این روز ثبت نشده است.",
-          ),
-        ),
-      );
-    for (const event of entries) {
-      const row = element("div", undefined, "dt-event");
-      row.append(element("span", event[lang()]));
-      if (event.holiday)
-        row.append(
-          element("small", t("1405 holiday", "تعطیل ۱۴۰۵"), "dt-holiday-tag"),
-        );
-      $("events").append(row);
-    }
-    if (weekday(day) === 5)
-      $("events").append(element("p", t("Friday", "جمعه"), "dt-friday"));
-  }
   function convert() {
     clearError("convert-status");
     try {
@@ -223,7 +194,6 @@ async function init() {
       $("convert-status").textContent = "";
       $("copy-date").disabled = false;
       $("use-birthday").disabled = false;
-      eventList(day);
     } catch (error) {
       selectedDay = null;
       $("conversions").replaceChildren();
@@ -398,19 +368,11 @@ async function init() {
         button.disabled = cell.day < MIN_DAY || cell.day > MAX_DAY;
         button.classList.toggle("dt-other-month", !cell.inMonth);
         button.classList.toggle("dt-is-today", cell.day === today());
-        const events = eventsOn(cell.day);
-        button.classList.toggle(
-          "dt-is-holiday",
-          weekday(cell.day) === 5 || events.some((e) => e.holiday),
-        );
-        button.classList.toggle("dt-has-event", !!events.length);
         button.setAttribute(
           "aria-label",
-          formatDay(cell.day, calendar, lang(), true) +
-            (events.length
-              ? " · " + events.map((e) => e[lang()]).join("، ")
-              : ""),
+          formatDay(cell.day, calendar, lang(), true),
         );
+        if (cell.day === today()) button.setAttribute("aria-current", "date");
         button.addEventListener("click", () => {
           setDate("convert", cell.day, calendar);
           convert();
@@ -418,32 +380,9 @@ async function init() {
         });
         el.append(button);
       }
-      $("month-events").replaceChildren();
-      const entries = eventsBetween(grid.start, grid.start + grid.length - 1);
-      if (!entries.length)
-        $("month-events").append(
-          element(
-            "p",
-            t(
-              "No selected occasions in this month.",
-              "در این ماه مناسبتی در فهرست منتخب ثبت نشده است.",
-            ),
-          ),
-        );
-      for (const item of entries) {
-        const row = element("div", undefined, "dt-month-event");
-        row.append(
-          element("strong", n(parts(item.day, calendar).day)),
-          element("span", item.entries.map((e) => e[lang()]).join(" · ")),
-        );
-        if (item.entries.some((e) => e.holiday))
-          row.classList.add("dt-is-holiday");
-        $("month-events").append(row);
-      }
       $("calendar-status").textContent = "";
     } catch (error) {
       $("month-grid").replaceChildren();
-      $("month-events").replaceChildren();
       $("month-title").textContent = "";
       feedbackError("calendar-status", error);
     }
@@ -488,9 +427,79 @@ async function init() {
     a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 30000);
   }
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let clockVisible = true,
+    frame = null,
+    lastFrame = 0;
+  function paintHands(now = Date.now()) {
+    const value = clockTime(
+      reducedMotion.matches ? Math.floor(now / 1000) * 1000 : now,
+      zone(),
+    );
+    for (const [hand, angle] of [
+      ["hour", value.hourAngle],
+      ["minute", value.minuteAngle],
+      ["second", value.secondAngle],
+    ])
+      $(hand + "-hand").setAttribute("transform", `rotate(${angle} 150 150)`);
+  }
+  function animateClock(stamp) {
+    if (document.hidden || !clockVisible || reducedMotion.matches) {
+      frame = null;
+      return;
+    }
+    if (stamp - lastFrame >= 50) {
+      paintHands();
+      lastFrame = stamp;
+    }
+    frame = requestAnimationFrame(animateClock);
+  }
+  function manageHands() {
+    if (frame !== null) cancelAnimationFrame(frame);
+    frame = null;
+    if (!document.hidden && clockVisible && !reducedMotion.matches)
+      frame = requestAnimationFrame(animateClock);
+  }
+  const clockStyles = ["signature", "classic", "minimal"];
+  function setClockStyle(style) {
+    if (!clockStyles.includes(style)) style = "signature";
+    $("analog").dataset.clockStyle = style;
+    root
+      .querySelectorAll("button[data-clock-style]")
+      .forEach((button) =>
+        button.setAttribute(
+          "aria-pressed",
+          String(button.dataset.clockStyle === style),
+        ),
+      );
+  }
+  try {
+    setClockStyle(localStorage.getItem("date-clock-style"));
+  } catch {
+    setClockStyle("signature");
+  }
+  root.querySelectorAll("button[data-clock-style]").forEach((button) =>
+    button.addEventListener("click", () => {
+      setClockStyle(button.dataset.clockStyle);
+      try {
+        localStorage.setItem("date-clock-style", button.dataset.clockStyle);
+      } catch {}
+    }),
+  );
+  reducedMotion.addEventListener("change", () => {
+    paintHands();
+    manageHands();
+  });
+  if ("IntersectionObserver" in window)
+    new IntersectionObserver((entries) => {
+      clockVisible = entries[0].isIntersecting;
+      if (clockVisible) paintHands();
+      manageHands();
+    }).observe(root.querySelector(".dt-clock-panel"));
   function clock() {
     if (document.hidden) return;
     const now = Date.now();
+    if (clockVisible) paintHands(now);
     $("clock").textContent = new Intl.DateTimeFormat(lang(), {
       timeZone: zone(),
       hour: "2-digit",
@@ -498,7 +507,9 @@ async function init() {
       second: "2-digit",
       hourCycle: "h23",
     }).format(now);
-    const day = today();
+    $("clock").dateTime = new Date(now).toISOString();
+    $("clock-zone").textContent = zone();
+    const day = todayDay(now, zone());
     $("today-label").textContent = formatDay(day, "persian", lang(), true);
     if (lastToday !== null && lastToday !== day) {
       if ($("asof-today").checked && ageResult) calculateAge();
@@ -721,6 +732,7 @@ async function init() {
   });
   let timer = null;
   function manageClock() {
+    manageHands();
     clearInterval(timer);
     timer = null;
     if (!document.hidden) {
@@ -729,7 +741,11 @@ async function init() {
     }
   }
   document.addEventListener("visibilitychange", manageClock);
-  window.addEventListener("pagehide", () => clearInterval(timer));
+  window.addEventListener("pagehide", () => {
+    clearInterval(timer);
+    if (frame !== null) cancelAnimationFrame(frame);
+    frame = null;
+  });
   window.addEventListener("pageshow", manageClock);
   // Session draft is used only for an explicit language-link navigation on the standalone tool.
   const switcher = document.querySelector(".date-page .service-switch");

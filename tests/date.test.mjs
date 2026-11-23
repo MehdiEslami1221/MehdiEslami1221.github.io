@@ -20,7 +20,7 @@ import {
   parseDateText,
   CALENDARS,
 } from "../date-core.mjs";
-import { eventsOn } from "../date-events.mjs";
+import { clockTime } from "../date-clock.mjs";
 const date = (year, month, day, calendar = "gregory") =>
   toDay(calendar, { year, month, day });
 test("Known Persian/Gregorian dates, leap Esfand and weekdays agree with civil anchors", () => {
@@ -137,32 +137,13 @@ test("Today is explicitly zoned and day differences ignore DST hour changes", ()
   assert.equal(date(2026, 3, 9) - date(2026, 3, 8), 1);
   assert.equal(date(2026, 11, 2) - date(2026, 11, 1), 1);
 });
-test("Month grids align Saturday/Sunday correctly and events never repeat dated 1405 holidays in other years", () => {
+test("Month grids align Saturday/Sunday correctly across years", () => {
   const g = monthGrid("persian", 1405, 9, 6);
   assert.equal(g.offset, 1);
   assert.equal(g.length, 30);
   assert.equal(g.cells[g.offset].date.day, 1);
   assert.equal(weekday(g.cells[0].day), 6);
   assert.equal(monthGrid("gregory", 2026, 11, 1).offset, 6);
-  assert.ok(
-    eventsOn(date(1405, 9, 9, "persian")).some((e) =>
-      e.fa.includes("روز مادر"),
-    ),
-  );
-  assert.ok(
-    !eventsOn(date(1406, 9, 9, "persian")).some((e) => e.kind === "iran1405"),
-  );
-  assert.ok(
-    eventsOn(date(1405, 4, 3, "persian")).some(
-      (e) => e.holiday && e.fa === "تاسوعا",
-    ),
-  );
-  assert.ok(
-    eventsOn(date(2024, 9, 12)).some((e) => e.en === "Programmer’s Day"),
-  );
-  assert.ok(
-    eventsOn(date(2025, 9, 13)).some((e) => e.en === "Programmer’s Day"),
-  );
 });
 test("Birthday ICS is all-day, one event, escaped and UTF-8 line folded", () => {
   const text = calendarFile(
@@ -190,10 +171,78 @@ test("Date tools are above the existing lab in both static homes; existing metad
     assert.match(html, /id="image-tools"/);
     assert.match(html, /class="wrap tools-discovery-grid"/);
     assert.match(html, /class="profile-discovery date-discovery"/);
-    assert.match(html, path.startsWith("fa/") ? /href="\/fa\/tools\/date-converter\/"/ : /href="\/tools\/date-converter\/"/);
-    assert.doesNotMatch(html, /data-date-tools|id="dt-panel-age"|src="\/date.js/);
-    const tool = await readFile(path.startsWith("fa/") ? "fa/tools/date-converter/index.html" : "tools/date-converter/index.html", "utf8");
+    assert.match(
+      html,
+      path.startsWith("fa/")
+        ? /href="\/fa\/tools\/date-converter\/"/
+        : /href="\/tools\/date-converter\/"/,
+    );
+    assert.doesNotMatch(
+      html,
+      /data-date-tools|id="dt-panel-age"|src="\/date.js/,
+    );
+    const tool = await readFile(
+      path.startsWith("fa/")
+        ? "fa/tools/date-converter/index.html"
+        : "tools/date-converter/index.html",
+      "utf8",
+    );
     assert.match(tool, /data-date-tools/);
     assert.match(tool, /id="dt-panel-age"/);
+  }
+});
+
+test("Analog and digital clock parts follow six zones, DST, midnight and continuous hand angles", () => {
+  const instant = Date.UTC(2026, 10, 23, 0, 0, 0);
+  for (const [zone, hour, minute] of [
+    ["UTC", 0, 0],
+    ["Asia/Tehran", 3, 30],
+    ["Europe/Berlin", 1, 0],
+    ["America/Los_Angeles", 16, 0],
+    ["Asia/Tokyo", 9, 0],
+    ["Pacific/Kiritimati", 14, 0],
+  ]) {
+    const c = clockTime(instant, zone);
+    assert.equal(c.hour, hour);
+    assert.equal(c.minute, minute);
+    assert.equal(c.second, 0);
+    assert.equal(c.hourAngle, ((hour % 12) + minute / 60) * 30);
+    assert.equal(c.minuteAngle, minute * 6);
+  }
+  assert.equal(clockTime(Date.UTC(2026, 6, 1, 0), "Europe/Berlin").hour, 2);
+  assert.equal(
+    clockTime(Date.UTC(2026, 6, 1, 0), "America/Los_Angeles").hour,
+    17,
+  );
+  const before = clockTime(
+    Date.UTC(2026, 10, 23, 20, 29, 59, 500),
+    "Asia/Tehran",
+  );
+  assert.equal(before.hour, 23);
+  assert.equal(before.minute, 59);
+  assert.equal(before.secondAngle, 357);
+  const after = clockTime(Date.UTC(2026, 10, 23, 20, 30, 0), "Asia/Tehran");
+  assert.equal(after.hour, 0);
+  assert.equal(after.hourAngle, 0);
+  assert.equal(after.secondAngle, 0);
+  assert.ok(
+    Math.abs(
+      clockTime(Date.UTC(2026, 0, 1, 10, 10, 30), "UTC").hourAngle - 305.25,
+    ) < 1e-10,
+  );
+});
+test("Date pages retain the branded clock and calendar without year-specific occasion content", async () => {
+  for (const path of [
+    "tools/date-converter/index.html",
+    "fa/tools/date-converter/index.html",
+  ]) {
+    const html = await readFile(path, "utf8");
+    assert.match(html, /<image href="\/assets\/logo.svg"/);
+    assert.match(html, /id="dt-analog"/);
+    assert.match(html, /id="dt-month-grid"/);
+    assert.doesNotMatch(
+      html,
+      /dt-month-events|dt-occasions|date-events|تعطیلات|مناسبت|selected occasions|1405 holiday/,
+    );
   }
 });

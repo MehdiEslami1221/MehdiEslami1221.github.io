@@ -5,17 +5,17 @@ export const DATE_SEO = {
     title:
       "Date Converter & Age Calculator: Persian, Gregorian, Hijri | Mehdi Eslami",
     description:
-      "Convert Persian, Gregorian and calculated Hijri dates. Calculate age in years, months and days, find the next birthday, compare dates and browse selected occasions.",
+      "Convert Persian, Gregorian and calculated Hijri dates. Calculate age in years, months and days, find the next birthday, compare dates and use the monthly calendar and analog clock.",
     heading: "Date converter and age calculator",
     intro:
-      "Convert a date, calculate your age or see how long remains until a birthday. Use the monthly calendar to browse dates and selected occasions.",
+      "Convert a date, calculate your age or see how long remains until a birthday. Check the analog clock in your chosen time zone and browse the monthly calendar.",
   },
   fa: {
     title: "تبدیل تاریخ شمسی، میلادی و قمری و محاسبه سن | مهدی اسلامی",
     description:
-      "تبدیل تاریخ شمسی، میلادی و قمری محاسباتی؛ محاسبه سن به سال، ماه و روز، تولد بعدی، فاصله دو تاریخ و نمایش تقویم ماهانه و مناسبت‌های منتخب، رایگان و بدون ثبت‌نام.",
+      "تبدیل تاریخ شمسی، میلادی و قمری محاسباتی؛ محاسبه سن به سال، ماه و روز، تولد بعدی، فاصله دو تاریخ و تقویم ماهانه و ساعت آنالوگ، رایگان و بدون ثبت‌نام.",
     heading: "تبدیل تاریخ و محاسبهٔ سن",
     intro:
-      "تاریخ را تبدیل کنید، سن خود را به سال و ماه و روز ببینید یا فاصلهٔ دو تاریخ را حساب کنید. تقویم ماهانه و مناسبت‌های منتخب هم در دسترس‌اند.",
+      "تاریخ را تبدیل کنید، سن خود را به سال و ماه و روز ببینید یا فاصلهٔ دو تاریخ را حساب کنید. ساعت آنالوگ و تقویم ماهانه هم در دسترس‌اند.",
   },
 };

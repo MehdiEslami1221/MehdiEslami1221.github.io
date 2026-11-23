@@ -124,8 +124,10 @@ The `#date-tools` discovery card is above ONLINE TOOLS on both homepages.
 It opens the complete workbench and crawlable guide at `/tools/date-converter/` and
 `/fa/tools/date-converter/`. Convert Persian, Gregorian and calculated civil
 Hijri dates, calculate age and the next birthday, compare or shift dates, browse
-monthly selected occasions, copy results and download a birthday calendar file.
+the monthly calendar, copy results and download a birthday calendar file.
+A branded analog clock offers matching digital time, explicit zones and three
+dark face styles.
 The dark interface supports Persian/Arabic digits, an explicit today time zone,
 leap-birthday policies and mobile layouts. All calculations run in the browser.
-Year-specific Iranian holidays cover 1405 only; keep the coverage and Hijri
-method labels visible. See [docs/DATE_TOOLS.md](docs/DATE_TOOLS.md).
+Occasion lists and official-holiday data are not included; keep the calculated
+Hijri method label visible. See [docs/DATE_TOOLS.md](docs/DATE_TOOLS.md).

@@ -142,9 +142,11 @@ must share the explicit Persian/Gregorian/civil-Hijri method; do not label
 calculated Hijri as official Iran lunar dates. Validate real dates, keep civil
 day arithmetic independent of DST and make today’s zone visible. Age uses the
 birth calendar and a user-selected leap-birthday policy, including Esfand 30
-rolling into the following Persian year. Selected recurring occasions are not a
-historical register; exact Iranian holiday dates cover 1405 only. Extend each
-new year from reviewed published sources rather than repeating lunar positions.
+rolling into the following Persian year. Keep the branded analog clock, matching
+digital time and three dark face styles on the internal page. Use the original
+`assets/logo.svg` inside the dial. Do not restore occasion lists, official holiday
+flags or a year-specific events database; the calculated calendar stays usable
+without annual event updates. Preserve the separate Programmer’s Day countdown.
 Keep input local, session drafts limited to language navigation, output safe,
 clipboard fallbacks usable, calendar exports honest and clock timers paused in
 hidden tabs. Rebuild all eighteen routes; run date boundary and SEO checks.

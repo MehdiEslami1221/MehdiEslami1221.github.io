@@ -11,8 +11,7 @@ workbench lives exclusively at the bilingual static routes at `/tools/date-conve
 
 - `date-core.mjs`: integer civil-day conversion, calendar arithmetic, age,
   next birthday, month grid and one-event iCalendar export.
-- `date-events.mjs`: selected recurring observances and year-specific 1405
-  Iranian holidays, with source URLs.
+- `date-clock.mjs`: zoned clock parts and continuous SVG hand angles.
 - `date-markup.mjs`: localized discovery card and separate accessible standalone controls.
 - `date.js`, `date.css`: internal workbench interaction and dark presentation.
 - `date-discovery.css`: lightweight homepage card styling; do not load the
@@ -22,7 +21,7 @@ workbench lives exclusively at the bilingual static routes at `/tools/date-conve
 - `scripts/build.mjs`: regenerates the homepage block, both tool routes, Persian
   homepage and eighteen-URL sitemap. Never hand-edit generated output.
 - `tests/date.test.mjs`: civil-date anchors, round trips, invalid dates, age,
-  leap-day policies, arithmetic, time zones, events, ICS and home placement.
+  leap-day policies, arithmetic, time zones, clock angles, ICS and home placement.
 
 ## Calculation contract
 
@@ -59,20 +58,29 @@ Birthday export is one all-day event for the displayed next birthday, with an
 exclusive next-day end. Do not claim notifications, recurring scheduling or an
 external calendar write. Imported files are handled by the visitor’s calendar.
 
-## Occasions and maintenance
+## Branded analog clock and maintenance
 
-The selected list is not a complete historical register. Recurring observances
-match month/day; the visible notice explains that. Exact Iranian lunar holiday
-positions are reviewed against the published final University of Tehran 1405
-calendar and stored only for 1405. Red marks Friday or a reviewed 1405 holiday.
-Never repeat year-specific dates in another year or claim future completeness.
+The internal page has a live SVG analog clock, matching digital time and a
+visible IANA zone. Reuse the original `/assets/logo.svg` as an SVG image inside
+the face, never replace the monogram with text or a generated approximation.
+The signature, classic and minimal styles stay dark. Only the selected style ID
+is stored in localStorage; dates remain session-scoped for locale navigation.
 
-Sources: `https://calendar.ut.ac.ir/documents/2139738/7092644/Calendar-1405.pdf`
-and the published PDF copy at
-`https://www.avazehgostar.com/file/pdf/calendar_1405`. When extending holiday
-years, review that year’s final published calendar and add separately keyed data.
-Keep the UI’s coverage notice accurate. International observance references also
-include `https://www.un.org/en/observances/list-days-weeks`.
+`date-clock.mjs` derives hand angles from the selected zone at the same instant.
+Hours include minute/second fractions; minutes include seconds. Do not animate
+backwards through a full turn at 59→00. The clock follows device time, not an
+external atomic clock. Clock zones include Tehran, device, UTC and several
+explicit city choices. The selected zone also determines today and age-to-today.
+
+Hand rendering is bounded to 20fps, stops when offscreen or hidden, and uses
+second snapshots with reduced motion. Digital display updates once per second.
+Recalculate from the current instant on resume; do not accumulate timer drift.
+
+Occasion lists, official-holiday flags and their year-specific database were
+removed. Do not restore annual holiday data or year-limited coverage notices.
+The monthly calendar remains purely calculated, with today outlined and each
+day selectable for conversion; it needs no yearly event updates. The original
+homepage Programmer’s Day countdown is a separate feature and remains intact.
 
 ## Interaction, privacy and checks
 
@@ -87,7 +95,7 @@ tabs and refresh on return/date rollover. Keep ISO strings isolated in RTL text.
 Run the repository build and all tests. Check both languages at 360px and 1280px,
 Persian digit entry, source-calendar changes, invalid/future dates, leap-day
 birthdays, age on a chosen date, interval swap/inclusive count, negative shifts,
-month navigation, event-day selection, copying and calendar download. Verify
+month navigation, date selection, copying, clock styles, zones and calendar download. Verify
 input survives language changes and the home block precedes ONLINE TOOLS.
 Browser-native calendar support can vary; report actual browser/device checks.
 No new search ranking, Search Console submission or competitor-superiority claim
