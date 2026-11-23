@@ -120,8 +120,8 @@ remain unchanged; a new discovery card links to the tool.
 
 ## Date and calendar tools
 
-The `#date-tools` workbench is above ONLINE TOOLS on both homepages, with a
-separate crawlable guide at `/tools/date-converter/` and
+The `#date-tools` discovery card is above ONLINE TOOLS on both homepages.
+It opens the complete workbench and crawlable guide at `/tools/date-converter/` and
 `/fa/tools/date-converter/`. Convert Persian, Gregorian and calculated civil
 Hijri dates, calculate age and the next birthday, compare or shift dates, browse
 monthly selected occasions, copy results and download a birthday calendar file.

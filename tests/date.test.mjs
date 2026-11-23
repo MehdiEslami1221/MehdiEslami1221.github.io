@@ -189,7 +189,11 @@ test("Date tools are above the existing lab in both static homes; existing metad
     assert.match(html, /id="studio"/);
     assert.match(html, /id="image-tools"/);
     assert.match(html, /class="wrap tools-discovery-grid"/);
-    assert.match(html, /data-date-tools/);
-    assert.equal((html.match(/id="dt-panel-age"/g) || []).length, 1);
+    assert.match(html, /class="profile-discovery date-discovery"/);
+    assert.match(html, path.startsWith("fa/") ? /href="\/fa\/tools\/date-converter\/"/ : /href="\/tools\/date-converter\/"/);
+    assert.doesNotMatch(html, /data-date-tools|id="dt-panel-age"|src="\/date.js/);
+    const tool = await readFile(path.startsWith("fa/") ? "fa/tools/date-converter/index.html" : "tools/date-converter/index.html", "utf8");
+    assert.match(tool, /data-date-tools/);
+    assert.match(tool, /id="dt-panel-age"/);
   }
 });

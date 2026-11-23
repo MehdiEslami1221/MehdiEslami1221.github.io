@@ -1,0 +1,15 @@
+/* Homepage entry; all interactive date controls live on the internal tool page. */
+.date-discovery{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px}
+.date-discovery>div{min-width:0}
+.date-discovery .profile-open{display:inline-flex;align-items:center;gap:8px}
+.date-discovery .eyebrow{color:var(--accent);font-size:12px;letter-spacing:.08em;margin:0 0 16px}
+.date-discovery h2{font-size:clamp(26px,3vw,36px);line-height:1.6;margin:0 0 16px}
+.date-discovery-art{display:grid;justify-items:center;gap:24px;border:1px solid #bcf36a26;border-radius:14px;padding:30px 20px;background:linear-gradient(135deg,#bcf36a0b,transparent);color:#d4f3b5}
+.date-discovery-symbol{display:grid;place-items:center;width:72px;height:72px;border:1px solid #bcf36a40;border-radius:20px;background:#bcf36a0c}
+.date-discovery-symbol svg{width:42px;height:42px}
+.date-discovery-calendars{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px;font-size:18px}
+.date-discovery-calendars>span:nth-child(even){color:#829475}
+.date-discovery-features{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;font-size:13px;color:#b5bfb1}
+.date-discovery-features>span{display:flex;gap:7px;align-items:center}
+.date-discovery-features svg{width:18px;height:18px;flex-shrink:0}
+@media(max-width:650px){.date-discovery{grid-template-columns:minmax(0,1fr);gap:24px}.date-discovery-art{padding:24px 14px;gap:18px}.date-discovery-calendars{font-size:16px;gap:10px}}

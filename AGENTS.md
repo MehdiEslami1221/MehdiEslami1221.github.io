@@ -134,7 +134,9 @@ Persian homepage after edits; do not move this layout onto the standalone tools.
 ## Date and calendar workbench
 
 Read `docs/DATE_TOOLS.md` before modifying date tools. Preserve `#date-tools`
-above `#lab`, the scoped dark presentation, both languages and the original
+above `#lab` as a linked discovery card only. Keep input controls and `date.js`
+on the internal tool pages; the homepage loads only `date-discovery.css`. Preserve
+the scoped dark presentation, both languages and the original
 Programmer’s Day behavior. Native calendar conversion and inverse conversion
 must share the explicit Persian/Gregorian/civil-Hijri method; do not label
 calculated Hijri as official Iran lunar dates. Validate real dates, keep civil

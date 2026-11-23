@@ -1,9 +1,10 @@
 # Date conversion and calendar tools
 
-The homepage `#date-tools` section sits between Programmer’s Day and `#lab`
-(ONLINE TOOLS). Keep the original lab, two discovery cards, anchors, circuit
+The homepage `#date-tools` section is a single linked discovery card between
+Programmer’s Day and `#lab` (ONLINE TOOLS). It contains no input controls or
+running date controller. Clicking it opens the localized internal tool page. Keep the original lab, two discovery cards, anchors, circuit
 background, meteors, splash, portrait and résumé downloads intact. The complete
-workbench also has bilingual static routes at `/tools/date-converter/` and
+workbench lives exclusively at the bilingual static routes at `/tools/date-converter/` and
 `/fa/tools/date-converter/`. No server or external runtime dependency is needed.
 
 ## Sources
@@ -12,8 +13,10 @@ workbench also has bilingual static routes at `/tools/date-converter/` and
   next birthday, month grid and one-event iCalendar export.
 - `date-events.mjs`: selected recurring observances and year-specific 1405
   Iranian holidays, with source URLs.
-- `date-markup.mjs`: shared accessible, localized homepage/standalone controls.
-- `date.js`, `date.css`: browser interaction and scoped dark glass presentation.
+- `date-markup.mjs`: localized discovery card and separate accessible standalone controls.
+- `date.js`, `date.css`: internal workbench interaction and dark presentation.
+- `date-discovery.css`: lightweight homepage card styling; do not load the
+  workbench script or stylesheet on the homepage.
 - `content/date.mjs`, `scripts/date-pages.mjs`: paired metadata, static guide,
   shared shell and honest WebApplication schema.
 - `scripts/build.mjs`: regenerates the homepage block, both tool routes, Persian
@@ -77,7 +80,7 @@ Tabs have keyboard arrow/Home/End navigation, selected states and associated
 panels. All input-driven output uses textContent or form values. Clipboard
 failure exposes selectable text. A session draft is created only for an explicit
 language-link navigation on the standalone tool and consumed on entry. Homepage
-language changes preserve input in memory. Birth dates are not sent to a server,
+language changes update the card text and destination link. Birth dates are not sent to a server,
 put into URLs, structured data or permanent storage. Pause the clock in hidden
 tabs and refresh on return/date rollover. Keep ISO strings isolated in RTL text.
 
