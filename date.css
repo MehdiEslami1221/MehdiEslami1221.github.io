@@ -1,0 +1,713 @@
+/* Date tools stay within the existing charcoal/lime surface system. */
+.date-section .section-heading {
+  align-items: center;
+}
+.date-intro {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 2;
+  max-width: 75ch;
+  margin: 0 0 28px;
+}
+.date-workbench {
+  padding: 26px;
+  border: 1px solid #bcf36a32;
+  border-radius: 16px;
+  background: #0c140fbd;
+  min-width: 0;
+  backdrop-filter: blur(4px);
+}
+.date-workbench [hidden] {
+  display: none !important;
+}
+.date-workbench svg {
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+.dt-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+}
+.dt-clock {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.dt-clock > svg {
+  color: var(--accent);
+}
+.dt-clock time {
+  font: 24px/1.5 monospace;
+  color: #d6f5b1;
+  letter-spacing: 1px;
+}
+.dt-clock > span {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+.dt-zone-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.date-workbench input:not([type="checkbox"]),
+.date-workbench select,
+.dt-copy-fallback {
+  font: inherit;
+  font-size: 15px;
+  border: 1px solid #384b30;
+  border-radius: 7px;
+  color: #e4eddf;
+  background-color: #080e0b;
+  min-height: 44px;
+  width: 100%;
+  min-width: 0;
+  padding: 10px 12px;
+}
+.date-workbench input[inputmode="numeric"] {
+  direction: ltr;
+  text-align: center;
+}
+.date-workbench select {
+  appearance: none;
+  padding-inline-end: 34px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='m2 4 4 4 4-4' fill='none' stroke='%23bcf36a' stroke-width='1.4'/%3E%3C/svg%3E");
+  background-position: right 12px center;
+  background-repeat: no-repeat;
+}
+.date-workbench input,
+.date-workbench select {
+  color-scheme: dark;
+}
+html[dir="rtl"] .date-workbench select {
+  background-position: left 12px center;
+}
+.dt-zone-label select {
+  min-width: 130px;
+  width: auto;
+}
+.dt-tabs {
+  display: flex;
+  gap: 8px;
+  margin: 24px 0 12px;
+  flex-wrap: wrap;
+}
+.dt-tabs button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  flex: 1 1 auto;
+  min-height: 47px;
+  padding: 11px 14px;
+  border: 1px solid #ffffff20;
+  border-radius: 8px;
+  background: #101b13;
+  color: #b9c9b0;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+.dt-tabs button[aria-selected="true"] {
+  color: #080a09;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.dt-note {
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--muted);
+  margin: 10px 0 16px;
+}
+.dt-panel {
+  padding: 22px 0 8px;
+}
+.dt-converter {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(0, 1.15fr);
+  gap: 32px;
+  align-items: start;
+}
+.dt-date-input {
+  border: 0;
+  margin: 0 0 24px;
+  padding: 0;
+  min-width: 0;
+}
+.dt-date-input legend {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.8;
+  margin-bottom: 16px;
+  color: #e8f1e2;
+}
+.dt-date-fields {
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr 1.2fr 0.65fr;
+  gap: 10px;
+  align-items: end;
+}
+.date-workbench label:not(.dt-zone-label):not(.dt-check) {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #c2d2b8;
+  display: block;
+  margin-bottom: 7px;
+}
+.dt-paste {
+  margin: 18px 0 24px;
+}
+.dt-paste > div {
+  display: flex;
+  gap: 10px;
+}
+.dt-small-button,
+.dt-inline-copy {
+  font: inherit;
+  font-size: 13px;
+  background: #152211;
+  border: 1px solid #3f552f;
+  color: var(--accent);
+  border-radius: 7px;
+  padding: 9px 13px;
+  cursor: pointer;
+  white-space: nowrap;
+  min-height: 40px;
+}
+.dt-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.dt-actions .button {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 14px;
+  cursor: pointer;
+  min-height: 44px;
+}
+.dt-feedback {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #d3e8c2;
+  min-height: 1.8em;
+  overflow-wrap: anywhere;
+}
+.dt-date-results {
+  display: grid;
+  gap: 12px;
+}
+.dt-date-card {
+  padding: 18px 20px;
+  border: 1px solid #ffffff19;
+  border-radius: 10px;
+  background: linear-gradient(120deg, #bcf36a07, #0b140d50);
+  position: relative;
+  min-width: 0;
+}
+.date-workbench .dt-date-card h3 {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0 0 8px;
+  font-weight: 500;
+}
+.dt-date-card strong {
+  display: block;
+  color: #e8f7da;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1.7;
+}
+.dt-date-card p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #b4c6a8;
+  margin: 5px 0 0;
+  padding-inline-end: 52px;
+}
+.dt-inline-copy {
+  position: absolute;
+  inset-inline-end: 14px;
+  bottom: 14px;
+  min-height: 32px;
+  padding: 5px 10px;
+  font-size: 12px;
+}
+.dt-date-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+.dt-date-facts span {
+  font-size: 12px;
+  color: #c3d7b7;
+  padding: 6px 10px;
+  background: #b3ee6809;
+  border: 1px solid #b3ee6820;
+  border-radius: 6px;
+  line-height: 1.8;
+}
+.dt-result-side {
+  min-width: 0;
+}
+.dt-empty {
+  min-height: 120px;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  border: 1px dashed #ffffff22;
+  border-radius: 10px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.9;
+}
+.dt-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #c2d2b8;
+  font-size: 14px;
+  line-height: 1.9;
+  margin: 18px 0;
+}
+.dt-check input {
+  accent-color: var(--accent);
+  width: 18px;
+  height: 18px;
+}
+.dt-age-stats,
+.dt-mini-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.dt-stat {
+  padding: 19px 12px;
+  border: 1px solid #bcf36a24;
+  border-radius: 10px;
+  background: #12200d77;
+  display: grid;
+  gap: 9px;
+  text-align: center;
+  align-content: start;
+}
+.dt-stat strong {
+  font-size: 36px;
+  line-height: 1.3;
+  font-weight: 400;
+  color: var(--accent);
+  overflow-wrap: anywhere;
+}
+.dt-stat span {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #bacfb0;
+}
+.dt-mini-stats {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 14px;
+}
+.dt-mini-stats .dt-stat {
+  padding: 14px;
+}
+.dt-mini-stats .dt-stat strong {
+  font-size: 25px;
+}
+.dt-next-birthday {
+  padding: 20px;
+  border-inline-start: 2px solid var(--accent);
+  background: #bcf36a08;
+  border-radius: 8px;
+  margin-top: 18px;
+}
+.date-workbench .dt-next-birthday h3 {
+  font-size: 16px;
+  margin: 0 0 12px;
+}
+.dt-next-birthday > strong {
+  font-size: 25px;
+  color: #d9f6bb;
+  font-weight: 500;
+}
+.dt-next-birthday p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.9;
+  margin: 12px 0 0;
+}
+.dt-two-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+.dt-distance-result {
+  max-width: 750px;
+  margin-top: 25px;
+}
+.date-workbench .dt-distance-result h3 {
+  font-size: 24px;
+  color: #d6f5b1;
+  line-height: 1.8;
+}
+.dt-shift-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 20px 0;
+}
+.dt-calendar-toolbar {
+  display: grid;
+  grid-template-columns: 1fr 100px 1fr auto;
+  gap: 12px;
+  align-items: end;
+  max-width: 650px;
+  margin-bottom: 25px;
+}
+.dt-calendar-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 30px;
+}
+.dt-month-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.date-workbench .dt-month-heading h3 {
+  font-size: 18px;
+  color: #d1e8bc;
+  margin: 0;
+  text-align: center;
+  line-height: 1.8;
+}
+.dt-month-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+}
+.dt-weekday {
+  text-align: center;
+  font-size: 12px;
+  padding: 9px 0;
+  color: var(--muted);
+}
+.dt-month-day {
+  font: inherit;
+  font-size: 17px;
+  min-height: 50px;
+  border: 1px solid #ffffff16;
+  background: #101912;
+  color: #e2eedc;
+  border-radius: 7px;
+  cursor: pointer;
+  position: relative;
+}
+.dt-month-day.dt-other-month {
+  opacity: 0.4;
+}
+.dt-is-holiday {
+  color: #f0b2a1;
+}
+.dt-month-day.dt-is-holiday {
+  color: #f0b2a1;
+  background: #713e2b18;
+}
+.dt-month-day.dt-is-today {
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 1px #bcf36a44;
+}
+.dt-month-day.dt-has-event::after {
+  content: "";
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  position: absolute;
+  bottom: 5px;
+  left: calc(50% - 2px);
+}
+.date-workbench .dt-month-events h3 {
+  font-size: 17px;
+  margin: 0 0 18px;
+  color: #deecd3;
+}
+.dt-month-events > div {
+  max-height: 400px;
+  overflow: auto;
+  scrollbar-color: #466532 #0b120c;
+}
+.dt-month-event {
+  display: flex;
+  align-items: baseline;
+  gap: 13px;
+  border-bottom: 1px solid var(--line);
+  padding: 12px 2px;
+  line-height: 1.9;
+  font-size: 14px;
+}
+.dt-month-event strong {
+  min-width: 25px;
+  color: var(--accent);
+  font-size: 17px;
+}
+.dt-occasions {
+  margin-top: 30px;
+  padding: 22px;
+  border: 1px solid #ffffff1c;
+  border-radius: 12px;
+  background: #0a140c80;
+}
+.date-workbench .dt-occasions h3 {
+  font-size: 18px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 0;
+}
+.dt-events {
+  display: grid;
+  gap: 10px;
+  margin: 16px 0;
+}
+.dt-event {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #d5e9c5;
+}
+.dt-holiday-tag {
+  font-size: 12px;
+  padding: 3px 9px;
+  background: #6c372b33;
+  border: 1px solid #a15b4340;
+  border-radius: 20px;
+  color: #f0b2a1;
+}
+.dt-events > p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.dt-friday {
+  color: #f0b2a1 !important;
+}
+.dt-method {
+  margin-top: 24px;
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+}
+.dt-method summary {
+  font-size: 14px;
+  color: #caddbd;
+  cursor: pointer;
+  line-height: 1.9;
+}
+.dt-method p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 2;
+}
+.dt-method a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.date-workbench :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.date-workbench button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.dt-copy-fallback {
+  min-height: 110px;
+  resize: vertical;
+}
+.date-page .date-main {
+  padding-bottom: 70px;
+}
+.date-hero {
+  padding: 45px 0 30px;
+  max-width: 900px;
+}
+.date-hero h1 {
+  font-size: clamp(32px, 4vw, 54px);
+  line-height: 1.6;
+  margin: 14px 0 20px;
+  letter-spacing: -1px;
+}
+.date-hero > p:last-child {
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 2;
+}
+.date-guide {
+  max-width: 900px;
+  margin: 55px auto 0;
+}
+.date-guide p {
+  font-size: 16px;
+  line-height: 2;
+  color: var(--muted);
+}
+.date-guide a {
+  color: var(--accent);
+}
+@media (max-width: 950px) {
+  .dt-converter,
+  .dt-calendar-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .dt-topbar {
+    align-items: flex-start;
+  }
+  .dt-zone-label {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .dt-tabs {
+    gap: 7px;
+  }
+  .dt-tabs button {
+    font-size: 13px;
+    flex-basis: 30%;
+  }
+  .dt-two-inputs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 650px) {
+  .date-workbench {
+    padding: 18px 14px;
+  }
+  .date-section .section-heading {
+    align-items: flex-start;
+  }
+  .date-section .section-heading > .text-link {
+    font-size: 13px;
+    max-width: none;
+  }
+  .dt-topbar {
+    flex-direction: column;
+    gap: 18px;
+  }
+  .dt-clock {
+    gap: 10px;
+  }
+  .dt-clock > span {
+    flex-basis: 100%;
+  }
+  .dt-zone-label {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .dt-zone-label select {
+    min-width: 120px;
+    max-width: 50%;
+  }
+  .dt-tabs {
+    margin-top: 22px;
+  }
+  .dt-tabs button {
+    flex-basis: 42%;
+    font-size: 13px;
+    padding: 10px 8px;
+  }
+  .dt-tabs button:last-child {
+    flex-basis: 100%;
+  }
+  .dt-date-fields {
+    grid-template-columns: 1fr 1fr;
+  }
+  .dt-converter {
+    gap: 20px;
+  }
+  .dt-age-stats {
+    gap: 8px;
+  }
+  .dt-stat {
+    padding: 16px 7px;
+  }
+  .dt-stat strong {
+    font-size: 29px;
+  }
+  .dt-stat span {
+    font-size: 13px;
+  }
+  .dt-actions .button {
+    font-size: 13px;
+    padding: 11px 13px;
+  }
+  .dt-paste > div {
+    flex-direction: column;
+  }
+  .dt-date-card {
+    padding: 16px;
+  }
+  .dt-date-card strong {
+    font-size: 23px;
+  }
+  .dt-date-card p {
+    font-size: 13px;
+  }
+  .dt-calendar-toolbar {
+    grid-template-columns: 1fr 1fr;
+  }
+  .dt-month-heading {
+    gap: 7px;
+  }
+  .dt-month-heading .dt-small-button {
+    font-size: 12px;
+    padding: 8px;
+  }
+  .date-workbench .dt-month-heading h3 {
+    font-size: 16px;
+  }
+  .dt-month-grid {
+    gap: 4px;
+  }
+  .dt-month-day {
+    min-height: 42px;
+    font-size: 15px;
+  }
+  .dt-weekday {
+    font-size: 11px;
+  }
+  .dt-occasions {
+    padding: 18px 14px;
+  }
+  .dt-mini-stats .dt-stat strong {
+    font-size: 23px;
+  }
+  .dt-two-inputs {
+    gap: 8px;
+  }
+}
+
+.date-workbench > .dt-pending {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}

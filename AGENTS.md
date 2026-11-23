@@ -12,7 +12,7 @@ This is the owner's bilingual portfolio at https://mehdieslami.ir on GitHub Page
 
 ## Presentation and navigation
 
-The home sequence is introduction/portrait, technology strip, work, services, Programmer's Day, lab, profile-text discovery, image-tool discovery, about/skills, sourced quotes, résumé downloads, contact, footer. Cards retain repository links and a separate detail button. The last unfiltered card is wide; filtering uses regular cards. Do not nest buttons in anchors.
+The home sequence is introduction/portrait, technology strip, work, services, Programmer's Day, date tools, lab, profile-text discovery, image-tool discovery, about/skills, sourced quotes, résumé downloads, contact, footer. Cards retain repository links and a separate detail button. The last unfiltered card is wide; filtering uses regular cards. Do not nest buttons in anchors.
 
 All five app images are real local interface captures; see `docs/screenshots.md`. Warehouse uses synthetic local records, Yadban mounts the original Dashboard with a read-only sample API, and VideoFetch shows its actual frontend with the backend disconnected. Do not pass concepts or synthetic metrics off as real screenshots, customers or results. Keep genuine source repository links available without JavaScript.
 
@@ -49,10 +49,10 @@ Screenshot images are edge-to-edge inside each project card, without an image bo
 ## Bilingual search and service routes
 
 - Read `docs/SEO.md`. `seo.mjs` owns homepage metadata and stable Person/WebSite IDs. Keep the owner's `#me` ID stable across languages and pages. Structured data must describe visible facts; do not invent ratings, customers, prices, office addresses or rich-result eligibility.
-- Edit service copy in `content/services.mjs`, the template in `scripts/service-pages.mjs`, and styles in `services.css`. Build commits ten generated service HTML pages plus both homes and the sixteen-URL sitemap. Do not hand-edit generated service outputs. Keep paired routes self-canonical with reciprocal hreflang and x-default. Do not stamp a fake current lastmod date on every build.
+- Edit service copy in `content/services.mjs`, the template in `scripts/service-pages.mjs`, and styles in `services.css`. Build commits ten generated service HTML pages plus both homes and the eighteen-URL sitemap. Do not hand-edit generated service outputs. Keep paired routes self-canonical with reciprocal hreflang and x-default. Do not stamp a fake current lastmod date on every build.
 - Homepage services links use `data-href-en` / `data-href-fa`; both the static builder and runtime localizer handle them. Homepage language switches update title, description, social metadata, JSON-LD and service hrefs. Keep in-progress tool and form input. At initial load, respect the explicit URL, including English `/`, rather than changing the route from stored preference. Service pages use ordinary native language links and work without JavaScript.
 - The navigation services link complements the homepage `#services` section; the lab remains reachable at `#lab` and in the command menu. Preserve the approved homepage background, meteors, real captures, no-halo card styles and original supplied résumés.
-- Run `npm run build`, `npm test`, `node --check app.js` and `git diff --check`. `tests/seo.test.mjs` covers all sixteen routes, unique metadata, local links, reciprocal language paths, sitemap coverage and honest schema. Review mobile and desktop service pages, contact links, native details, and homepage language changes in the browser. Search Console verification and search rankings need the owner's real account data; do not imply they have been performed.
+- Run `npm run build`, `npm test`, `node --check app.js` and `git diff --check`. `tests/seo.test.mjs` covers all eighteen routes, unique metadata, local links, reciprocal language paths, sitemap coverage and honest schema. Review mobile and desktop service pages, contact links, native details, and homepage language changes in the browser. Search Console verification and search rankings need the owner's real account data; do not imply they have been performed.
 
 ## Personal monogram
 
@@ -69,7 +69,7 @@ Screenshot images are edge-to-edge inside each project card, without an image bo
 
 ## Profile text and glass panels
 
-- Read `docs/PROFILE_TEXT.md` before changing the generator. `content/profile.mjs` owns localized copy and SEO; `scripts/profile-pages.mjs` generates both profile routes, the homepage feature and retired-route redirects. Keep sixteen indexable routes in the sitemap, including both profile pages. Preserve prior service and homepage metadata.
+- Read `docs/PROFILE_TEXT.md` before changing the generator. `content/profile.mjs` owns localized copy and SEO; `scripts/profile-pages.mjs` generates both profile routes, the homepage feature and retired-route redirects. Keep eighteen indexable routes in the sitemap, including both profile pages. Preserve prior service and homepage metadata.
 - The profile generator is the only retained feature from the former playground. Do not restore the skills map, circuit game, project builder, request simulator or light signature without an explicit scope change. Keep their code and entry points removed. Retired `/playground/` routes redirect to the profile tool and remain `noindex`.
 - `profile-core.mjs` owns Unicode alphabets, bounded effects, Persian joining, frames, custom mixes and real ASCII. Validate assigned Unicode code points, deduplicate actual outputs and do not advertise an invariant result count for every input. Keep alphabet exceptions for script, italic, Gothic and double-struck letters; naive arithmetic produces unassigned characters.
 - Preserve Persian joining and ZWNJ. Tatweel must be inserted only at valid joins. Presentation forms must normalize back to the same base text. Never imitate Persian font variety by breaking words into isolated letters or replacing them with unrelated letters.
@@ -81,7 +81,7 @@ Screenshot images are edge-to-edge inside each project card, without an image bo
 
 - Read `docs/IMAGE_TOOLS.md`. Edit `content/image.mjs`, `scripts/image-pages.mjs`,
   `image.css`, `image.js`, `image-engine.mjs` and `image-core.mjs`. Rebuild both
-  generated image routes and the sixteen-URL sitemap. The image tool is a separate
+  generated image routes and the eighteen-URL sitemap. The image tool is a separate
   authorized feature; the five rejected playground features remain retired.
 - Keep all image processing local. Do not introduce uploads, persistent image
   storage, accounts, credentials, external codecs, API keys or a server.
@@ -130,3 +130,19 @@ meteor reflections. `profile.css` lays the pair out in equal desktop columns and
 stacks them at 850px and below. Each card uses a single internal column at full
 desktop size so its description and preview fit without squeezing. Rebuild the
 Persian homepage after edits; do not move this layout onto the standalone tools.
+
+## Date and calendar workbench
+
+Read `docs/DATE_TOOLS.md` before modifying date tools. Preserve `#date-tools`
+above `#lab`, the scoped dark presentation, both languages and the original
+Programmer’s Day behavior. Native calendar conversion and inverse conversion
+must share the explicit Persian/Gregorian/civil-Hijri method; do not label
+calculated Hijri as official Iran lunar dates. Validate real dates, keep civil
+day arithmetic independent of DST and make today’s zone visible. Age uses the
+birth calendar and a user-selected leap-birthday policy, including Esfand 30
+rolling into the following Persian year. Selected recurring occasions are not a
+historical register; exact Iranian holiday dates cover 1405 only. Extend each
+new year from reviewed published sources rather than repeating lunar positions.
+Keep input local, session drafts limited to language navigation, output safe,
+clipboard fallbacks usable, calendar exports honest and clock timers paused in
+hidden tabs. Rebuild all eighteen routes; run date boundary and SEO checks.

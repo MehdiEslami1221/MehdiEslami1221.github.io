@@ -12,7 +12,7 @@ npm test
 npm run dev
 ```
 
-Open the printed URL (normally http://127.0.0.1:8000). A plain static HTTP server also works. `npm run build` refreshes homepage metadata, regenerates `fa/index.html`, creates ten localized service pages and rebuilds the sixteen-URL sitemap; commit the generated files so GitHub Pages needs no build step. `.nojekyll` preserves the static output. Keep `CNAME` when deploying.
+Open the printed URL (normally http://127.0.0.1:8000). A plain static HTTP server also works. `npm run build` refreshes homepage metadata, regenerates `fa/index.html`, creates ten localized service pages and rebuilds the eighteen-URL sitemap; commit the generated files so GitHub Pages needs no build step. `.nojekyll` preserves the static output. Keep `CNAME` when deploying.
 
 ## What visitors can do
 
@@ -31,7 +31,7 @@ The Persian version uses formal, fluent written Persian with clear service descr
 
 `site.webmanifest` supplies the install name, standalone display, charcoal launch
 background, dedicated 192/512px icons and a separate safe-zone maskable icon.
-All sixteen routes link to the same manifest and retain the existing root app
+All eighteen routes link to the same manifest and retain the existing root app
 identity. There are no global background or color-scheme overrides: the original
 negative-z-index circuit canvas and native controls retain their previous appearance.
 
@@ -83,7 +83,7 @@ Native dialogs handle focus and Escape. The footer motion control pauses the cir
 
 ## Search setup
 
-All sixteen localized pages declare self-canonical URLs and reciprocal language alternatives. The sitemap lists both homepages, both service overviews, four service pages in each language, and the paired profile-text and image-tool routes. `seo.mjs` is shared with the homepage language controller, and `content/services.mjs` owns service copy. Page titles, descriptions, structured data and visible content stay aligned. Google Search Console and Bing Webmaster verification still require the owner's actual records. A sitemap and metadata do not guarantee indexing or ranking. The .ir domain remains country-associated.
+All eighteen localized pages declare self-canonical URLs and reciprocal language alternatives. The sitemap lists both homepages, both service overviews, four service pages in each language, and the paired profile-text, image-tool and date-tool routes. `seo.mjs` is shared with the homepage language controller, and `content/services.mjs` owns service copy. Page titles, descriptions, structured data and visible content stay aligned. Google Search Console and Bing Webmaster verification still require the owner's actual records. A sitemap and metadata do not guarantee indexing or ranking. The .ir domain remains country-associated.
 
 See [docs/SEO.md](docs/SEO.md) for the page map, owner verification steps and measurement limits. See [AGENTS.md](AGENTS.md) before future edits.
 
@@ -117,3 +117,15 @@ The locale shell can switch while working files remain in memory.
 See [docs/IMAGE_TOOLS.md](docs/IMAGE_TOOLS.md) for limits, encoding trade-offs,
 source files and verification. The existing homepage presentation and splash
 remain unchanged; a new discovery card links to the tool.
+
+## Date and calendar tools
+
+The `#date-tools` workbench is above ONLINE TOOLS on both homepages, with a
+separate crawlable guide at `/tools/date-converter/` and
+`/fa/tools/date-converter/`. Convert Persian, Gregorian and calculated civil
+Hijri dates, calculate age and the next birthday, compare or shift dates, browse
+monthly selected occasions, copy results and download a birthday calendar file.
+The dark interface supports Persian/Arabic digits, an explicit today time zone,
+leap-birthday policies and mobile layouts. All calculations run in the browser.
+Year-specific Iranian holidays cover 1405 only; keep the coverage and Hijri
+method labels visible. See [docs/DATE_TOOLS.md](docs/DATE_TOOLS.md).

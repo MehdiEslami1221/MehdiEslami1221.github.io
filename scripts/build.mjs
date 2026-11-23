@@ -17,6 +17,9 @@ import {
 import { profilePath } from "../content/profile.mjs";
 import { homeImage, renderImagePage } from "./image-pages.mjs";
 import { imagePath } from "../content/image.mjs";
+import { homeDateSection } from "../date-markup.mjs";
+import { renderDatePage } from "./date-pages.mjs";
+import { datePath } from "../content/date.mjs";
 const escape = escapeHTML;
 const decode = (s) =>
   s
@@ -124,6 +127,15 @@ source = source.replace(
   /<!-- image-discovery -->[\s\S]*?<!-- \/image-discovery -->/,
   `<!-- image-discovery -->\n${homeImage()}\n<!-- /image-discovery -->`,
 );
+if (!source.includes("<!-- date-tools -->"))
+  source = source.replace(
+    '<section class="section wrap" id="lab">',
+    '<!-- date-tools --><!-- /date-tools -->\n<section class="section wrap" id="lab">',
+  );
+source = source.replace(
+  /<!-- date-tools -->[\s\S]*?<!-- \/date-tools -->/,
+  `<!-- date-tools -->\n${homeDateSection()}\n<!-- /date-tools -->`,
+);
 source = homeMetadata(source, "en");
 await writeFile("index.html", source);
 await mkdir("fa", { recursive: true });
@@ -154,6 +166,12 @@ for (const lang of ["en", "fa"]) {
   const path = imagePath(lang).slice(1);
   await mkdir(path, { recursive: true });
   await writeFile(path + "index.html", renderImagePage(lang));
+}
+pairs.push([datePath("en"), datePath("fa")]);
+for (const lang of ["en", "fa"]) {
+  const path = datePath(lang).slice(1);
+  await mkdir(path, { recursive: true });
+  await writeFile(path + "index.html", renderDatePage(lang));
 }
 const alternatives = (pair) =>
   ["en", "fa", "x-default"]
