@@ -120,3 +120,13 @@ Screenshot images are edge-to-edge inside each project card, without an image bo
   actual bytes/progress, then decode owned files sequentially. Keep the native
   input enabled while reading. Preserve the separate unfiltered device-file
   picker as well as the image/* picker; both must use the same header checks.
+
+
+## Homepage tool cards
+
+The profile-text and image-tool discovery sections share `.tools-discovery-grid`
+in `index.html`. Keep their existing anchors, copy, links, dark glass styling and
+meteor reflections. `profile.css` lays the pair out in equal desktop columns and
+stacks them at 850px and below. Each card uses a single internal column at full
+desktop size so its description and preview fit without squeezing. Rebuild the
+Persian homepage after edits; do not move this layout onto the standalone tools.

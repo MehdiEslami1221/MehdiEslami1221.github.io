@@ -14,3 +14,17 @@
 @media(prefers-reduced-motion:reduce){.profile-page *{scroll-behavior:auto}}
 .profile-workbench select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath d='m3 5 4 4 4-4' fill='none' stroke='%23bcf36a' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-inline-end:40px}
 html[dir="rtl"] .profile-workbench select{background-position:left 14px center}
+
+/* Paired homepage tools share one row on desktop and stack on smaller screens. */
+.tools-discovery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;padding-block:110px}
+.tools-discovery-grid>.section{width:100%;max-width:none;margin:0;padding-block:0;min-width:0;display:flex;flex-direction:column}
+.tools-discovery-grid .section-heading{margin-bottom:28px}
+.tools-discovery-grid .section-heading h2{font-size:clamp(28px,2.6vw,34px);text-wrap:balance}
+.tools-discovery-grid .profile-discovery{flex:1;grid-template-columns:minmax(0,1fr);align-items:start;align-content:space-between;gap:28px;padding:28px;min-width:0}
+.tools-discovery-grid .profile-discovery h3{font-size:24px}
+.tools-discovery-grid .profile-discovery-preview{font-size:26px;gap:10px}
+.tools-discovery-grid .profile-discovery-preview>span{padding:10px}
+.tools-discovery-grid .image-discovery-art{width:100%;padding:28px;align-self:end}
+@supports(grid-template-rows:subgrid){.tools-discovery-grid>.section{display:grid;grid-template-rows:subgrid;grid-row:span 2;gap:28px}.tools-discovery-grid .section-heading{margin-bottom:0}}
+@media(max-width:850px){.tools-discovery-grid{grid-template-columns:minmax(0,1fr);gap:60px;padding-block:65px}.tools-discovery-grid>.section{display:flex;grid-row:auto}.tools-discovery-grid .section-heading{margin-bottom:25px}.tools-discovery-grid .profile-discovery{flex:none;grid-template-columns:1.2fr 1fr}}
+@media(max-width:650px){.tools-discovery-grid .profile-discovery{grid-template-columns:minmax(0,1fr);padding:24px;gap:22px}.tools-discovery-grid .profile-discovery h3{font-size:23px}.tools-discovery-grid .profile-discovery-preview{font-size:clamp(22px,5vw,26px);gap:8px}.tools-discovery-grid .image-discovery-art{padding:24px}}
