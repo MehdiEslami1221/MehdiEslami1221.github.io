@@ -14,6 +14,16 @@ npm run dev
 
 Open the printed URL (normally http://127.0.0.1:8000). A plain static HTTP server also works. `npm run build` refreshes homepage metadata, regenerates `fa/index.html`, creates ten localized service pages and rebuilds the eighteen-URL sitemap; commit the generated files so GitHub Pages needs no build step. `.nojekyll` preserves the static output. Keep `CNAME` when deploying.
 
+## Homepage priorities
+
+The homepage leads with the introduction, development services and selected
+projects, followed by about/skills, résumé downloads and contact. Services are
+ordered as website development, custom web applications, Java/Spring Boot and
+Android. Free tools come after contact: the image/profile discovery pair (image
+first), date tools and the JSON/text/contrast lab. Programmer’s Day and sourced
+quotes close the main content. Preserve this source order in both languages and
+keep the existing card styles, anchors and generated discovery markers.
+
 ## What visitors can do
 
 - Switch between English and Persian, including right-to-left layout, localized labels, dates and quotations. `/` and `/fa/` contain crawlable content without JavaScript. Language changes preserve the current section and form/tool input. Each explicit URL opens its own language. Switching languages keeps the current input and updates metadata and service links together.
@@ -120,7 +130,8 @@ remain unchanged; a new discovery card links to the tool.
 
 ## Date and calendar tools
 
-The `#date-tools` discovery card is above ONLINE TOOLS on both homepages.
+The `#date-tools` discovery card is in the free-tools area after contact and
+before ONLINE TOOLS on both homepages.
 It opens the complete workbench and crawlable guide at `/tools/date-converter/` and
 `/fa/tools/date-converter/`. Convert Persian, Gregorian and calculated civil
 Hijri dates, calculate age and the next birthday, compare or shift dates, browse

@@ -1,7 +1,8 @@
 # Date conversion and calendar tools
 
-The homepage `#date-tools` section is a single linked discovery card between
-Programmer’s Day and `#lab` (ONLINE TOOLS). It contains no input controls or
+The homepage `#date-tools` section is a single linked discovery card in the
+free-tools area after contact, between the image/profile pair and `#lab`
+(ONLINE TOOLS). It contains no input controls or
 running date controller. Clicking it opens the localized internal tool page. Keep the original lab, two discovery cards, anchors, circuit
 background, meteors, splash, portrait and résumé downloads intact. The complete
 workbench lives exclusively at the bilingual static routes at `/tools/date-converter/` and

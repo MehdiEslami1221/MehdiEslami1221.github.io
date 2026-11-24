@@ -12,7 +12,7 @@ This is the owner's bilingual portfolio at https://mehdieslami.ir on GitHub Page
 
 ## Presentation and navigation
 
-The home sequence is introduction/portrait, technology strip, work, services, Programmer's Day, date tools, lab, profile-text discovery, image-tool discovery, about/skills, sourced quotes, résumé downloads, contact, footer. Cards retain repository links and a separate detail button. The last unfiltered card is wide; filtering uses regular cards. Do not nest buttons in anchors.
+The home sequence is introduction/portrait, technology strip, services, work, about/skills, résumé downloads, contact, image-tool/profile-text discovery pair, date tools, lab, Programmer's Day, sourced quotes, footer. Paid development services and the inquiry path take priority; all free tools follow contact. Within services, keep website development, custom web applications, Java/Spring Boot and Android in that order. Within the paired free discovery cards, image tools precede profile text. Keep this order in the actual HTML so keyboard, screen-reader and visual reading order agree; do not simulate it with CSS order. Cards retain repository links and a separate detail button. The last unfiltered card is wide; filtering uses regular cards. Do not nest buttons in anchors.
 
 All five app images are real local interface captures; see `docs/screenshots.md`. Warehouse uses synthetic local records, Yadban mounts the original Dashboard with a read-only sample API, and VideoFetch shows its actual frontend with the backend disconnected. Do not pass concepts or synthetic metrics off as real screenshots, customers or results. Keep genuine source repository links available without JavaScript.
 
@@ -126,7 +126,8 @@ Screenshot images are edge-to-edge inside each project card, without an image bo
 
 The profile-text and image-tool discovery sections share `.tools-discovery-grid`
 in `index.html`. Keep their existing anchors, copy, links, dark glass styling and
-meteor reflections. `profile.css` lays the pair out in equal desktop columns and
+meteor reflections. Place this pair after contact, with image tools before profile text;
+keep both cards inside the same grid. `profile.css` lays the pair out in equal desktop columns and
 stacks them at 850px and below. Each card uses a single internal column at full
 desktop size so its description and preview fit without squeezing. Rebuild the
 Persian homepage after edits; do not move this layout onto the standalone tools.
