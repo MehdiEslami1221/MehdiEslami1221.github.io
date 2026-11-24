@@ -19,9 +19,9 @@ Open the printed URL (normally http://127.0.0.1:8000). A plain static HTTP serve
 The homepage leads with the introduction, development services and selected
 projects, followed by about/skills, résumé downloads and contact. Services are
 ordered as website development, custom web applications, Java/Spring Boot and
-Android. Free tools come after contact: the image/profile discovery pair (image
-first), date tools and the JSON/text/contrast lab. Programmer’s Day and sourced
-quotes close the main content. Preserve this source order in both languages and
+Android. After contact come Programmer’s Day and sourced
+quotes, followed by the image/profile discovery pair (image first), date tools
+and the JSON/text/contrast lab. Preserve this source order in both languages and
 keep the existing card styles, anchors and generated discovery markers.
 
 ## What visitors can do
@@ -70,6 +70,7 @@ layering fix and checks to run before changing this feature.
 | `index.html`          | English source, `data-en` / `data-fa` text, metadata, project links and initial content             |
 | `fa/index.html`       | Generated static Persian page; rebuild instead of editing directly                                  |
 | `app.js`              | Language controller, form handoff, quotes, motion, dialogs, demos, tools and keyboard menu          |
+| `content/quotes.mjs` | Bilingual sourced quotation collection and rotation interval |
 | `core.mjs`            | Pure date, calendar, contrast, text and stock helpers                                               |
 | `style.css`           | Existing visual identity plus responsive Persian/English extensions and print layout                |
 | `scripts/build.mjs`   | Dependency-free Persian page and sitemap generation                                                 |
@@ -89,7 +90,7 @@ Local storage holds language and motion preferences and favorite profile-style i
 
 ## Accessibility and motion
 
-Native dialogs handle focus and Escape. The footer motion control pauses the circuit and decorative CSS motion; the quote pause control remains separate. Both start paused for reduced-motion preferences. Background animation and quote timers stop when the page is hidden; the clock recalculates on return. Quote rotation pauses on hover, keyboard focus or outside its viewport. The default scene uses gently drifting nodes, chamfered light trails, two ambient light pools and a subtle orbit, with bounded mouse parallax. Occasional single shooting stars leave a brief green reflection on nearby panel edges. The light follows viewport coordinates, with panel measurements bounded to 10Hz while a star is active; pause, reduced motion, hidden tabs and resize clear it. The original celebration scene stays separate. Mobile canvas density, packet count and frame rate are bounded.
+Native dialogs handle focus and Escape. Decorative animation follows the system reduced-motion preference; there are no visitor-facing motion or quote pause buttons. The 16 bilingual quotations in `content/quotes.mjs` rotate in sequence every 10 seconds while visible, with a progress bar and manual next button. Hover and keyboard focus do not interrupt rotation. The progress sweep and transitions are suppressed for reduced motion. Hidden tabs and offscreen quotes stop their timers and start a full interval on return; the clock recalculates on return. The default scene uses gently drifting nodes, chamfered light trails, two ambient light pools and a subtle orbit, with bounded mouse parallax. Occasional single shooting stars leave a brief green reflection on nearby panel edges. The light follows viewport coordinates, with panel measurements bounded to 10Hz while a star is active; pause, reduced motion, hidden tabs and resize clear it. The original celebration scene stays separate. Mobile canvas density, packet count and frame rate are bounded.
 
 ## Search setup
 

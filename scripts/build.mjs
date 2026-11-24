@@ -20,6 +20,7 @@ import { imagePath } from "../content/image.mjs";
 import { homeDateSection } from "../date-markup.mjs";
 import { renderDatePage } from "./date-pages.mjs";
 import { datePath } from "../content/date.mjs";
+import { quotes } from "../content/quotes.mjs";
 const escape = escapeHTML;
 const decode = (s) =>
   s
@@ -106,6 +107,10 @@ function homeMetadata(html, lang) {
   );
 }
 let source = await readFile("index.html", "utf8");
+source = source.replace(
+  /(<span\b[^>]*id="quote-index"[^>]*>)[^<]*(<\/span>)/,
+  (_, open, close) => `${open}01 / ${String(quotes.length).padStart(2, "0")}${close}`,
+);
 source = source.replace(
   /<!-- app-launch-head -->[\s\S]*?<!-- \/app-launch-head -->/,
   `<!-- app-launch-head -->\n${launchHead()}\n<!-- /app-launch-head -->`,

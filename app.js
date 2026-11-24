@@ -9,6 +9,7 @@ import {
   meteorReflection,
 } from "./core.mjs?v=20261120-meteors";
 import { HOME_SEO, SITE_URL, homeSchema } from "./seo.mjs?v=20261123-copy1";
+import { quotes, QUOTE_INTERVAL_MS } from "./content/quotes.mjs?v=20261124-quotes1";
 ("use strict");
 const $ = (selector) => document.querySelector(selector);
 const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -32,16 +33,11 @@ function message(selector, en, fa) {
   el.dataset.fa = fa;
   el.textContent = tr(en, fa);
 }
-let paused = reduced.matches || getSaved("portfolio-motion") === "paused";
-function motionLabel() {
-  const button = $("#motion");
-  button.textContent = paused
-    ? tr("Resume motion", "ادامهٔ انیمیشن‌ها")
-    : tr("Pause motion", "توقف انیمیشن‌ها");
-  button.setAttribute("aria-pressed", String(paused));
+let paused = reduced.matches;
+function syncMotion() {
   document.body.classList.toggle("motion-paused", paused);
 }
-motionLabel();
+syncMotion();
 
 const form = $("#project-form");
 form.addEventListener("submit", (event) => {
@@ -107,109 +103,49 @@ $("#copy-brief").addEventListener("click", async () => {
 });
 
 // Source links stay with each quotation. Rotation never repeats the current entry.
-const quotes = [
-  {
-    text: "Simplicity does not precede complexity, but follows it.",
-    author: "Alan Perlis",
-    fa: "سادگی پیش از پیچیدگی به دست نمی‌آید؛ پس از آن حاصل می‌شود.",
-    faAuthor: "آلن پرلیس",
-    source: "https://www.cs.yale.edu/homes/perlis-alan/quotes.html",
-  },
-  {
-    text: "The tools we use have a profound (and devious!) influence on our thinking habits, and, therefore, on our thinking abilities.",
-    author: "Edsger W. Dijkstra",
-    fa: "ابزارهایی که به کار می‌بریم، تأثیری عمیق بر عادت‌های فکری و در نتیجه بر توانایی اندیشیدن ما دارند.",
-    faAuthor: "ادسخر دایکسترا",
-    source: "https://www.cs.utexas.edu/~EWD/transcriptions/EWD04xx/EWD498.html",
-  },
-  {
-    text: "Premature optimization is the root of all evil.",
-    author: "Donald Knuth",
-    fa: "بهینه‌سازی زودهنگام، ریشهٔ بسیاری از دردسرهاست.",
-    faAuthor: "دونالد کنوت",
-    source:
-      "https://web.stanford.edu/class/archive/cs/cs107/cs107.1224/lectures/16/16-Optimization.html",
-  },
-];
 let quoteIndex = 0;
-let quotePaused = paused;
 let quoteVisible = false;
 let quoteTimer = 0;
-let quoteHovered = false;
-let quoteFocused = false;
+let quoteProgressAnimation;
 const quoteSection = $(".quote-section");
-function quoteLabel() {
-  $("#quote-pause").textContent = quotePaused
-    ? tr("Resume rotation", "ادامهٔ نمایش خودکار")
-    : tr("Pause rotation", "توقف نمایش خودکار");
-  $("#quote-pause").setAttribute("aria-pressed", String(quotePaused));
-}
 function scheduleQuote() {
   clearTimeout(quoteTimer);
-  if (
-    quotePaused ||
-    !quoteVisible ||
-    document.hidden ||
-    quoteHovered ||
-    quoteFocused
-  )
-    return;
-  quoteTimer = setTimeout(() => {
-    nextQuote();
-  }, 14000);
+  quoteProgressAnimation?.cancel();
+  if (!quoteVisible || document.hidden) return;
+  if (!reduced.matches) {
+    quoteProgressAnimation = $("#quote-progress").animate(
+      [{ transform: "scaleX(0)" }, { transform: "scaleX(1)" }],
+      { duration: QUOTE_INTERVAL_MS, easing: "linear", fill: "forwards" },
+    );
+  }
+  quoteTimer = setTimeout(nextQuote, QUOTE_INTERVAL_MS);
 }
 function nextQuote() {
-  quoteIndex =
-    (quoteIndex + 1 + Math.floor(Math.random() * (quotes.length - 1))) %
-    quotes.length;
-  const quote = quotes[quoteIndex];
-  $("#quote-text").textContent = tr(quote.text, quote.fa);
-  $("#quote-author").textContent = tr(quote.author, quote.faAuthor);
-  $("#quote-source").href = quote.source;
-  $("#quote-index").textContent =
-    `${String(quoteIndex + 1).padStart(2, "0")} / 03`;
+  // Visit the full collection before repeating a quote.
+  quoteIndex = (quoteIndex + 1) % quotes.length;
+  renderCurrentQuote();
   const body = $(".quote-body");
   body.classList.remove("changing");
-  // Restart only the short transition; keep the quote area height stable.
   void body.offsetWidth;
   body.classList.add("changing");
   scheduleQuote();
 }
 $("#quote-next").addEventListener("click", nextQuote);
-$("#quote-pause").addEventListener("click", () => {
-  quotePaused = !quotePaused;
-  quoteLabel();
-  scheduleQuote();
-});
-quoteSection.addEventListener("mouseenter", () => {
-  quoteHovered = true;
-  scheduleQuote();
-});
-quoteSection.addEventListener("mouseleave", () => {
-  quoteHovered = false;
-  scheduleQuote();
-});
-quoteSection.addEventListener("focusin", () => {
-  quoteFocused = true;
-  scheduleQuote();
-});
-quoteSection.addEventListener("focusout", (event) => {
-  quoteFocused = quoteSection.contains(event.relatedTarget);
-  scheduleQuote();
-});
 if ("IntersectionObserver" in window) {
   new IntersectionObserver(
     (entries) => {
-      quoteVisible = entries[0].isIntersecting;
+      const visible = entries[0].isIntersecting;
+      if (visible === quoteVisible) return;
+      quoteVisible = visible;
       scheduleQuote();
     },
-    { threshold: 0.2 },
+    { threshold: 0 },
   ).observe(quoteSection);
 } else {
   quoteVisible = true;
   scheduleQuote();
 }
-quoteLabel();
+renderCurrentQuote();
 
 // A living circuit field: drifting constellations, light trails and a quiet orbit.
 // Cap pixel density, connections and frame rate; stop all timers when the tab is hidden.
@@ -584,12 +520,6 @@ function stop() {
   raf = 0;
   draw();
 }
-$("#motion").addEventListener("click", () => {
-  paused = !paused;
-  save("portfolio-motion", paused ? "paused" : "playing");
-  motionLabel();
-  paused ? stop() : start();
-});
 window.addEventListener(
   "pointermove",
   (event) => {
@@ -610,9 +540,7 @@ document.addEventListener("visibilitychange", () => {
 });
 reduced.addEventListener("change", (event) => {
   paused = event.matches;
-  quotePaused = event.matches;
-  motionLabel();
-  quoteLabel();
+  syncMotion();
   scheduleQuote();
   paused ? stop() : start();
 });
@@ -683,8 +611,7 @@ function setLanguage(next, updateHistory = true) {
   $('meta[property="og:image:alt"]').content = imageAlt;
   $('meta[name="twitter:image:alt"]').content = imageAlt;
   $("#site-schema").textContent = JSON.stringify(homeSchema(lang));
-  motionLabel();
-  quoteLabel();
+  syncMotion();
   renderCurrentQuote();
   updateDay();
   filterProjects();
@@ -712,6 +639,9 @@ function renderCurrentQuote() {
   $("#quote-text").textContent = tr(q.text, q.fa);
   $("#quote-author").textContent = tr(q.author, q.faAuthor);
   $("#quote-text").lang = lang;
+  $("#quote-source").href = q.source;
+  const number = (value) => new Intl.NumberFormat(lang === "fa" ? "fa-IR" : "en-US", { minimumIntegerDigits: 2 }).format(value);
+  $("#quote-index").textContent = `${number(quoteIndex + 1)} / ${number(quotes.length)}`;
 }
 
 // Day 256 starts at local midnight in the visitor’s device zone.
@@ -1270,12 +1200,6 @@ function commandList() {
       fa: "تغییر به انگلیسی",
       keys: "language فارسی english زبان",
       run: () => setLanguage(lang === "fa" ? "en" : "fa"),
-    },
-    {
-      en: "Pause / resume motion",
-      fa: "توقف یا ادامهٔ انیمیشن‌ها",
-      keys: "motion animation حرکت انیمیشن",
-      run: () => $("#motion").click(),
     },
     ...Object.entries(projectData).map(([id, p]) => ({
       en: p.name,

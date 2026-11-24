@@ -12,7 +12,7 @@ This is the owner's bilingual portfolio at https://mehdieslami.ir on GitHub Page
 
 ## Presentation and navigation
 
-The home sequence is introduction/portrait, technology strip, services, work, about/skills, résumé downloads, contact, image-tool/profile-text discovery pair, date tools, lab, Programmer's Day, sourced quotes, footer. Paid development services and the inquiry path take priority; all free tools follow contact. Within services, keep website development, custom web applications, Java/Spring Boot and Android in that order. Within the paired free discovery cards, image tools precede profile text. Keep this order in the actual HTML so keyboard, screen-reader and visual reading order agree; do not simulate it with CSS order. Cards retain repository links and a separate detail button. The last unfiltered card is wide; filtering uses regular cards. Do not nest buttons in anchors.
+The home sequence is introduction/portrait, technology strip, services, work, about/skills, résumé downloads, contact, Programmer's Day, sourced quotes, image-tool/profile-text discovery pair, date tools, lab, footer. Paid development services and the inquiry path take priority; all free tools follow contact. Within services, keep website development, custom web applications, Java/Spring Boot and Android in that order. Within the paired free discovery cards, image tools precede profile text. Keep this order in the actual HTML so keyboard, screen-reader and visual reading order agree; do not simulate it with CSS order. Cards retain repository links and a separate detail button. The last unfiltered card is wide; filtering uses regular cards. Do not nest buttons in anchors.
 
 All five app images are real local interface captures; see `docs/screenshots.md`. Warehouse uses synthetic local records, Yadban mounts the original Dashboard with a read-only sample API, and VideoFetch shows its actual frontend with the backend disconnected. Do not pass concepts or synthetic metrics off as real screenshots, customers or results. Keep genuine source repository links available without JavaScript.
 
@@ -22,14 +22,14 @@ All five app images are real local interface captures; see `docs/screenshots.md`
 - All three project demos are explicitly browser-only. DearLater does not send messages or enforce real secrecy; Didgah does not collect research responses; Warehouse does not write real inventory records. Keep negative-stock and quantity checks.
 - JSON formatting uses `JSON.parse` / `JSON.stringify`, never `eval`. Render user text with textContent or form values. Text, contrast and JSON tools make no network calls.
 - Native dialogs provide focus trapping and Escape. Keep close buttons, visible focus indicators, deep-link restoration and keyboard menu behavior. Do not rely only on hover for an action.
-- Footer motion controls affect decorative animation, with a separate quote control. Reduced motion disables effects initially. Pause hidden-tab work and retain bounded canvas nodes, density and frame rate.
+- No footer motion button or quote pause button is shown. Decorative effects follow system reduced motion. Quotes in `content/quotes.mjs` rotate every 10 seconds while visible, including during hover/focus, with a synchronized progress bar and a manual next button. Suppress the progress sweep and transitions for reduced motion; rotation continues. Stop hidden-tab/offscreen quote timers and restart a full interval on return. Keep count and source links synchronized across languages. Retain bounded canvas nodes, density and frame rate.
 - Inquiries only prepare Telegram/email messages. The visitor sends in the destination app; preserve copyable fallback and accurate status. Never put credentials in the site or claim automatic delivery.
 
 ## Verify changes
 
 1. Run `npm run build`, `npm test`, `node --check app.js` and `git diff --check` when relevant inputs changed.
 2. Preview the actual static routes. Check Persian and English at 360px and 1280px; inspect the portrait, card layout, countdown, lab, quote controls and contact form for overflow and legibility.
-3. Check language switching without input loss, project search/filter/empty state, opening/closing project details, a shared deep link, keyboard menu, and motion pause. Exercise altered demos/tools with ordinary and invalid input. Never send a real inquiry as a test.
+3. Check language switching without input loss, project search/filter/empty state, opening/closing project details, a shared deep link, keyboard menu, and system reduced motion. Exercise altered demos/tools with ordinary and invalid input. Never send a real inquiry as a test.
 4. For date changes, test UTC, Tehran, Berlin, Los Angeles, Tokyo and Kiritimati, including different active states at the same instant and summer offsets while the current date is in winter. Also test ordinary/leap years, one second before midnight, the entire holiday and annual rollover. The pure tests do not replace checking the visible celebration preview.
 5. Report checks actually performed and any verification limits. Keep CNAME, `.nojekyll`, canonical URLs, JSON-LD, crawler files, font files and asset provenance intact.
 
@@ -126,7 +126,7 @@ Screenshot images are edge-to-edge inside each project card, without an image bo
 
 The profile-text and image-tool discovery sections share `.tools-discovery-grid`
 in `index.html`. Keep their existing anchors, copy, links, dark glass styling and
-meteor reflections. Place this pair after contact, with image tools before profile text;
+meteor reflections. Place this pair after the Programmer’s Day and quote cards, with image tools before profile text;
 keep both cards inside the same grid. `profile.css` lays the pair out in equal desktop columns and
 stacks them at 850px and below. Each card uses a single internal column at full
 desktop size so its description and preview fit without squeezing. Rebuild the

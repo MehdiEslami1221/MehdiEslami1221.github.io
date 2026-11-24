@@ -66,12 +66,12 @@
       rel="preload"
       type="font/woff2"
     />
-    <link href="/style.css?v=20261122-studio1" rel="stylesheet" />
+    <link href="/style.css?v=20261124-quotes1" rel="stylesheet" />
     <link rel="stylesheet" href="/services.css?v=20261122-studio1" />
     <link rel="stylesheet" href="/profile.css?v=20261123-tools-grid1">
     <link rel="stylesheet" href="/image.css?v=20261123-image3">
     <link rel="stylesheet" href="/date-discovery.css?v=20261123-card1">
-    <script defer="" src="/app.js?v=20261123-copy1" type="module"></script>
+    <script defer="" src="/app.js?v=20261124-quotes1" type="module"></script>
     <meta content="index, follow, max-image-preview:large" name="robots" />
     <meta content="Mehdi Eslami" name="author" />
     <meta content="Mehdi Eslami" property="og:site_name" />
@@ -1182,6 +1182,149 @@
           </form>
         </div>
       </section>
+      <section class="section wrap day-section" id="day">
+        <div class="day-card">
+          <div class="day-copy">
+            <p class="eyebrow">
+              <span
+                data-en="PROGRAMMER’S DAY"
+                data-fa="روز برنامه‌نویس"
+                >روز برنامه‌نویس</span>
+            </p>
+            <h2>
+              <span
+                data-en="Counting down to day 256."
+                data-fa="شمارش معکوس تا روز برنامه‌نویس."
+                >شمارش معکوس تا روز برنامه‌نویس.</span>
+            </h2>
+            <p>
+              <span
+                data-en="Programmer’s Day falls on the 256th day of the year. When it arrives, this page joins the celebration."
+                data-fa="روز برنامه‌نویس، دویست‌وپنجاه‌وششمین روز سال میلادی است. با رسیدن این روز، حال‌وهوای این صفحه هم تغییر می‌کند."
+                >روز برنامه‌نویس، دویست‌وپنجاه‌وششمین روز سال میلادی است. با رسیدن این روز، حال‌وهوای این صفحه هم تغییر می‌کند.</span>
+            </p>
+            <p id="day-date"></p>
+            <a
+              class="source-note"
+              href="https://programmersday.org/en"
+              rel="noopener noreferrer"
+              target="_blank"
+              ><span data-en="Why day 256?" data-fa="چرا روز ۲۵۶؟"
+                >چرا روز ۲۵۶؟</span></a
+            >
+          </div>
+          <div class="day-dashboard">
+            <div aria-hidden="true" class="binary-label">
+              01000001   00000001   10000000
+            </div>
+            <p id="day-message" role="status"></p>
+            <div
+              aria-label="زمان باقی‌مانده تا روز برنامه‌نویس"
+              class="countdown"
+              data-aria-en="Time until Programmer’s Day"
+              data-aria-fa="زمان باقی‌مانده تا روز برنامه‌نویس"
+              id="day-countdown"
+              role="timer"
+            >
+              <div>
+                <b id="count-days">—</b
+                ><span><span data-en="days" data-fa="روز">روز</span></span>
+              </div>
+              <div>
+                <b id="count-hours">—</b
+                ><span><span data-en="hours" data-fa="ساعت">ساعت</span></span>
+              </div>
+              <div>
+                <b id="count-minutes">—</b
+                ><span
+                  ><span data-en="minutes" data-fa="دقیقه">دقیقه</span></span
+                >
+              </div>
+              <div>
+                <b id="count-seconds">—</b
+                ><span
+                  ><span data-en="seconds" data-fa="ثانیه">ثانیه</span></span
+                >
+              </div>
+            </div>
+            <div class="day-actions">
+              <button
+                aria-pressed="false"
+                class="button secondary"
+                id="celebrate-preview"
+                type="button"
+              >
+                <span
+                  data-en="Preview the celebration"
+                  data-fa="پیش‌نمایش جشن"
+                  >پیش‌نمایش جشن</span></button
+              ><button class="text-link" id="calendar-save" type="button">
+                <span data-en="Save the date" data-fa="ذخیره در تقویم"
+                  >ذخیره در تقویم</span>
+              </button>
+            </div>
+            <p class="muted small">
+              <span
+                data-en="Calendar and countdown follow your device’s time zone."
+                data-fa="تاریخ و شمارش معکوس بر اساس منطقهٔ زمانی دستگاه شما محاسبه می‌شود."
+                >تاریخ و شمارش معکوس بر اساس منطقهٔ زمانی دستگاه شما محاسبه می‌شود.</span>
+              <bdi id="day-zone" dir="ltr"></bdi>
+            </p>
+          </div>
+        </div>
+      </section>
+      <section aria-labelledby="quote-heading" class="quote-section wrap" id="quotes">
+        <div class="quote-card">
+        <div class="quote-top">
+          <h2 id="quote-heading">
+            <span data-en="From the people behind the code" data-fa="از زبان برنامه‌نویسان"
+              >از زبان برنامه‌نویسان</span>
+          </h2>
+          <span class="quote-index" id="quote-index" dir="ltr">01 / 16</span>
+        </div>
+        <div class="quote-body">
+          <span aria-hidden="true" class="quote-mark">“</span>
+          <figure>
+            <blockquote id="quote-text">سادگی پیش از پیچیدگی به دست نمی‌آید؛ پس از آن حاصل می‌شود.</blockquote>
+            <figcaption>
+              <span id="quote-author">آلن پرلیس</span
+              ><a
+                href="https://www.cs.yale.edu/homes/perlis-alan/quotes.html"
+                id="quote-source"
+                rel="noopener noreferrer"
+                target="_blank"
+                ><span data-en="Read the source ↗" data-fa="منبع جمله"
+                  >منبع جمله</span></a
+              >
+            </figcaption>
+          </figure>
+        </div>
+        <div class="quote-timing">
+          <span data-en="A new quote every 10 seconds" data-fa="هر ۱۰ ثانیه، یک جملهٔ تازه">هر ۱۰ ثانیه، یک جملهٔ تازه</span>
+          <div class="quote-track" aria-hidden="true"><span id="quote-progress"></span></div>
+        </div>
+        <div class="quote-bottom">
+          <span
+            ><span
+              data-en="Ideas on code, work and life."
+              data-fa="نگاهی به کدنویسی، کار و زندگی از زبان چهره‌های فناوری."
+              >نگاهی به کدنویسی، کار و زندگی از زبان چهره‌های فناوری.</span></span
+          >
+          <div>
+            <button
+              aria-label="نمایش جملهٔ بعدی"
+              data-aria-en="Show another programming quote"
+              data-aria-fa="نمایش جملهٔ بعدی"
+              id="quote-next"
+              type="button"
+            >
+              <span data-en="Next quote ↗" data-fa="جملهٔ بعدی"
+                >جملهٔ بعدی</span>
+            </button>
+          </div>
+        </div>
+        </div>
+      </section>
       <div class="wrap tools-discovery-grid">
       <!-- image-discovery -->
 <section class="section wrap" id="image-tools" aria-labelledby="image-discovery-heading"><div class="section-heading"><div><p class="eyebrow"><span data-en="IMAGE TOOLS" data-fa="ابزارهای عکس">ابزارهای عکس</span></p><h2 id="image-discovery-heading"><span data-en="Compress and resize your photos." data-fa="کاهش حجم و تغییر اندازهٔ عکس.">کاهش حجم و تغییر اندازهٔ عکس.</span></h2></div></div><a class="profile-discovery image-discovery" href="/fa/tools/image-optimizer/" data-href-en="/tools/image-optimizer/" data-href-fa="/fa/tools/image-optimizer/"><div><h3><span data-en="Image compressor &amp; resizer" data-fa="کاهش حجم و تغییر اندازهٔ عکس">کاهش حجم و تغییر اندازهٔ عکس</span></h3><p><span data-en="Set a maximum file size, change dimensions or convert images to WebP. Check the preview and download your photos individually or in a ZIP file." data-fa="حداکثر حجم و ابعاد عکس را تعیین کنید یا فرمت آن را تغییر دهید. نتیجه را ببینید و عکس‌ها را تکی یا در یک فایل ZIP دانلود کنید.">حداکثر حجم و ابعاد عکس را تعیین کنید یا فرمت آن را تغییر دهید. نتیجه را ببینید و عکس‌ها را تکی یا در یک فایل ZIP دانلود کنید.</span></p><span class="profile-open"><span data-en="Edit your images" data-fa="ویرایش عکس">ویرایش عکس</span></span></div><div class="image-discovery-art" aria-hidden="true"><span>JPG · PNG · WebP</span><strong>1920 × 1080</strong><span><span data-en="RESIZE · CROP · CONVERT" data-fa="تغییر اندازه · برش · تبدیل فرمت">تغییر اندازه · برش · تبدیل فرمت</span></span></div></a></section>
@@ -1336,155 +1479,12 @@
           </div>
         </div>
       </section>
-      <section class="section wrap day-section" id="day">
-        <div class="day-card">
-          <div class="day-copy">
-            <p class="eyebrow">
-              <span
-                data-en="PROGRAMMER’S DAY"
-                data-fa="روز برنامه‌نویس"
-                >روز برنامه‌نویس</span>
-            </p>
-            <h2>
-              <span
-                data-en="Counting down to day 256."
-                data-fa="شمارش معکوس تا روز برنامه‌نویس."
-                >شمارش معکوس تا روز برنامه‌نویس.</span>
-            </h2>
-            <p>
-              <span
-                data-en="Programmer’s Day falls on the 256th day of the year. When it arrives, this page joins the celebration."
-                data-fa="روز برنامه‌نویس، دویست‌وپنجاه‌وششمین روز سال میلادی است. با رسیدن این روز، حال‌وهوای این صفحه هم تغییر می‌کند."
-                >روز برنامه‌نویس، دویست‌وپنجاه‌وششمین روز سال میلادی است. با رسیدن این روز، حال‌وهوای این صفحه هم تغییر می‌کند.</span>
-            </p>
-            <p id="day-date"></p>
-            <a
-              class="source-note"
-              href="https://programmersday.org/en"
-              rel="noopener noreferrer"
-              target="_blank"
-              ><span data-en="Why day 256?" data-fa="چرا روز ۲۵۶؟"
-                >چرا روز ۲۵۶؟</span></a
-            >
-          </div>
-          <div class="day-dashboard">
-            <div aria-hidden="true" class="binary-label">
-              01000001   00000001   10000000
-            </div>
-            <p id="day-message" role="status"></p>
-            <div
-              aria-label="زمان باقی‌مانده تا روز برنامه‌نویس"
-              class="countdown"
-              data-aria-en="Time until Programmer’s Day"
-              data-aria-fa="زمان باقی‌مانده تا روز برنامه‌نویس"
-              id="day-countdown"
-              role="timer"
-            >
-              <div>
-                <b id="count-days">—</b
-                ><span><span data-en="days" data-fa="روز">روز</span></span>
-              </div>
-              <div>
-                <b id="count-hours">—</b
-                ><span><span data-en="hours" data-fa="ساعت">ساعت</span></span>
-              </div>
-              <div>
-                <b id="count-minutes">—</b
-                ><span
-                  ><span data-en="minutes" data-fa="دقیقه">دقیقه</span></span
-                >
-              </div>
-              <div>
-                <b id="count-seconds">—</b
-                ><span
-                  ><span data-en="seconds" data-fa="ثانیه">ثانیه</span></span
-                >
-              </div>
-            </div>
-            <div class="day-actions">
-              <button
-                aria-pressed="false"
-                class="button secondary"
-                id="celebrate-preview"
-                type="button"
-              >
-                <span
-                  data-en="Preview the celebration"
-                  data-fa="پیش‌نمایش جشن"
-                  >پیش‌نمایش جشن</span></button
-              ><button class="text-link" id="calendar-save" type="button">
-                <span data-en="Save the date" data-fa="ذخیره در تقویم"
-                  >ذخیره در تقویم</span>
-              </button>
-            </div>
-            <p class="muted small">
-              <span
-                data-en="Calendar and countdown follow your device’s time zone."
-                data-fa="تاریخ و شمارش معکوس بر اساس منطقهٔ زمانی دستگاه شما محاسبه می‌شود."
-                >تاریخ و شمارش معکوس بر اساس منطقهٔ زمانی دستگاه شما محاسبه می‌شود.</span>
-              <bdi id="day-zone" dir="ltr"></bdi>
-            </p>
-          </div>
-        </div>
-      </section>
-      <section aria-labelledby="quote-heading" class="quote-section wrap">
-        <div class="quote-top">
-          <h2 id="quote-heading">
-            <span data-en="From the people behind the code" data-fa="از زبان برنامه‌نویسان"
-              >از زبان برنامه‌نویسان</span>
-          </h2>
-          <span class="quote-index" id="quote-index">01 / 03</span>
-        </div>
-        <div class="quote-body">
-          <span aria-hidden="true" class="quote-mark">“</span>
-          <figure>
-            <blockquote id="quote-text">سادگی پیش از پیچیدگی به دست نمی‌آید؛ پس از آن حاصل می‌شود.</blockquote>
-            <figcaption>
-              <span id="quote-author">آلن پرلیس</span
-              ><a
-                href="https://www.cs.yale.edu/homes/perlis-alan/quotes.html"
-                id="quote-source"
-                rel="noopener noreferrer"
-                target="_blank"
-                ><span data-en="Read the source ↗" data-fa="منبع جمله"
-                  >منبع جمله</span></a
-              >
-            </figcaption>
-          </figure>
-        </div>
-        <div class="quote-bottom">
-          <span
-            ><span
-              data-en="A selection of quotes from programmers and computer scientists."
-              data-fa="چند جمله از برنامه‌نویسان و پژوهشگران علوم رایانه."
-              >چند جمله از برنامه‌نویسان و پژوهشگران علوم رایانه.</span></span
-          >
-          <div>
-            <button aria-pressed="false" id="quote-pause" type="button">
-              <span data-en="Pause rotation" data-fa="توقف نمایش خودکار"
-                >توقف نمایش خودکار</span></button
-            ><button
-              aria-label="نمایش جملهٔ بعدی"
-              data-aria-en="Show another programming quote"
-              data-aria-fa="نمایش جملهٔ بعدی"
-              id="quote-next"
-              type="button"
-            >
-              <span data-en="Next quote ↗" data-fa="جملهٔ بعدی"
-                >جملهٔ بعدی</span>
-            </button>
-          </div>
-        </div>
-      </section>
     </main>
     <footer class="wrap">
       <a class="footer-mark" dir="ltr" href="#" aria-label="صفحهٔ اصلی مهدی اسلامی" data-aria-en="Mehdi Eslami home" data-aria-fa="صفحهٔ اصلی مهدی اسلامی"><img src="/assets/logo.svg" alt="" width="48" height="36" /></a
       ><span
         ><span data-en="© 2026 Mehdi Eslami" data-fa="© ۲۰۲۶ مهدی اسلامی"
           >© ۲۰۲۶ مهدی اسلامی</span></span
-      ><button aria-pressed="false" id="motion" type="button">
-        <span data-en="Pause background ◌" data-fa="توقف انیمیشن‌ها"
-          >توقف انیمیشن‌ها</span></button
       ><a href="#"
         ><span data-en="BACK TO TOP ↑" data-fa="بازگشت به بالا"
           >بازگشت به بالا</span></a

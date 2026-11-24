@@ -2199,10 +2199,6 @@ article.project {
 footer {
   font-size: 12px;
 }
-#motion {
-  font-size: 13px;
-  min-height: 44px;
-}
 footer a {
   min-height: 36px;
   display: inline-flex;
@@ -3249,4 +3245,130 @@ article.project .project-info, article.project .project-actions { background-col
     backdrop-filter: blur(4px) saturate(115%);
     -webkit-backdrop-filter: blur(4px) saturate(115%);
   }
+}
+
+/* Sourced quotations sit directly between day 256 and the free tool cards. */
+#quotes {
+  padding-block: 0 32px;
+  border: 0;
+}
+.quote-card {
+  padding: clamp(22px, 3.5vw, 42px);
+  border: 1px solid #d8f4c426;
+  border-radius: 20px;
+  background: radial-gradient(ellipse at 100% 0, #bcf36a0b, transparent 65%), #0c130fe0;
+  box-shadow: inset 0 1px 0 #ffffff0a;
+}
+@supports (backdrop-filter: blur(4px)) {
+  .quote-card { backdrop-filter: blur(4px) saturate(115%); }
+}
+#quotes .quote-top {
+  gap: 16px;
+  padding-block-end: 20px;
+  border-bottom: 1px solid var(--line);
+}
+#quotes .quote-top h2 {
+  margin: 0;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.7;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text);
+}
+#quotes .quote-index {
+  flex-shrink: 0;
+  padding: 7px 12px;
+  border: 1px solid #bcf36a26;
+  border-radius: 100px;
+  background: #bcf36a08;
+  font-size: 12px;
+  color: var(--accent);
+  white-space: nowrap;
+}
+#quotes .quote-body {
+  min-height: 245px;
+  gap: 24px;
+  padding-block: 28px;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+}
+#quotes .quote-mark {
+  font-size: 100px;
+  color: #bcf36a45;
+  margin-top: 8px;
+}
+#quotes blockquote {
+  font-size: clamp(23px, 2.4vw, 30px);
+  line-height: 1.8;
+  letter-spacing: -0.3px;
+  max-width: 900px;
+}
+#quotes figcaption {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+  margin-top: 24px;
+}
+#quotes #quote-author { font-size: 15px; font-weight: 600; }
+#quotes #quote-source { font-size: 12px; color: #a4afa3; padding-block: 8px; }
+#quotes #quote-source:hover { color: var(--accent); }
+.quote-timing {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 12px;
+  color: #acb5aa;
+}
+.quote-timing > span { flex-shrink: 0; }
+.quote-track {
+  height: 3px;
+  flex: 1;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #ffffff12;
+}
+#quote-progress {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+html[lang="fa"] #quote-progress { transform-origin: right; }
+#quotes .quote-bottom {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  font-family: inherit;
+  color: #a4afa3;
+  font-size: 12px;
+  line-height: 1.9;
+}
+#quotes .quote-bottom > div { width: auto; flex-shrink: 0; }
+#quotes .quote-bottom button {
+  background: #bcf36a0b;
+  border-color: #bcf36a33;
+  border-radius: 10px;
+  padding-inline: 18px;
+  color: var(--accent);
+  white-space: nowrap;
+}
+html[lang="fa"] #quotes blockquote { letter-spacing: 0; line-height: 1.9; }
+@media (max-width: 600px) {
+  .quote-card { border-radius: 16px; }
+  #quotes .quote-top h2 { font-size: 14px; }
+  #quotes .quote-body { gap: 10px; min-height: 340px; }
+  #quotes .quote-mark { font-size: 55px; }
+  #quotes figcaption { gap: 4px 16px; }
+  .quote-timing { flex-direction: column; align-items: stretch; gap: 12px; }
+  .quote-track { flex: none; width: 100%; }
+  #quotes .quote-bottom { align-items: flex-start; gap: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .quote-track { display: none; }
 }
