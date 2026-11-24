@@ -1114,10 +1114,6 @@ document.querySelectorAll("dialog").forEach((dialog) => {
   });
 });
 window.addEventListener("hashchange", syncProjectHash);
-$("#overview-open").addEventListener("click", () =>
-  $("#overview-dialog").showModal(),
-);
-$("#print-overview").addEventListener("click", () => window.print());
 
 function commandList() {
   return [

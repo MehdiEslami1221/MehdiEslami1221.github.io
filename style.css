@@ -1835,10 +1835,6 @@ select {
   flex-wrap: wrap;
   gap: 18px 25px;
 }
-.actions #overview-open {
-  font-size: 13px;
-  color: #a7b39e;
-}
 .hero {
   padding-bottom: 15px;
 }
@@ -2428,31 +2424,6 @@ body:has(dialog[open]) {
   font-size: 45px;
   color: var(--accent);
 }
-.overview-dialog {
-  max-width: 650px;
-}
-.overview-name {
-  font-size: 30px;
-  color: var(--accent);
-}
-.overview-skills {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  direction: ltr;
-}
-.overview-skills span {
-  font: 12px monospace;
-  padding: 7px 10px;
-  border: 1px solid var(--line);
-  border-radius: 4px;
-}
-.overview-dialog ul {
-  padding-inline-start: 24px;
-}
-.overview-dialog li {
-  padding-block: 9px;
-}
 .command-dialog {
   max-width: 600px;
 }
@@ -2945,45 +2916,7 @@ html[lang="fa"] .countdown {
   }
 }
 @media print {
-  body:has(#overview-dialog[open]) {
-    background: #fff !important;
-    color: #111 !important;
-    font:
-      14px Arial,
-      sans-serif;
-  }
-  body:has(#overview-dialog[open]) > *:not(#overview-dialog) {
-    display: none !important;
-  }
-  #overview-dialog[open] {
-    position: static;
-    display: block;
-    width: 100%;
-    max-width: none;
-    max-height: none;
-    border: 0;
-    box-shadow: none;
-    background: white;
-    color: #111;
-    padding: 20px;
-  }
-  dialog::backdrop {
-    display: none;
-  }
-  #overview-dialog .dialog-close,
-  #overview-dialog .tool-actions {
-    display: none;
-  }
-  #overview-dialog p,
-  #overview-dialog a,
-  #overview-dialog h2,
-  #overview-dialog h3 {
-    color: #111 !important;
-  }
-  #overview-dialog .overview-skills span {
-    border-color: #777;
-    color: #111;
-  }
+  dialog::backdrop { display: none; }
 }
 :root {
   color-scheme: dark;

@@ -12,6 +12,8 @@ This is the owner's bilingual portfolio at https://mehdieslami.ir on GitHub Page
 
 ## Presentation and navigation
 
+The hero keeps the inquiry and project links only; the separate quick-introduction button/dialog and its print action are retired. Keep the full `#about` section below.
+
 The home sequence is introduction/portrait, technology strip, services, work, about/skills, résumé downloads, contact, Programmer's Day, sourced quotes, image-tool/profile-text discovery pair, date tools, lab, footer. Paid development services and the inquiry path take priority; all free tools follow contact. Within services, keep website development, custom web applications, Java/Spring Boot and Android in that order. Within the paired free discovery cards, image tools precede profile text. Keep this order in the actual HTML so keyboard, screen-reader and visual reading order agree; do not simulate it with CSS order. Cards retain repository links and a separate detail button. The last unfiltered card is wide; filtering uses regular cards. Do not nest buttons in anchors.
 
 All five app images are real local interface captures; see `docs/screenshots.md`. Warehouse uses synthetic local records, Yadban mounts the original Dashboard with a read-only sample API, and VideoFetch shows its actual frontend with the backend disconnected. Do not pass concepts or synthetic metrics off as real screenshots, customers or results. Keep genuine source repository links available without JavaScript.
