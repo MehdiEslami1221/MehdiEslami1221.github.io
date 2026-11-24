@@ -5,7 +5,7 @@ import { quotes } from "../content/quotes.mjs";
 
 function clock() {
   let time = 0, serial = 0;
-  const tasks = new Map(), changes = [], ticks = [];
+  const tasks = new Map(), changes = [], ticks = [], states = [];
   const rotation = createQuoteRotation({
     count: quotes.length,
     now: () => time,
@@ -17,6 +17,7 @@ function clock() {
     clearTimer: id => tasks.delete(id),
     onChange: index => changes.push({ index, time }),
     onTick: (fraction, seconds) => ticks.push({ fraction, seconds }),
+    onState: (fraction, running) => states.push({ fraction, running }),
   });
   function advance(ms) {
     const end = time + ms;
@@ -29,7 +30,7 @@ function clock() {
     }
     time = end;
   }
-  return { rotation, changes, ticks, tasks, advance };
+  return { rotation, changes, ticks, states, tasks, advance };
 }
 
 test("Quotes advance at 10 seconds with a synchronized progress reset", () => {
@@ -85,6 +86,27 @@ test("The complete quote collection is visited before repeating", () => {
   c.rotation.next();
   assert.equal(c.changes.at(-1).index, 0);
   assert.equal(c.tasks.size, 0);
+});
+
+test("Ring animation state follows exact remaining time without restarting on text ticks", () => {
+  const c = clock();
+  c.rotation.start();
+  assert.deepEqual(c.states, [{ fraction: 1, running: true }]);
+  c.advance(1250);
+  assert.equal(c.states.length, 1);
+  c.rotation.refresh();
+  assert.deepEqual(c.states.at(-1), { fraction: 0.875, running: true });
+  c.rotation.stop();
+  assert.deepEqual(c.states.at(-1), { fraction: 0.875, running: false });
+  c.advance(60_000);
+  c.rotation.start();
+  assert.deepEqual(c.states.at(-1), { fraction: 0.875, running: true });
+  c.advance(8750);
+  assert.deepEqual(c.changes.at(-1), { index: 1, time: 70_000 });
+  assert.deepEqual(c.states.at(-1), { fraction: 1, running: true });
+  c.rotation.next();
+  assert.deepEqual(c.states.at(-1), { fraction: 1, running: true });
+  assert.equal(c.tasks.size, 1);
 });
 
 test("Every bilingual excerpt has a distinct text, author and HTTPS source", () => {

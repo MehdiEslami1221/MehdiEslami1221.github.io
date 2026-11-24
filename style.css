@@ -3333,24 +3333,35 @@ article.project .project-info, article.project .project-actions { background-col
   color: #a6b59c;
 }
 .quote-panel .quote-timing {
-  display: grid;
+  display: flex;
+  align-items: center;
   flex: 1;
   min-width: 0;
   width: auto;
-  gap: 10px;
-  justify-content: stretch;
+  gap: 14px;
+  justify-content: flex-start;
 }
-.quote-panel .quote-timer { font-size: 14px; line-height: 1.8; }
-.quote-panel #quote-countdown { color: #d5e8c9; font-variant-numeric: tabular-nums; }
-.quote-progress { height: 3px; background: #bcf36a15; border-radius: 4px; overflow: hidden; }
-.quote-progress i {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: #bcf36a;
-  transform-origin: left center;
+.quote-panel .quote-ring {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: 0 0 52px;
+  width: 52px;
+  height: 52px;
 }
-html[dir="rtl"] .quote-progress i { transform-origin: right center; }
+.quote-ring svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+.quote-ring circle { fill: none; stroke-width: 2.5; }
+.quote-ring-track { stroke: #bcf36a20; }
+#quote-ring-fill { stroke: var(--accent); stroke-linecap: round; }
+.quote-panel #quote-countdown {
+  color: #d5e8c9;
+  font-size: 16px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.quote-panel .quote-timer { display: grid; gap: 2px; font-size: 14px; line-height: 1.8; }
+.quote-timer small { color: #899783; font: inherit; font-size: 12px; }
 .quote-panel #quote-next {
   flex: 0 0 auto;
   min-height: 44px;
@@ -3374,7 +3385,8 @@ html[dir="rtl"] .quote-progress i { transform-origin: right center; }
   .quote-panel .quote-body blockquote { font-size: 21px; line-height: 1.9; min-block-size: 10em; }
   .quote-panel .quote-body figcaption { gap: 10px; font-size: 15px; }
   .quote-panel .quote-body figcaption a { font-size: 13px; }
-  .quote-panel .quote-bottom { gap: 18px; }
+  .quote-panel .quote-bottom { gap: 14px; }
+  .quote-panel .quote-timing { gap: 10px; }
   .quote-panel #quote-next { padding-inline: 12px; font-size: 13px; }
   .quote-panel .quote-timer { font-size: 13px; }
 }

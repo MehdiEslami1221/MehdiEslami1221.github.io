@@ -5,6 +5,7 @@ export function createQuoteRotation({
   count,
   onChange,
   onTick,
+  onState = () => {},
   now = () => performance.now(),
   setTimer = setTimeout,
   clearTimer = clearTimeout,
@@ -12,12 +13,14 @@ export function createQuoteRotation({
   if (!Number.isInteger(count) || count < 1) throw new RangeError("quote count");
   let index = 0, running = false, remaining = QUOTE_INTERVAL, deadline = 0, timer;
   const report = () => onTick(remaining / QUOTE_INTERVAL, Math.ceil(remaining / 1000));
+  const reportState = () => onState(remaining / QUOTE_INTERVAL, running);
   function next() {
     index = (index + 1) % count;
     remaining = QUOTE_INTERVAL;
     deadline = now() + remaining;
     onChange(index);
     report();
+    reportState();
   }
   function tick() {
     if (!running) return;
@@ -28,11 +31,16 @@ export function createQuoteRotation({
   }
   return {
     next,
-    refresh: report,
+    refresh() {
+      if (running) remaining = Math.max(0, deadline - now());
+      report();
+      reportState();
+    },
     start() {
       if (running) return;
       running = true;
       deadline = now() + remaining;
+      reportState();
       tick();
     },
     stop() {
@@ -41,6 +49,7 @@ export function createQuoteRotation({
       running = false;
       clearTimer(timer);
       report();
+      reportState();
     },
   };
 }

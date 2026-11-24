@@ -10,7 +10,7 @@ import {
 } from "./core.mjs?v=20261120-meteors";
 import { HOME_SEO, SITE_URL, homeSchema } from "./seo.mjs?v=20261123-copy1";
 import { quotes } from "./content/quotes.mjs?v=20261124-quotes1";
-import { createQuoteRotation } from "./quote-rotation.mjs?v=20261124-quotes1";
+import { createQuoteRotation, QUOTE_INTERVAL } from "./quote-rotation.mjs?v=20261124-ring1";
 ("use strict");
 const $ = (selector) => document.querySelector(selector);
 const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -98,6 +98,20 @@ $("#copy-brief").addEventListener("click", async () => {
 
 // All entries are shown before the cycle repeats. Hover/focus never stop rotation.
 let quoteIndex = 0;
+let quoteRingAnimation;
+const quoteRing = $("#quote-ring-fill");
+function animateQuoteRing(fraction, running) {
+  quoteRingAnimation?.cancel();
+  const offset = String((1 - fraction) * 100);
+  quoteRing.style.strokeDashoffset = offset;
+  if (running && !reduced.matches && typeof quoteRing.animate === "function") {
+    // Let the browser interpolate every frame; the text clock never drives the ring.
+    quoteRingAnimation = quoteRing.animate(
+      [{ strokeDashoffset: offset }, { strokeDashoffset: "100" }],
+      { duration: fraction * QUOTE_INTERVAL, easing: "linear", fill: "forwards" },
+    );
+  }
+}
 const quoteRotation = createQuoteRotation({
   count: quotes.length,
   onChange(index) {
@@ -111,9 +125,13 @@ const quoteRotation = createQuoteRotation({
     }
   },
   onTick(fraction, seconds) {
-    $("#quote-progress-fill").style.transform = `scaleX(${fraction})`;
-    $("#quote-countdown").textContent = new Intl.NumberFormat(lang).format(seconds);
+    const counter = $("#quote-countdown");
+    const text = new Intl.NumberFormat(lang).format(seconds);
+    if (counter.textContent !== text) counter.textContent = text;
+    if (reduced.matches || typeof quoteRing.animate !== "function")
+      quoteRing.style.strokeDashoffset = String((1 - seconds / (QUOTE_INTERVAL / 1000)) * 100);
   },
+  onState: animateQuoteRing,
 });
 $("#quote-next").addEventListener("click", () => quoteRotation.next());
 if (!document.hidden) quoteRotation.start();
@@ -512,6 +530,7 @@ document.addEventListener("visibilitychange", () => {
 reduced.addEventListener("change", (event) => {
   paused = event.matches;
   syncMotionPreference();
+  quoteRotation.refresh();
   paused ? stop() : start();
 });
 let resizeTimer;

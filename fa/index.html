@@ -66,12 +66,12 @@
       rel="preload"
       type="font/woff2"
     />
-    <link href="/style.css?v=20261124-quotes1" rel="stylesheet" />
+    <link href="/style.css?v=20261124-ring1" rel="stylesheet" />
     <link rel="stylesheet" href="/services.css?v=20261122-studio1" />
     <link rel="stylesheet" href="/profile.css?v=20261123-tools-grid1">
     <link rel="stylesheet" href="/image.css?v=20261123-image3">
     <link rel="stylesheet" href="/date-discovery.css?v=20261123-card1">
-    <script defer="" src="/app.js?v=20261124-quotes1" type="module"></script>
+    <script defer="" src="/app.js?v=20261124-ring1" type="module"></script>
     <meta content="index, follow, max-image-preview:large" name="robots" />
     <meta content="Mehdi Eslami" name="author" />
     <meta content="Mehdi Eslami" property="og:site_name" />
@@ -1292,8 +1292,14 @@
           </div>
           <div class="quote-bottom">
             <div class="quote-timing" aria-hidden="true">
-              <span class="quote-timer"><span data-en="Next in" data-fa="جملهٔ بعدی تا">جملهٔ بعدی تا</span> <bdi id="quote-countdown">10</bdi> <span data-en="seconds" data-fa="ثانیه">ثانیه</span></span>
-              <div class="quote-progress"><i id="quote-progress-fill"></i></div>
+              <div class="quote-ring">
+                <svg viewBox="0 0 52 52" width="52" height="52" focusable="false">
+                  <circle class="quote-ring-track" cx="26" cy="26" r="22" />
+                  <circle id="quote-ring-fill" cx="26" cy="26" r="22" pathLength="100" stroke-dasharray="100" stroke-dashoffset="0" />
+                </svg>
+                <bdi id="quote-countdown">10</bdi>
+              </div>
+              <span class="quote-timer"><span data-en="Until the next quote" data-fa="تا جملهٔ بعدی">تا جملهٔ بعدی</span><small data-en="seconds" data-fa="ثانیه">ثانیه</small></span>
             </div>
             <button aria-label="نمایش جملهٔ بعدی" data-aria-en="Show the next quote" data-aria-fa="نمایش جملهٔ بعدی" id="quote-next" type="button"><span data-en="Next quote" data-fa="جملهٔ بعدی">جملهٔ بعدی</span></button>
           </div>
