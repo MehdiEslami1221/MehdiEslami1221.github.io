@@ -11,6 +11,7 @@ import {
 import { HOME_SEO, SITE_URL, homeSchema } from "./seo.mjs?v=20261123-copy1";
 import { quotes } from "./content/quotes.mjs?v=20261124-quotes1";
 import { createQuoteRotation, QUOTE_INTERVAL } from "./quote-rotation.mjs?v=20261124-ring1";
+import { createBlogSection } from "./blog.js?v=20261124-blog1";
 ("use strict");
 const $ = (selector) => document.querySelector(selector);
 const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -20,6 +21,7 @@ const save = (key, value) => {
   } catch {}
 };
 let lang = document.documentElement.lang;
+const blogSection = createBlogSection($("#blog"), () => lang);
 const tr = (en, fa) => (lang === "fa" ? fa : en);
 function message(selector, en, fa) {
   const el = $(selector);
@@ -571,6 +573,7 @@ function setLanguage(next, updateHistory = true) {
   document.documentElement.lang = lang;
   document.documentElement.dir = lang === "fa" ? "rtl" : "ltr";
   localize();
+  blogSection.render();
   save("portfolio-language", lang);
   const switcher = $(".language-switch");
   switcher.textContent = lang === "fa" ? "EN" : "فارسی";
@@ -1308,6 +1311,7 @@ window.addEventListener("resize", updateProgress, { passive: true });
 // The explicit URL owns the language; opening an English result stays English.
 const initial = location.pathname.startsWith("/fa") ? "fa" : "en";
 setLanguage(initial, false);
+blogSection.load();
 updateDay();
 scheduleDay();
 updateProgress();

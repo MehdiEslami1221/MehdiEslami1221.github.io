@@ -17,7 +17,7 @@ Open the printed URL (normally http://127.0.0.1:8000). A plain static HTTP serve
 ## Homepage priorities
 
 The homepage leads with the introduction, development services and selected
-projects, followed by about/skills, résumé downloads and contact. Services are
+projects, followed by recent blog posts, about/skills, résumé downloads and contact. Services are
 ordered as website development, custom web applications, Java/Spring Boot and
 Android. After contact come Programmer’s Day and its quote card, then the free tools:
 the image/profile discovery pair (image first), date tools and the JSON/text/contrast lab. Preserve this source order in both languages and
@@ -141,3 +141,7 @@ The dark interface supports Persian/Arabic digits, an explicit today time zone,
 leap-birthday policies and mobile layouts. All calculations run in the browser.
 Occasion lists and official-holiday data are not included; keep the calculated
 Hijri method label visible. See [docs/DATE_TOOLS.md](docs/DATE_TOOLS.md).
+
+## Recent blog posts
+
+The homepage loads up to four published posts from the blog's public JSON snapshot. It refreshes on a new page visit after a successful blog deployment, without rebuilding the portfolio. Persian posts remain readable in the English interface and carry a language label. A native blog link remains available if JavaScript or the feed is unavailable. `blog.js`, `blog-feed.mjs` and `blog.css` own this integration.
