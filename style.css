@@ -804,12 +804,7 @@ footer {
   width: 48px;
   height: 36px;
 }
-#motion {
-  background: none;
-  border: 0;
-  color: #87917f;
-  font-size: 10px;
-}
+
 .skip {
   position: fixed;
   top: -100px;
@@ -1595,10 +1590,7 @@ footer {
     font-size: 10px;
     gap: 20px;
   }
-  #motion {
-    min-height: 44px;
-    font-size: 11px;
-  }
+
   .socials {
     font-size: 12px;
   }
@@ -2199,10 +2191,7 @@ article.project {
 footer {
   font-size: 12px;
 }
-#motion {
-  font-size: 13px;
-  min-height: 44px;
-}
+
 footer a {
   min-height: 36px;
   display: inline-flex;
@@ -3249,4 +3238,143 @@ article.project .project-info, article.project .project-actions { background-col
     backdrop-filter: blur(4px) saturate(115%);
     -webkit-backdrop-filter: blur(4px) saturate(115%);
   }
+}
+
+/* The quote card follows the countdown; all new styling stays inside this panel. */
+.day-section { padding-block-end: 32px; }
+.quote-section { padding-block: 0 64px; border-bottom: 0; }
+.quote-panel {
+  border: 1px solid #bcf36a30;
+  border-radius: 20px;
+  padding: 28px 36px 24px;
+  background: radial-gradient(ellipse at 95% 0, #bcf36a0b, transparent 65%), #0c130fdb;
+  box-shadow: inset 0 1px 0 #ffffff09;
+  overflow: hidden;
+}
+.quote-panel .quote-top { align-items: center; gap: 20px; }
+.quote-panel .quote-top h2 {
+  margin: 0;
+  font: inherit;
+  font-size: 15px;
+  line-height: 1.8;
+  letter-spacing: 0;
+  text-transform: none;
+  color: #becbb4;
+}
+.quote-panel .quote-index {
+  flex: 0 0 auto;
+  padding: 6px 11px;
+  border: 1px solid #bcf36a26;
+  border-radius: 20px;
+  color: #bcf36a;
+  font: 13px/1.5 monospace;
+  font-variant-numeric: tabular-nums;
+}
+.quote-panel .quote-body {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  align-items: start;
+  gap: 20px;
+  min-height: 0;
+  padding-block: 30px 26px;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.quote-panel .quote-mark { font-size: 80px; margin-top: 10px; color: #bcf36a60; }
+.quote-panel .quote-body blockquote {
+  min-block-size: 5.4em;
+  max-width: none;
+  margin: 0;
+  font-size: clamp(23px, 2.3vw, 31px);
+  line-height: 1.8;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+  display: flex;
+  align-items: center;
+}
+.quote-panel .quote-body figcaption {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 22px;
+  font-size: 16px;
+}
+.quote-panel .quote-avatar {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid #bcf36a30;
+  border-radius: 50%;
+  background: #bcf36a0b;
+  color: #bcf36a;
+  font: 13px/1 monospace;
+}
+.quote-panel .quote-body figcaption a {
+  margin-inline-start: auto;
+  color: #a6b59c;
+  font-size: 14px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.quote-panel .quote-body figcaption a:hover { color: var(--accent); }
+.quote-panel .quote-bottom {
+  flex-direction: row;
+  align-items: center;
+  gap: 28px;
+  padding-top: 20px;
+  border-top: 1px solid #ffffff12;
+  font: inherit;
+  font-size: 14px;
+  color: #a6b59c;
+}
+.quote-panel .quote-timing {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+  width: auto;
+  gap: 10px;
+  justify-content: stretch;
+}
+.quote-panel .quote-timer { font-size: 14px; line-height: 1.8; }
+.quote-panel #quote-countdown { color: #d5e8c9; font-variant-numeric: tabular-nums; }
+.quote-progress { height: 3px; background: #bcf36a15; border-radius: 4px; overflow: hidden; }
+.quote-progress i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #bcf36a;
+  transform-origin: left center;
+}
+html[dir="rtl"] .quote-progress i { transform-origin: right center; }
+.quote-panel #quote-next {
+  flex: 0 0 auto;
+  min-height: 44px;
+  padding: 10px 18px;
+  font: inherit;
+  font-size: 14px;
+  border-radius: 9px;
+  cursor: pointer;
+}
+@supports ((backdrop-filter: blur(4px)) or (-webkit-backdrop-filter: blur(4px))) {
+  .quote-panel { backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+}
+@media (max-width: 680px) {
+  .quote-section { padding-block-end: 45px; }
+  .quote-panel { padding: 22px 20px 20px; border-radius: 16px; }
+  .quote-panel .quote-top { align-items: start; gap: 12px; }
+  .quote-panel .quote-top h2 { font-size: 14px; }
+  .quote-panel .quote-index { padding: 5px 9px; font-size: 12px; }
+  .quote-panel .quote-body { grid-template-columns: minmax(0, 1fr); gap: 0; padding-block: 20px; }
+  .quote-panel .quote-mark { display: none; }
+  .quote-panel .quote-body blockquote { font-size: 21px; line-height: 1.9; min-block-size: 10em; }
+  .quote-panel .quote-body figcaption { gap: 10px; font-size: 15px; }
+  .quote-panel .quote-body figcaption a { font-size: 13px; }
+  .quote-panel .quote-bottom { gap: 18px; }
+  .quote-panel #quote-next { padding-inline: 12px; font-size: 13px; }
+  .quote-panel .quote-timer { font-size: 13px; }
 }

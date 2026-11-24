@@ -7,6 +7,7 @@ import {
   servicePath,
 } from "../seo.mjs";
 import { services } from "../content/services.mjs";
+import { quotes } from "../content/quotes.mjs";
 import { escapeHTML, renderServicePage } from "./service-pages.mjs";
 import { launchHead, launchBody } from "./pwa-shell.mjs";
 import {
@@ -106,6 +107,7 @@ function homeMetadata(html, lang) {
   );
 }
 let source = await readFile("index.html", "utf8");
+source = source.replace(/(<span\b[^>]*id="quote-index"[^>]*>)[\s\S]*?(<\/span>)/, `$1${String(1).padStart(2, "0")} / ${String(quotes.length).padStart(2, "0")}$2`);
 source = source.replace(
   /<!-- app-launch-head -->[\s\S]*?<!-- \/app-launch-head -->/,
   `<!-- app-launch-head -->\n${launchHead()}\n<!-- /app-launch-head -->`,

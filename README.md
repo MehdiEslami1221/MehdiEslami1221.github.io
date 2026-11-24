@@ -19,9 +19,8 @@ Open the printed URL (normally http://127.0.0.1:8000). A plain static HTTP serve
 The homepage leads with the introduction, development services and selected
 projects, followed by about/skills, résumé downloads and contact. Services are
 ordered as website development, custom web applications, Java/Spring Boot and
-Android. Free tools come after contact: the image/profile discovery pair (image
-first), date tools and the JSON/text/contrast lab. Programmer’s Day and sourced
-quotes close the main content. Preserve this source order in both languages and
+Android. After contact come Programmer’s Day and its quote card, then the free tools:
+the image/profile discovery pair (image first), date tools and the JSON/text/contrast lab. Preserve this source order in both languages and
 keep the existing card styles, anchors and generated discovery markers.
 
 ## What visitors can do
@@ -85,11 +84,11 @@ The supplied IRANSansX Regular and Bold webfonts are used in Persian. They are o
 
 The project form prepares a Telegram message to `Mr_MehdiEslami` or an email to `P30lod@gmail.com`. Visitors must press **send in the destination app**. The site does not store submissions or claim delivery. Copyable text and an explicit fallback link remain available. Do not add credentials or Telegram tokens to client JavaScript.
 
-Local storage holds language and motion preferences and favorite profile-style identifiers. A short-lived session draft preserves tool input when switching language. Project demonstrations reset when reopened. There are no third-party analytics, runtime libraries or external font requests.
+Local storage holds language preferences and favorite profile-style identifiers. The launch shell still recognizes the legacy motion preference; the homepage animation follows the OS preference. A short-lived session draft preserves tool input when switching language. Project demonstrations reset when reopened. There are no third-party analytics, runtime libraries or external font requests.
 
 ## Accessibility and motion
 
-Native dialogs handle focus and Escape. The footer motion control pauses the circuit and decorative CSS motion; the quote pause control remains separate. Both start paused for reduced-motion preferences. Background animation and quote timers stop when the page is hidden; the clock recalculates on return. Quote rotation pauses on hover, keyboard focus or outside its viewport. The default scene uses gently drifting nodes, chamfered light trails, two ambient light pools and a subtle orbit, with bounded mouse parallax. Occasional single shooting stars leave a brief green reflection on nearby panel edges. The light follows viewport coordinates, with panel measurements bounded to 10Hz while a star is active; pause, reduced motion, hidden tabs and resize clear it. The original celebration scene stays separate. Mobile canvas density, packet count and frame rate are bounded.
+Native dialogs handle focus and Escape. The homepage has no animation or quote pause buttons. Background animation follows the OS reduced-motion preference. The quote card cycles through 18 sourced bilingual excerpts every 10 seconds, with a synchronized progress bar and countdown. Every excerpt is shown before the cycle repeats; manual next resets the interval. Hover, focus and scrolling do not pause it. Reduced motion removes quote transitions while keeping the text cycle. Hidden tabs suspend background work and quote timing; returning resumes the remaining quote time, and the clock recalculates. The default scene uses gently drifting nodes, chamfered light trails, two ambient light pools and a subtle orbit, with bounded mouse parallax. Occasional single shooting stars leave a brief green reflection on nearby panel edges. The light follows viewport coordinates, with panel measurements bounded to 10Hz while a star is active; pause, reduced motion, hidden tabs and resize clear it. The original celebration scene stays separate. Mobile canvas density, packet count and frame rate are bounded.
 
 ## Search setup
 
