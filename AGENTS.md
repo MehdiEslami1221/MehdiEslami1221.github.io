@@ -41,7 +41,7 @@ Keep each change within its requested feature. Installation and splash work must
 
 ## Meteors and supplied résumés
 
-- Occasional single meteors complement the default circuit field. Reflections use bounded local CSS overlays on nearby panels; cached rects are refreshed at most 10Hz only during a meteor. Pause, hidden tabs, resize and celebration clear the light; reduced motion disables it. Keep it subtle and preserve the separate day-256 scene.
+- Occasional single meteors complement the default circuit field. Read docs/SPACE.md. Reflections use bounded local CSS overlays on nearby panels, including dynamic blog/service/date cards; cached rects are refreshed at most 10Hz. Pause, hidden tabs, resize and celebration clear the light; reduced motion disables it. Keep proximity-based colors subtle and preserve the date engine; day-256 bursts also illuminate nearby panels.
 - `assets/resumes/` contains the four original PDFs supplied by the owner on 2026-11-20. Keep their bytes unchanged. Both routes have direct view/download links without JavaScript. Light/ATS is the résumé style, not a website theme switch. Preserve the `#resume` anchor and quick navigation entry.
 
 ## Project card presentation
@@ -164,3 +164,7 @@ hidden tabs. Rebuild all eighteen routes; run date boundary and SEO checks.
 ## Blog discovery
 
 The `#blog` section follows work and reads the public `https://blog.mehdieslami.ir/latest-posts.json` snapshot exported by the separate blog repository. `blog-feed.mjs` validates destinations and limits the list to four real posts. `blog.js` renders text with textContent and preserves native content language/direction when the homepage interface changes. Never create filler posts. Keep the native blog link available without JS or on fetch failure, and preserve loading, empty, retry and reduced-motion behavior. No Sanity credentials or per-visitor CMS queries belong in this portfolio.
+
+## Space scene and celebration palette
+
+Read docs/SPACE.md before changing canvas, panel registration or Programmer’s Day styling. Preserve the circuit field, bounded stars/portal motifs, occasional meteors/fragments and shared distance-based lighting. Register dynamic blog cards after feed/language renders without duplicate overlays. Day 256 uses midnight/cyan/violet/gold surfaces, dark controls and readable primary-button hover states; preview never changes real dates.

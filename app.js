@@ -11,7 +11,7 @@ import {
 import { HOME_SEO, SITE_URL, homeSchema } from "./seo.mjs?v=20261123-copy1";
 import { quotes } from "./content/quotes.mjs?v=20261124-quotes1";
 import { createQuoteRotation, QUOTE_INTERVAL } from "./quote-rotation.mjs?v=20261124-ring1";
-import { createBlogSection } from "./blog.js?v=20261124-blog1";
+import { createBlogSection } from "./blog.js?v=20261127-space1";
 ("use strict");
 const $ = (selector) => document.querySelector(selector);
 const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -335,19 +335,30 @@ function drawLivingField() {
   }
   ctx.restore();
 }
-// Rects are measured at most ten times a second, only while a meteor is visible.
-const reflectivePanels = [
-  ...document.querySelectorAll(
-    ".project, .day-card, .lab-surface, .resume-card, #project-form, .profile-discovery, .quote-body",
-  ),
-].map((element) => {
-  element.classList.add("meteor-reactive");
-  const light = document.createElement("span");
-  light.className = "meteor-reflection";
-  light.setAttribute("aria-hidden", "true");
-  element.append(light);
-  return { element, light, rect: null };
+// Include asynchronously rendered cards; one overlay per outer panel.
+const panelSelector = ".project, .service-tile, .blog-post-card, .day-card, .lab-surface, .resume-card, #project-form, .profile-discovery, .date-discovery, .quote-panel, .portrait-frame";
+const reflectivePanels = [];
+function registerPanels(scope = document) {
+  const candidates = [...scope.querySelectorAll(panelSelector)];
+  if (scope instanceof Element && scope.matches(panelSelector)) candidates.push(scope);
+  for (const element of candidates) {
+    if (element.classList.contains("meteor-reactive")) continue;
+    element.classList.add("meteor-reactive");
+    const light = document.createElement("span");
+    light.className = "meteor-reflection";
+    light.setAttribute("aria-hidden", "true");
+    element.append(light);
+    reflectivePanels.push({ element, light, rect: null });
+  }
+}
+registerPanels();
+const panelObserver = new MutationObserver(records => {
+  for (const record of records) for (const node of record.addedNodes)
+    if (node instanceof Element && !node.classList.contains("meteor-reflection")) registerPanels(node);
+  for (let i = reflectivePanels.length - 1; i >= 0; i--)
+    if (!reflectivePanels[i].element.isConnected) reflectivePanels.splice(i, 1);
 });
+panelObserver.observe(document.querySelector("main"), { childList: true, subtree: true });
 let activeMeteor = null,
   nextMeteorAt = 7 + Math.random() * 4,
   lastLightMeasure = -1;
@@ -361,21 +372,21 @@ function clearMeteor() {
 function drawMeteor() {
   if (paused || reduced.matches || document.hidden) {
     clearMeteor();
-    return;
+    return null;
   }
   if (!activeMeteor && time >= nextMeteorAt) {
     activeMeteor = { ...planMeteor(width, height), started: time };
     nextMeteorAt = time + activeMeteor.duration + activeMeteor.gap;
     lastLightMeasure = -1;
   }
-  if (!activeMeteor) return;
+  if (!activeMeteor) return null;
   const pose = meteorPose(activeMeteor, time - activeMeteor.started);
   if (!pose) {
     activeMeteor = null;
     reflectivePanels.forEach(({ light }) => {
       light.style.opacity = "0";
     });
-    return;
+    return null;
   }
   const { x, y, tailX, tailY, alpha } = pose;
   ctx.save();
@@ -397,97 +408,120 @@ function drawMeteor() {
   ctx.arc(x, y, 2, 0, Math.PI * 2);
   ctx.fill();
   ctx.restore();
-  if (lastLightMeasure < 0 || time - lastLightMeasure > 0.1) {
-    reflectivePanels.forEach((panel) => {
-      panel.rect = panel.element.getBoundingClientRect();
-    });
+  // Tiny pieces travel behind the same head; each can illuminate a nearby edge.
+  const lights = [{ ...pose, rgb: "188,243,106" }];
+  for (let i = 1; i <= 5; i++) {
+    const fragment = meteorPose(activeMeteor, time - activeMeteor.started - i * .045);
+    if (!fragment) continue;
+    fragment.y += Math.sin(i * 6.7) * i * 2;
+    fragment.alpha *= .45;
+    ctx.fillStyle = `rgba(204,246,171,${fragment.alpha})`;
+    ctx.fillRect(fragment.x, fragment.y, 1.4, 1.4);
+    lights.push({ ...fragment, rgb: "188,243,106" });
+  }
+  return lights;
+}
+function updateReflections(lights) {
+  if (paused || reduced.matches || document.hidden || !lights.length) {
+    reflectivePanels.forEach(({ light }) => light.style.opacity = "0");
+    return;
+  }
+  // Rectangles track scrolling and newly mounted cards, at most ten times/second.
+  if (lastLightMeasure < 0 || time - lastLightMeasure >= .1) {
+    reflectivePanels.forEach(panel => panel.rect = panel.element.getBoundingClientRect());
     lastLightMeasure = time;
   }
-  reflectivePanels.forEach(({ element, light, rect }) => {
-    if (
-      !rect ||
-      !rect.width ||
-      rect.bottom < 0 ||
-      rect.top > height ||
-      element.hidden
-    ) {
-      light.style.opacity = "0";
-      return;
+  for (const { element, light, rect } of reflectivePanels) {
+    if (!rect || !rect.width || !rect.height || rect.bottom < 0 || rect.top > height || element.hidden) {
+      light.style.opacity = "0"; continue;
     }
-    const reflection = meteorReflection(rect, pose, width < 700 ? 180 : 260);
-    light.style.setProperty("--light-x", `${reflection.x.toFixed(1)}px`);
-    light.style.setProperty("--light-y", `${reflection.y.toFixed(1)}px`);
-    light.style.opacity = reflection.strength.toFixed(3);
-  });
+    let strongest = { strength: 0, x: 0, y: 0, rgb: "188,243,106" };
+    for (const source of lights) {
+      const reflection = meteorReflection(rect, source, width < 700 ? 210 : 310);
+      if (reflection.strength > strongest.strength) strongest = { ...reflection, rgb: source.rgb };
+    }
+    light.style.setProperty("--light-x", `${strongest.x.toFixed(1)}px`);
+    light.style.setProperty("--light-y", `${strongest.y.toFixed(1)}px`);
+    light.style.setProperty("--light-rgb", strongest.rgb);
+    light.style.opacity = Math.min(1, strongest.strength * 1.5).toFixed(3);
+  }
 }
+// The portal is a design motif, not a claim of an observed astrophysical wormhole.
+function drawSpaceScene(celebration) {
+  const lights = [];
+  const colors = celebration ? ["119,219,247", "193,166,255", "245,203,124"] : ["117,205,197", "188,243,106"];
+  const mobile = width < 700;
+  // A deterministic star field avoids allocations or flicker on each frame.
+  for (let i = 0; i < (mobile ? 48 : 105); i++) {
+    const x = ((i * 127.31 + 39) % 997) / 997 * width;
+    const y = ((i * 73.77 + 17) % 991) / 991 * height;
+    const twinkle = .16 + (Math.sin(time * .7 + i * 2.3) + 1) * .11;
+    ctx.fillStyle = `rgba(199,225,221,${twinkle})`;
+    ctx.beginPath(); ctx.arc(x,y,i % 13 === 0 ? 1.3 : .65,0,Math.PI*2); ctx.fill();
+    if(i % 19 === 0) {
+      ctx.strokeStyle = `rgba(186,227,217,${twinkle*.6})`;
+      ctx.beginPath();ctx.moveTo(x-3,y);ctx.lineTo(x+3,y);ctx.moveTo(x,y-3);ctx.lineTo(x,y+3);ctx.stroke();
+    }
+  }
+  for(let portal = 0; portal < (mobile ? 1 : 2); portal++) {
+    const cx = width * (portal ? .83 : .18), cy = height*(portal ? .65 : .32);
+    const radius = mobile ? 68 : Math.min(width*.075,115);
+    const rgb = colors[portal % colors.length];
+    ctx.save();ctx.translate(cx,cy);ctx.rotate(portal ? .6 : -.5);
+    const glow=ctx.createRadialGradient(0,0,0,0,0,radius*2.1);
+    glow.addColorStop(0,`rgba(${rgb},.015)`);glow.addColorStop(.45,`rgba(${rgb},.05)`);glow.addColorStop(1,`rgba(${rgb},0)`);
+    ctx.fillStyle=glow;ctx.fillRect(-radius*2.2,-radius*2.2,radius*4.4,radius*4.4);
+    for(let ring=0;ring<10;ring++) {
+      const phase=(ring/10+time*.035)%1, scale=.15+phase*.85;
+      ctx.strokeStyle=`rgba(${rgb},${Math.sin(phase*Math.PI)*.15})`;ctx.lineWidth=.65;
+      ctx.beginPath();ctx.ellipse(0,0,radius*scale,radius*scale*.48,0,0,Math.PI*2);ctx.stroke();
+    }
+    const angle=time*.24+portal*2;
+    const px=Math.cos(angle)*radius,py=Math.sin(angle)*radius*.48;
+    ctx.fillStyle=`rgba(${rgb},.65)`;ctx.beginPath();ctx.arc(px,py,1.6,0,Math.PI*2);ctx.fill();
+    ctx.font="9px monospace";ctx.fillStyle=`rgba(${rgb},.27)`;ctx.fillText(portal ? "0x100" : "{ universe }",-radius*.6,radius*.8);
+    ctx.restore();
+    const rot=portal ? .6 : -.5;
+    lights.push({ x: cx+px*Math.cos(rot)-py*Math.sin(rot), y: cy+px*Math.sin(rot)+py*Math.cos(rot), alpha: .2, rgb });
+  }
+  if(celebration && !paused) {
+    // Three staggered, soft bursts. No full-screen flashes or unbounded particles.
+    for(let burst=0;burst<3;burst++) {
+      const phase=(time*.16+burst/3)%1;
+      const cx=width*(.18+burst*.32),cy=height*(.24+(burst%2)*.22);
+      const rgb=colors[burst];
+      const count=mobile?16:30;
+      for(let j=0;j<count;j++) {
+        const angle=j/count*Math.PI*2+burst;
+        const speed=35+(j%4)*13;
+        const x=cx+Math.cos(angle)*speed*phase*2.2;
+        const y=cy+Math.sin(angle)*speed*phase*2.2+55*phase*phase;
+        const alpha=Math.sin(phase*Math.PI)*.65;
+        ctx.strokeStyle=`rgba(${rgb},${alpha})`;ctx.lineWidth=j%4===0?1.8:1;
+        ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x-Math.cos(angle)*5*(1-phase),y-Math.sin(angle)*5*(1-phase));ctx.stroke();
+        if(j%6===0) lights.push({x,y,alpha:alpha*.7,rgb});
+      }
+    }
+    ctx.font="11px monospace";
+    for(let i=0;i<(mobile?9:18);i++) {
+      ctx.fillStyle=`rgba(${colors[i%3]},.32)`;
+      ctx.fillText(["256","</>","{ }","✦"][i%4],(i*137.3)%width,((i*81+time*(7+i%4))%(height+40))-20);
+    }
+  }
+  return lights;
+}
+
 function draw() {
   if (!ctx) return;
   ctx.clearRect(0, 0, width, height);
-  if (!document.body.classList.contains("celebrating")) {
-    drawLivingField();
-    drawMeteor();
-    return;
-  }
-  clearMeteor();
-  if (document.body.classList.contains("celebrating")) {
-    const colors = ["#bcf36a", "#7de2ff", "#c5a5ff"];
-    ctx.font = "12px monospace";
-    for (let i = 0; i < (width < 700 ? 14 : 28); i++) {
-      ctx.fillStyle = colors[i % 3] + "55";
-      ctx.fillText(
-        i % 3 === 0 ? "256" : i % 2 ? "01" : "{ }",
-        (i * 83.7) % width,
-        ((i * 69 + time * (10 + (i % 5) * 2)) % (height + 40)) - 20,
-      );
-    }
-  }
-  ctx.lineWidth = 0.7;
-  paths.forEach((path, i) => {
-    const a = nodes[path.a],
-      b = nodes[path.b];
-    const distance = Math.hypot(
-      (a.x + b.x) / 2 - pointer.x,
-      (a.y + b.y) / 2 - pointer.y,
-    );
-    const active = Math.max(0, 1 - distance / 240);
-    ctx.strokeStyle = `rgba(151,202,100,${0.075 + active * 0.14})`;
-    ctx.beginPath();
-    ctx.moveTo(a.x, a.y);
-    ctx.lineTo(b.x, a.y);
-    ctx.lineTo(b.x, b.y);
-    ctx.stroke();
-    if (i % 2 === 0) {
-      const lengthX = Math.abs(b.x - a.x),
-        lengthY = Math.abs(b.y - a.y),
-        length = lengthX + lengthY;
-      const progress = ((time * path.speed + path.phase) % 1) * length;
-      const x =
-        progress < lengthX ? a.x + Math.sign(b.x - a.x) * progress : b.x;
-      const y =
-        progress < lengthX
-          ? a.y
-          : a.y + Math.sign(b.y - a.y) * (progress - lengthX);
-      ctx.fillStyle = `rgba(189,243,106,${0.35 + active * 0.25})`;
-      ctx.fillRect(x - 1.5, y - 1.5, 3, 3);
-    }
-  });
-  nodes.forEach((node, i) => {
-    const glow = 0.2 + (Math.sin(time * 0.65 + node.phase) + 1) * 0.08;
-    ctx.fillStyle = `rgba(172,222,116,${glow})`;
-    ctx.beginPath();
-    ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
-    ctx.fill();
-    if (i % 7 === 0) {
-      ctx.font = "10px monospace";
-      ctx.fillStyle = "rgba(166,203,126,.18)";
-      ctx.fillText(
-        tokens[Math.floor(i / 7) % tokens.length],
-        node.x + 9,
-        node.y - 8,
-      );
-    }
-  });
+  const celebration = document.body.classList.contains("celebrating");
+  drawLivingField();
+  const lights = drawSpaceScene(celebration);
+  const meteor = drawMeteor();
+  if (meteor) lights.push(...meteor);
+  updateReflections(lights);
 }
+
 function frame(timestamp) {
   raf = 0;
   if (paused || document.hidden || !ctx) return;
