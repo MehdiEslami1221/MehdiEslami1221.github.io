@@ -3380,3 +3380,95 @@ html[lang="fa"] .celebration-banner { letter-spacing: 0; }
 .celebrating .portrait-frame { box-shadow: 0 0 80px #7aa3ed12, 0 25px 80px #0005; }
 @media(max-width: 600px) { .celebration-banner { font-size: 10px; gap: 8px; } }
 @media(prefers-reduced-motion: reduce) { .meteor-reflection { display: none; } }
+
+/* Time chip: ordinary-day presentation only. Celebration keeps its accepted layout. */
+.day-heading, .day-title-group { display: contents; }
+.day-chip, .day-normal-title, .day-normal-description, .day-cycle { display: none; }
+body:not(.celebrating) .day-normal-description { display: inline; }
+body:not(.celebrating) .day-celebration-description { display: none; }
+body:not(.celebrating) .day-card {
+  grid-template-columns: .95fr 1.15fr;
+  gap: clamp(30px, 4vw, 60px);
+  padding: 40px;
+  border-color: #bbdc9c38;
+  border-radius: 20px;
+  background: radial-gradient(ellipse at 0% 0%, #bdf66a0b, transparent 62%), linear-gradient(135deg, #152018c9, #0b110ecc);
+  box-shadow: inset 0 1px #e1f5cf0b, 0 24px 70px #0002;
+}
+body:not(.celebrating) .day-heading { display: flex; align-items: center; gap: 18px; margin-bottom: 22px; }
+body:not(.celebrating) .day-title-group { display: block; min-width: 0; }
+body:not(.celebrating) .day-copy .eyebrow { font-size: 10px; margin: 0 0 9px; letter-spacing: .12em; color: #a2b88e; }
+body:not(.celebrating) .day-normal-title { display: block; font-size: clamp(24px, 2.5vw, 31px); line-height: 1.5; letter-spacing: -.5px; margin: 0; }
+body:not(.celebrating) .day-celebration-title { display: none; }
+body:not(.celebrating) .day-copy > p:not(.eyebrow) { font-size: 14px; line-height: 2; color: #a2b09a; margin-block: 14px; }
+body:not(.celebrating) #day-date { font-size: 12px !important; color: #d1e3c1 !important; }
+body:not(.celebrating) .day-copy .source-note { font-size: 11px; color: #9aad8d; }
+body:not(.celebrating) .day-chip { display: block; position: relative; flex: 0 0 104px; width: 104px; height: 104px; direction: ltr; }
+.day-chip > svg { display: block; width: 100%; height: 100%; }
+.chip-pins { stroke: #859b7559; stroke-width: 2; stroke-linecap: round; }
+.chip-shell { fill: #17231bd9; stroke: #bdf66a6b; stroke-width: 1; }
+.chip-core { fill: #101a13; stroke: #c7e9ac26; stroke-width: .8; }
+.chip-signal { stroke: #cef49c; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 3 42; animation: timechip-signal 7s linear infinite; }
+.day-chip > b { position: absolute; inset: 35px 0 auto; text-align: center; color: #d8f5b9; font: 600 26px/1.1 ui-monospace, Consolas, monospace; letter-spacing: -1px; }
+.day-chip > small { position: absolute; top: 66px; left: 0; right: 0; text-align: center; font: 9px/1 monospace; color: #8caa73; }
+body:not(.celebrating) .day-dashboard .binary-label { color: #759267; font-size: 10px; letter-spacing: 2px; }
+body:not(.celebrating) #day-message { font-size: 12px; color: #c4d8b1; min-height: 0; margin: 10px 0 0; }
+body:not(.celebrating) .countdown { gap: 10px; margin: 20px 0 22px; }
+body:not(.celebrating) .countdown > div { position: relative; border-radius: 12px; padding: 17px 4px 12px; background: linear-gradient(145deg, #17221a99, #080f0bcc); border-color: #bdde9f26; box-shadow: inset 0 1px #d7efbd0b; }
+body:not(.celebrating) .countdown > div:first-child { background: linear-gradient(145deg, #a9e35b12, #101a11cc); border-color: #c4f3924a; }
+body:not(.celebrating) .countdown b { font-size: clamp(29px, 3.3vw, 43px); font-weight: 500; line-height: 1.4; color: #e3eddd; }
+body:not(.celebrating) .countdown > div:first-child b { color: #c8f393; }
+body:not(.celebrating) .countdown span { font-size: 11px; color: #a3b298; }
+body:not(.celebrating) .day-cycle:not([hidden]) { display: block; margin: 0 0 22px; }
+.day-cycle-label { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 11px; color: #9eb08d; }
+.day-cycle-label bdi { font-variant-numeric: tabular-nums; color: #cee6b8; }
+.day-cycle-track { height: 32px; margin-top: 8px; direction: ltr; }
+.day-cycle-track svg { width: 100%; height: 100%; display: block; overflow: visible; stroke-linejoin: round; stroke-linecap: round; }
+.day-circuit-rail { stroke: #bddb9c26; stroke-width: 1; }
+.day-circuit-progress { stroke: #b5df7d99; stroke-width: 1.5; stroke-dasharray: 100; stroke-dashoffset: 100; }
+.day-circuit-packet { stroke: #d5f8ae; stroke-width: 2.5; stroke-dasharray: .6 99.4; animation: timechip-packet 9s linear infinite; }
+.day-cycle-track circle { fill: #608a4d; stroke: #9bbf78; stroke-width: .7; }
+.day-cycle > p { font-size: 10px; color: #7f9371; margin: 3px 0 0; }
+body:not(.celebrating) .day-actions { gap: 18px; }
+body:not(.celebrating) .day-actions .secondary { border-radius: 9px; background: #afdc7d0b; border-color: #b6d99a38; color: #d8e9c9; padding: 11px 16px; font-size: 12px; }
+body:not(.celebrating) .day-actions .secondary:hover { background: #bdf66a15; border-color: #bdf66a6b; }
+body:not(.celebrating) .day-dashboard .small { font-size: 10px; line-height: 1.9; margin-top: 17px; color: #8c9c81; }
+html[lang="fa"] body:not(.celebrating) .day-copy .eyebrow { letter-spacing: 0; }
+@keyframes timechip-signal { to { stroke-dashoffset: -45; } }
+@keyframes timechip-packet { to { stroke-dashoffset: -100; } }
+@media (max-width: 1000px) {
+  body:not(.celebrating) .day-card { padding: 30px; gap: 26px; }
+  body:not(.celebrating) .day-chip { flex-basis: 88px; width: 88px; height: 88px; }
+  .day-chip > b { top: 29px; font-size: 23px; }
+  .day-chip > small { top: 55px; }
+  body:not(.celebrating) .day-heading { gap: 12px; }
+}
+@media (max-width: 760px) {
+  body:not(.celebrating) .day-card { grid-template-columns: 1fr; gap: 28px; padding: 28px; }
+  body:not(.celebrating) .day-heading { flex-direction: column; text-align: center; gap: 7px; margin-bottom: 12px; }
+  body:not(.celebrating) .day-copy .eyebrow { display: none; }
+  body:not(.celebrating) .day-chip { flex-basis: 84px; width: 84px; height: 84px; }
+  .day-chip > b { top: 28px; font-size: 22px; }
+  .day-chip > small { top: 53px; font-size: 8px; }
+  body:not(.celebrating) .day-copy { text-align: center; }
+  body:not(.celebrating) .day-normal-title { font-size: 25px; }
+  body:not(.celebrating) .day-copy > p:not(.eyebrow) { font-size: 13px; margin-block: 10px; }
+  body:not(.celebrating) .day-dashboard { border-top: 1px solid #c8dfae1a; padding-top: 18px; }
+  body:not(.celebrating) .day-dashboard .binary-label { font-size: 9px; letter-spacing: 1.2px; }
+  body:not(.celebrating) .countdown { gap: 7px; margin-block: 17px 20px; }
+  body:not(.celebrating) .countdown > div { padding: 13px 2px 10px; border-radius: 9px; }
+  body:not(.celebrating) .countdown b { font-size: 32px; }
+  body:not(.celebrating) .countdown span { font-size: 10px; }
+  body:not(.celebrating) .day-actions { gap: 16px; }
+}
+@media (max-width: 390px) {
+  body:not(.celebrating) .day-card { padding: 24px 18px; }
+  body:not(.celebrating) .countdown b { font-size: 28px; }
+  body:not(.celebrating) .day-actions .secondary { font-size: 11px; padding-inline: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chip-signal, .day-circuit-packet { animation: none; }
+}
+@media print {
+  .chip-signal, .day-circuit-packet { animation: none; }
+}

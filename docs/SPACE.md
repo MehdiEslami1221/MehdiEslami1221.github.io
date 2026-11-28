@@ -4,7 +4,7 @@ Updated 27 November 2026. The portfolio is still a static GitHub Pages website. 
 
 ## Source and appearance
 
-`app.js` owns one existing fixed 2D canvas (`#network`). The normal scene retains the original living circuit field and lime identity, with bounded twinkling stars, two perspective portal motifs (one on narrow screens), orbiting light points, short meteors and five tiny trailing pieces per meteor. Portals are a fictional design motif, not a claim of an observed astrophysical wormhole. The blog’s black-hole renderer is maintained in its separate repository.
+`app.js` owns one existing fixed 2D canvas (`#network`). The normal scene retains the original living circuit field and lime identity, with bounded twinkling stars, two perspective portal motifs (one on narrow screens), orbiting light points, short meteors and five tiny trailing pieces per meteor. Portals are a fictional design motif, not a claim of an observed astrophysical wormhole. The blog’s background is maintained in its separate repository.
 
 The normal meteor schedule remains occasional; the command menu's meteor preview is available for deterministic visual inspection. At most one meteor is active. Its fragments use the same trajectory and expire with it. No physics engine or collision claims are implied: lighting is a distance-based screen-space response.
 
@@ -23,6 +23,8 @@ The existing `programmerDayState` remains the authority: the visitor’s device 
 `body.celebrating` uses a scoped midnight palette: cyan, violet and warm gold, opaque-enough dark card surfaces, readable muted text, dark input backgrounds and high-contrast primary-button text (including hover). A bilingual normal-flow celebration badge spans both countdown columns. Do not put the event badge over form controls or change unrelated tool pages.
 
 The celebration retains the base circuit/star field and adds three staggered low-intensity bursts plus bounded falling code symbols. Burst positions are deterministic and particles are reused analytically; no growing particle collection or bright full-screen flash is allowed. Nearby burst fragments also feed the panel-light system. Turning the preview off restores normal colors immediately.
+
+The ordinary countdown now uses the time-chip presentation described in [COUNTDOWN.md](COUNTDOWN.md). It shares the existing panel reflection; normal-only styling must not override the accepted celebration scene.
 
 ## Motion and checks
 

@@ -66,13 +66,13 @@
       rel="preload"
       type="font/woff2"
     />
-    <link href="/style.css?v=20261127-space1" rel="stylesheet" />
+    <link href="/style.css?v=20261128-timechip1" rel="stylesheet" />
     <link rel="stylesheet" href="/services.css?v=20261122-studio1" />
     <link rel="stylesheet" href="/profile.css?v=20261123-tools-grid1">
     <link rel="stylesheet" href="/image.css?v=20261123-image3">
     <link rel="stylesheet" href="/date-discovery.css?v=20261123-card1">
     <link rel="stylesheet" href="/blog.css?v=20261124-blog1">
-    <script defer="" src="/app.js?v=20261127-space1" type="module"></script>
+    <script defer="" src="/app.js?v=20261128-timechip1" type="module"></script>
     <meta content="index, follow, max-image-preview:large" name="robots" />
     <meta content="Mehdi Eslami" name="author" />
     <meta content="Mehdi Eslami" property="og:site_name" />
@@ -1275,20 +1275,25 @@
         <div class="day-card">
           <div class="celebration-banner"><span aria-hidden="true">✦</span><span data-en="DAY 256 · HAPPY PROGRAMMER’S DAY" data-fa="روز ۲۵۶ · روز برنامه‌نویس مبارک">DAY 256 · HAPPY PROGRAMMER’S DAY</span><span aria-hidden="true">✦</span></div>
           <div class="day-copy">
-            <p class="eyebrow">
-              <span
-                data-en="PROGRAMMER’S DAY"
-                data-fa="روز برنامه‌نویس"
-                >PROGRAMMER’S DAY</span>
-            </p>
-            <h2>
-              <span
-                data-en="Counting down to day 256."
-                data-fa="شمارش معکوس تا روز برنامه‌نویس."
-                >Counting down to day 256.</span>
-            </h2>
+            <div class="day-heading">
+              <div class="day-chip" aria-hidden="true">
+                <svg viewBox="0 0 128 128" fill="none" focusable="false">
+                  <path class="chip-pins" d="M42 13v15m15-15v15m14-15v15m15-15v15M42 100v15m15-15v15m14-15v15m15-15v15M13 42h15M13 57h15M13 71h15M13 86h15M100 42h15M100 57h15M100 71h15M100 86h15" />
+                  <rect class="chip-shell" x="28" y="28" width="72" height="72" rx="15" />
+                  <rect class="chip-core" x="35" y="35" width="58" height="58" rx="10" />
+                  <path class="chip-signal" d="M42 13v15M28 42H13M86 100v15M100 86h15" />
+                </svg>
+                <b>256</b><small>2⁸</small>
+              </div>
+              <div class="day-title-group">
+                <p class="eyebrow"><span data-en="PROGRAMMER’S DAY" data-fa="روز برنامه‌نویس">PROGRAMMER’S DAY</span></p>
+                <h2 class="day-normal-title"><span data-en="Until Programmer’s Day." data-fa="تا روز برنامه‌نویس.">Until Programmer’s Day.</span></h2>
+                <h2 class="day-celebration-title"><span data-en="Counting down to day 256." data-fa="شمارش معکوس تا روز برنامه‌نویس.">Counting down to day 256.</span></h2>
+              </div>
+            </div>
             <p>
-              <span
+              <span class="day-normal-description" data-en="The 256th day of the year. A day to celebrate the people who build with code." data-fa="روز ۲۵۶ سال میلادی؛ روزی برای قدردانی از خلاقیت برنامه‌نویسان.">The 256th day of the year. A day to celebrate the people who build with code.</span>
+              <span class="day-celebration-description"
                 data-en="Programmer’s Day falls on the 256th day of the year. When it arrives, this page joins the celebration."
                 data-fa="روز برنامه‌نویس، دویست‌وپنجاه‌وششمین روز سال میلادی است. با رسیدن این روز، حال‌وهوای این صفحه هم تغییر می‌کند."
                 >Programmer’s Day falls on the 256th day of the year. When it arrives, this page joins the celebration.</span>
@@ -1337,6 +1342,18 @@
                   ><span data-en="seconds" data-fa="ثانیه">seconds</span></span
                 >
               </div>
+            </div>
+            <div class="day-cycle" id="day-cycle" hidden>
+              <div class="day-cycle-label"><span data-en="Journey to day 256" data-fa="مسیر روز ۲۵۶">Journey to day 256</span><bdi id="day-cycle-value" dir="ltr">—</bdi></div>
+              <div class="day-cycle-track" id="day-cycle-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Progress between Programmer’s Days" data-aria-en="Progress between Programmer’s Days" data-aria-fa="پیشرفت فاصلهٔ بین دو روز برنامه‌نویس">
+                <svg viewBox="0 0 320 30" fill="none" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                  <path class="day-circuit-rail" d="M2 20H72L86 6H204L218 20H318" pathLength="100" />
+                  <path class="day-circuit-progress" id="day-circuit-progress" d="M2 20H72L86 6H204L218 20H318" pathLength="100" />
+                  <path class="day-circuit-packet" d="M2 20H72L86 6H204L218 20H318" pathLength="100" />
+                  <circle cx="2" cy="20" r="2" /><circle cx="318" cy="20" r="2" />
+                </svg>
+              </div>
+              <p><span data-en="From the previous celebration to the next." data-fa="از جشن قبلی تا جشن بعدی.">From the previous celebration to the next.</span></p>
             </div>
             <div class="day-actions">
               <button

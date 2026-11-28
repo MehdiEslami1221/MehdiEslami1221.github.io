@@ -7,7 +7,7 @@ import {
   planMeteor,
   meteorPose,
   meteorReflection,
-} from "./core.mjs?v=20261120-meteors";
+} from "./core.mjs?v=20261128-timechip1";
 import { HOME_SEO, SITE_URL, homeSchema } from "./seo.mjs?v=20261123-copy1";
 import { quotes } from "./content/quotes.mjs?v=20261124-quotes1";
 import { createQuoteRotation, QUOTE_INTERVAL } from "./quote-rotation.mjs?v=20261124-ring1";
@@ -698,11 +698,26 @@ function updateDay() {
           "پیش‌نمایش جشن فعال است. شمارش معکوس، زمان واقعی تا روز برنامه‌نویس را نشان می‌دهد.",
         )
       : tr("Until the next day 256", "تا روز برنامه‌نویس بعدی");
-  for (const key of ["days", "hours", "minutes", "seconds"])
-    $("#count-" + key).textContent = new Intl.NumberFormat(
+  for (const key of ["days", "hours", "minutes", "seconds"]) {
+    const element = $("#count-" + key);
+    const value = new Intl.NumberFormat(
       lang === "fa" ? "fa" : "en",
       { minimumIntegerDigits: key === "days" ? 1 : 2, useGrouping: false },
     ).format(state[key]);
+    if (element.textContent !== value) {
+      element.textContent = value;
+      if (!reduced.matches && !document.hidden && !document.body.classList.contains("celebrating"))
+        element.animate?.([{ opacity: .55, transform: "translateY(3px)" }, { opacity: 1, transform: "translateY(0)" }], { duration: 180, easing: "ease-out" });
+    }
+  }
+  const percent = Math.round(state.progress * 1000) / 10;
+  const progress = $("#day-cycle-progress");
+  const percentText = new Intl.NumberFormat(lang === "fa" ? "fa" : "en", { style: "percent", maximumFractionDigits: 1 }).format(percent / 100);
+  $("#day-cycle").hidden = false;
+  $("#day-cycle-value").textContent = percentText;
+  progress.setAttribute("aria-valuenow", String(percent));
+  progress.setAttribute("aria-valuetext", tr(`${percentText} of the annual cycle`, `${percentText} از فاصلهٔ بین دو جشن`));
+  $("#day-circuit-progress").style.strokeDashoffset = String(100 - state.progress * 100);
   const preview = $("#celebrate-preview");
   preview.textContent = previewCelebration
     ? tr("End preview", "پایان پیش‌نمایش")

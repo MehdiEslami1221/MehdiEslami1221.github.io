@@ -168,3 +168,7 @@ The `#blog` section follows work and reads the public `https://blog.mehdieslami.
 ## Space scene and celebration palette
 
 Read docs/SPACE.md before changing canvas, panel registration or Programmer’s Day styling. Preserve the circuit field, bounded stars/portal motifs, occasional meteors/fragments and shared distance-based lighting. Register dynamic blog cards after feed/language renders without duplicate overlays. Day 256 uses midnight/cyan/violet/gold surfaces, dark controls and readable primary-button hover states; preview never changes real dates.
+
+## Ordinary countdown card
+
+Read docs/COUNTDOWN.md for the time-chip presentation. Scope ordinary-day styles to `body:not(.celebrating)` and keep the accepted celebration layout/palette. The chip is decorative, the four-unit timer remains real, and the circuit displays `programmerDayState().progress` between consecutive local day-256 boundaries. Keep calendar export, device zone, leap/DST handling, preview and annual rollover synchronized. Never reset this cycle on January 1, fake progress with animation, add a second clock, or create a separate reflection loop. Regenerate `/fa/` and update homepage style/app/core cache versions together.

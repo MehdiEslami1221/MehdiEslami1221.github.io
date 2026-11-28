@@ -27,6 +27,11 @@ function inZone(zone) {
       lastMillisecond:programmerDayState(end-1).active,after:programmerDayState(end).active,
       next:programmerDayState(end).target,expectedNext:programmerDayStart(2029),
       oneSecond:programmerDayState(start-1000).seconds,
+      progressBefore:programmerDayState(leap-1).progress,
+      progressActive:programmerDayState(leap).progress,
+      progressAfter:programmerDayState(end).progress,
+      progressMid:programmerDayState((leap+programmerDayStart(2029))/2).progress,
+      progressNewYear:[programmerDayState(new Date(2029,0,1).getTime()-1000).progress,programmerDayState(new Date(2029,0,1).getTime()).progress],
       winterTarget:programmerDayState(Date.parse('2027-01-15T12:00:00Z')).target,
       sameInstant:programmerDayState(Date.parse('2027-09-12T23:00:00Z')).active,
       event:calendarEvent(leap)
@@ -65,6 +70,12 @@ test("Local holidays follow six device zones, DST offsets, leap years and rollov
     assert.equal(result.after, false, zone);
     assert.equal(result.next, result.expectedNext, zone);
     assert.equal(result.oneSecond, 1, zone);
+    assert.ok(result.progressBefore > .99999 && result.progressBefore <= 1, zone);
+    assert.equal(result.progressActive, 1, zone);
+    assert.ok(result.progressAfter > 0 && result.progressAfter < .01, zone);
+    assert.equal(result.progressMid, .5, zone + " leap-year cycle must use actual boundaries");
+    assert.ok(result.progressNewYear[1] > result.progressNewYear[0], zone);
+    assert.ok(result.progressNewYear[1] - result.progressNewYear[0] < .00001, zone + " cycle must not reset on January 1");
     assert.match(result.event, /DTSTART;VALUE=DATE:20280912\r\n/, zone);
     assert.match(result.event, /DTEND;VALUE=DATE:20280913\r\n/, zone);
   }

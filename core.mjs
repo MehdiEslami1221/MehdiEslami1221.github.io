@@ -11,10 +11,13 @@ export function programmerDayState(now = Date.now()) {
   const end = new Date(year, 0, 257).getTime();
   const active = now >= today && now < end;
   const target = now >= end ? programmerDayStart(year + 1) : today;
+  const cycleStart = programmerDayStart(new Date(target).getFullYear() - 1);
+  const progress = active ? 1 : Math.max(0, Math.min(1, (now - cycleStart) / (target - cycleStart)));
   const seconds = Math.max(0, Math.ceil((target - now) / 1000));
   return {
     active,
     target,
+    progress,
     days: Math.floor(seconds / 86400),
     hours: Math.floor(seconds / 3600) % 24,
     minutes: Math.floor(seconds / 60) % 60,
