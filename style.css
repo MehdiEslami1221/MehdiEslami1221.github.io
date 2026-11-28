@@ -3325,6 +3325,11 @@ article.project .project-info, article.project .project-actions { background-col
 }
 
 /* Shared light response, including cards inserted after the blog feed arrives. */
+body:not(.celebrating) .grain {
+  background:
+    radial-gradient(ellipse at 12% 25%, #a0ff6406, transparent 50%),
+    linear-gradient(90deg, #080a0920, #080a0966 40%, #080a0955 60%, #080a0920);
+}
 .meteor-reflection {
   background: radial-gradient(330px circle at var(--light-x) var(--light-y), rgba(var(--light-rgb, 188,243,106), .18), transparent 78%);
   transition: opacity 100ms linear;

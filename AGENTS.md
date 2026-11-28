@@ -169,7 +169,7 @@ The `#blog` section follows work and reads the public `https://blog.mehdieslami.
 
 ## Space scene and celebration palette
 
-Read docs/SPACE.md before changing canvas, panel registration or Programmer’s Day styling. Preserve the circuit field, bounded stars/portal motifs, occasional meteors/fragments and shared distance-based lighting. Register dynamic blog cards after feed/language renders without duplicate overlays. Day 256 uses midnight/cyan/violet/gold surfaces, dark controls and readable primary-button hover states; preview never changes real dates.
+Read docs/SPACE.md before changing canvas, panel registration or Programmer’s Day styling. The ordinary scene is the living code architecture in `architecture-scene.mjs`: faint grid/frames, fading code and packets splitting at shared junctions. Preserve the single canvas/frame loop, bounded mobile work and shared distance-based lighting. The previous circuit/star/portal scene is retained for celebration; meteors/fragments remain in both modes. See docs/SPACE.md for the pre-architecture rollback baseline. Register dynamic blog cards after feed/language renders without duplicate overlays. Day 256 uses midnight/cyan/violet/gold surfaces, dark controls and readable primary-button hover states; preview never changes real dates.
 
 ## Ordinary countdown card
 

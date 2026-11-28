@@ -1,6 +1,6 @@
 # Portfolio maintenance
 
-Reviewed against implementation `231f094` on 28 November 2026. This is a maintenance baseline, not a fixed article count or a promise about external account settings. Read the current source and [AGENTS.md](../AGENTS.md) before editing. Topic guides are indexed in [README.md](README.md).
+Architecture scene updated from baseline `d69f11e` on 28 November 2026. This is a maintenance baseline, not a fixed article count or a promise about external account settings. Read the current source and [AGENTS.md](../AGENTS.md) before editing. Topic guides are indexed in [README.md](README.md).
 
 ## Ownership and deployment
 
@@ -19,6 +19,7 @@ The portfolio is dependency-free static HTML, CSS and browser JavaScript. Node.j
 | --- | --- |
 | Homepage markup and bilingual text | `index.html`; `app.js` for runtime messages and behavior |
 | Overall layout and countdown modes | `style.css` |
+| Ordinary code-architecture background | `architecture-scene.mjs`; `app.js` owns canvas/time and shared panel light |
 | Dates, calendar export and pure helpers | `core.mjs` |
 | Metadata and stable Person/WebSite identities | `seo.mjs` |
 | Services | `content/services.mjs`, `scripts/service-pages.mjs`, `services.css` |
@@ -48,7 +49,7 @@ Ordinary styles belong under `body:not(.celebrating)`. Celebration retains its m
 
 ### Background and panel light
 
-`app.js` owns one `#network` canvas: circuit field, bounded stars/portal motifs, occasional single meteor and small fragments. The existing light system also receives orbital and celebration sources. `panelSelector` registers one `.meteor-reflection` overlay per outer panel, including asynchronously rendered journal cards. A scoped observer handles new cards; do not duplicate overlays or attach them to nested controls.
+`app.js` owns one `#network` canvas and frame loop. On ordinary days, `architecture-scene.mjs` draws the blueprint grid, component frames, fading code and branching circuit packets. Packet positions join the shared panel-light system. The previous circuit/star/portal drawing remains in the celebration only. Both modes retain the occasional single meteor and small fragments. `panelSelector` registers one `.meteor-reflection` overlay per outer panel, including asynchronously rendered journal cards. A scoped observer handles new cards; do not duplicate overlays or attach them to nested controls.
 
 Use cached viewport rectangles, refreshed at most 10 Hz, and strongest-nearby-source falloff. Nearby panels receive a subtle fill/rim; distant panels stay dark. Retain 24 fps narrow-screen / 30 fps desktop caps, bounded DPR, hidden-tab suspension and OS reduced motion. New panels must join this system rather than add a competing loop. See [SPACE.md](SPACE.md). The journal's quieter CSS binary/editorial scene is independent.
 

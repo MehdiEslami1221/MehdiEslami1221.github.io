@@ -1,10 +1,14 @@
 # Space background and Programmer’s Day
 
-Updated 27 November 2026. The portfolio is still a static GitHub Pages website. No runtime package, server, image/video download or paid service was added.
+Updated 28 November 2026. The portfolio is still a static GitHub Pages website. No runtime package, server, image/video download or paid service was added.
 
 ## Source and appearance
 
-`app.js` owns one existing fixed 2D canvas (`#network`). The normal scene retains the original living circuit field and lime identity, with bounded twinkling stars, two perspective portal motifs (one on narrow screens), orbiting light points, short meteors and five tiny trailing pieces per meteor. Portals are a fictional design motif, not a claim of an observed astrophysical wormhole. The blog’s background is maintained in its separate repository.
+`app.js` owns one existing fixed 2D canvas (`#network`) and its single animation loop. Ordinary days use the charcoal/lime **living code architecture** in `architecture-scene.mjs`: a faint blueprint grid, open component frames, small fading code fragments, two peripheral light pools and angular circuits. Circuits share a trunk and split into two real branches at a junction. Each packet trail follows the bends; both outgoing packets start at the same junction after the incoming packet arrives. Geometry is built on resize, with four circuits on narrow screens and six on desktop. Packet speed scales with route length so wide-screen packets finish before their cycle repeats.
+
+Normal mode has no star/portal layer. The previous `drawLivingField` and `drawSpaceScene` functions remain exclusively for the accepted Programmer’s Day celebration, including its stars, portal motifs, orbiting light points and bursts. The occasional meteor and five tiny trailing pieces remain in both modes. The blog’s background is maintained in its separate repository.
+
+Mouse parallax is smoothed and bounded on desktop; narrow screens use quiet autonomous motion. Grid, frames and code use different depth offsets. Details concentrate at the margins and the CSS `.grain` overlay keeps the center quiet. The normal overlay is scoped to `body:not(.celebrating)`. Do not add an opaque root background, a second canvas or a second animation loop.
 
 The normal meteor schedule remains occasional; the command menu's meteor preview is available for deterministic visual inspection. At most one meteor is active. Its fragments use the same trajectory and expire with it. No physics engine or collision claims are implied: lighting is a distance-based screen-space response.
 
@@ -12,7 +16,7 @@ The normal meteor schedule remains occasional; the command menu's meteor preview
 
 The old fixed panel list missed service/date cards and asynchronously loaded blog cards. `registerPanels` now covers project, service, blog, résumé, countdown, quote, contact, portrait and tool discovery panels. A scoped child-list observer registers new cards when the blog feed arrives or language switching rebuilds it. It ignores its own overlays, avoids duplicates and drops disconnected entries. New panel types must be added to `panelSelector`.
 
-Each outer panel gets one decorative, noninteractive, absolutely positioned `.meteor-reflection` overlay; do not add it to form controls or nested text leaves. CSS uses a local radial fill and a masked one-pixel rim. Canvas light sources (meteor head, fragments, orbital highlights and celebration particles) use viewport coordinates and the existing `meteorReflection` distance helper. The strongest nearby source controls position, color and intensity; far-away cards remain dark. Never make all cards flash uniformly.
+Each outer panel gets one decorative, noninteractive, absolutely positioned `.meteor-reflection` overlay; do not add it to form controls or nested text leaves. CSS uses a local radial fill and a masked one-pixel rim. Canvas light sources (architecture packets, meteor head, fragments, celebration orbital highlights and bursts) use viewport coordinates and the existing `meteorReflection` distance helper. The strongest nearby source controls position, color and intensity; far-away cards remain dark. Never make all cards flash uniformly.
 
 Panel rectangles are refreshed at most 10 Hz, tracking scrolling within 100 ms. Frames only use cached measurements. Hidden tabs, reduced motion and pause clear the light. Dynamic blog registration must not destroy links, native text direction or language switching.
 
@@ -28,6 +32,10 @@ The ordinary countdown now uses the time-chip presentation described in [COUNTDO
 
 ## Motion and checks
 
-Keep the existing 24 fps narrow-screen/30 fps desktop cap, bounded device pixel ratio and hidden-tab suspension. Reduced motion shows a static scene and hides reflections; no animation-pause buttons are added. Keep print output static.
+Keep the existing 24 fps narrow-screen/30 fps desktop cap, bounded device pixel ratio and hidden-tab suspension. Reduced motion shows a fixed architecture drawing with no packets, parallax or reflections; no animation-pause buttons are added. Keep print output static.
 
 Run `npm run build`, `npm test`, `node --check app.js` and `git diff --check`. Rebuild `fa/index.html`; never hand-edit it. Advance the homepage style/controller URL versions together. Inspect normal and celebration scenes in both languages, asynchronous blog cards, project filters, light proximity during scrolling, readable countdown/actions, 360px layout and OS reduced motion. Original supplied portraits, logos, résumés, launch behavior, public anchors, metadata and the native date engine remain unchanged.
+
+## Rollback
+
+The source baseline before the architecture change is commit `d69f11ec7b4fbd4c03d7dfd99faa5efff8a1de18`. The architecture release is one focused commit. Revert that commit to restore the prior ordinary scene, its overlay and matching cache URLs; do not reset the branch or discard subsequent unrelated work. Rebuild and verify the resulting source before publication. The ordinary countdown and celebration implementation were retained.

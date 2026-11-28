@@ -7,11 +7,12 @@ import {
   planMeteor,
   meteorPose,
   meteorReflection,
-} from "./core.mjs?v=20261128-timechip1";
+} from "./core.mjs?v=20261128-architecture1";
 import { HOME_SEO, SITE_URL, homeSchema } from "./seo.mjs?v=20261123-copy1";
 import { quotes } from "./content/quotes.mjs?v=20261124-quotes1";
 import { createQuoteRotation, QUOTE_INTERVAL } from "./quote-rotation.mjs?v=20261124-ring1";
 import { createBlogSection } from "./blog.js?v=20261127-space1";
+import { createArchitectureScene, drawArchitectureScene } from "./architecture-scene.mjs?v=20261128-architecture1";
 ("use strict");
 const $ = (selector) => document.querySelector(selector);
 const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -138,7 +139,7 @@ const quoteRotation = createQuoteRotation({
 $("#quote-next").addEventListener("click", () => quoteRotation.next());
 if (!document.hidden) quoteRotation.start();
 
-// A living circuit field: drifting constellations, light trails and a quiet orbit.
+// Ordinary code architecture and the retained Programmer's Day circuit/space scene.
 // Cap pixel density, connections and frame rate; stop all timers when the tab is hidden.
 const canvas = $("#network");
 const ctx = canvas.getContext("2d");
@@ -151,6 +152,7 @@ let width = 0,
   time = 0;
 const pointer = { x: -1000, y: -1000 };
 const tokens = ["{ }", "</>", "01", "=>", "API", "λ"];
+let architectureScene;
 function resize() {
   if (!ctx) return;
   const bounds = canvas.parentElement.getBoundingClientRect();
@@ -164,6 +166,8 @@ function resize() {
   canvas.width = Math.round(width * density);
   canvas.height = Math.round(height * density);
   ctx.setTransform(density, 0, 0, density, 0, 0);
+  architectureScene = createArchitectureScene(width, height);
+  lastLightMeasure = -1;
   const count = width < 700 ? 23 : 46;
   nodes = Array.from({ length: count }, (_, i) => ({
     x: Math.random() * width,
@@ -515,8 +519,13 @@ function draw() {
   if (!ctx) return;
   ctx.clearRect(0, 0, width, height);
   const celebration = document.body.classList.contains("celebrating");
-  drawLivingField();
-  const lights = drawSpaceScene(celebration);
+  let lights;
+  if (celebration) {
+    drawLivingField();
+    lights = drawSpaceScene(true);
+  } else {
+    lights = drawArchitectureScene(ctx, architectureScene, time, pointer, paused);
+  }
   const meteor = drawMeteor();
   if (meteor) lights.push(...meteor);
   updateReflections(lights);
