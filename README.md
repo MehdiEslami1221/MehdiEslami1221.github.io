@@ -2,6 +2,8 @@
 
 Bilingual Persian / English portfolio at **https://mehdieslami.ir**, built with static HTML, CSS and browser JavaScript. It remains on GitHub Pages: no server, database, API key, hosted form provider or paid service is needed for the portfolio features.
 
+[Maintenance guide](docs/MAINTENANCE.md) · [Documentation index](docs/README.md) · [راهنمای فارسی نگهداری](docs/OPERATIONS.fa.md)
+
 ## Local preview and checks
 
 Use Node.js 22 or later. There are no npm dependencies to install.

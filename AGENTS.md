@@ -1,5 +1,7 @@
 # Maintaining Mehdi Eslami’s portfolio
 
+Start with `docs/MAINTENANCE.md` for the current source map, accepted behavior and release procedure. `docs/README.md` indexes the topic guides; `docs/OPERATIONS.fa.md` covers owner operations in Persian. Keep these guides aligned when changing a public contract, feature boundary or deployment procedure.
+
 This is the owner's bilingual portfolio at https://mehdieslami.ir on GitHub Pages. Read README.md first, and read `docs/LAUNCH.md` before changing installation or splash behavior. Preserve the current dark charcoal / lime identity, supplied portrait, circuit background, and both languages unless the owner explicitly changes them. Do not introduce a required server, API key, paid service, third-party analytics or backend for these portfolio features.
 
 ## Content and languages
